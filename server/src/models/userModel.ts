@@ -4,14 +4,14 @@ import validator from 'validator';
 export interface UserDocumentInterface extends Document {
   username: string;
   first_name: string;
-  last_name: string;
-  description: string;
-  profile_picture: string;
-  email: string;
-  password: string;
-  recipes: string[];
-  favorites_recipes: string[];
-  friends: string[];
+  // last_name: string;
+  // description: string;
+  // profile_picture: string;
+  // email: string;
+  // password: string;
+  // recipes: string[];
+  // favorites_recipes: string[];
+  // friends: string[];
 }
 
 const UserSchema = new Schema<UserDocumentInterface>({

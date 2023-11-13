@@ -1,12 +1,11 @@
 {
-  "name": "Practica12",
+  "name": "Proyecto SYTW",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "server": "tsc-watch --onSuccess \"env-cmd -f ./config/dev.env node dist/index.js\"",
-    "mongoose": "tsc-watch --onSuccess \"env-cmd -f ./config/dev.env dist/db/mongoose.js\"",
     "tsx": "tsc --outDir dist",
     "doc": "typedoc",
     "test": "env-cmd -f ./config/test.env mocha --exit",
