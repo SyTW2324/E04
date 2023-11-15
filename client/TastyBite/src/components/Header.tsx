@@ -5,23 +5,35 @@ export function Header() {
     <>
       <header className="header">
         <div className="left-container">
-          <img src='../icons/lines.svg'/>
-          <img src='../images/LOGO.png'/>
+          <img className='lines' src='../icons/lines.svg'/>
+          <img className='logo' src='../images/Logo.png'/>
 
         </div>
         <div className="center-container">
-          <input type="text" placeholder="Search" />
-          <img src='../icons/search.svg'/>
+          <input className="input-search" type="text" placeholder="Search" />
+          <img className="btn-search" src='../icons/search.svg'/>
           
         </div>
         <div className="right-container"> 
           <ul className="menu">
-            <li>Login</li>
-            <li>Register</li>
-            <li>
-              <img src='../icons/cart.svg'/>
-              <span>name</span>
-            </li>
+            {/* si esta logueado */}
+            { true ? 
+              <>
+                <li>Iniciar Sesión</li>
+                <li>Registarse</li>
+                <li className="menu-profile">
+                  <img src='../icons/profile.svg'/>
+                </li>
+              </>
+              :
+              <>
+                <li className="menu-profile">
+                  <img src='../icons/profile.svg'/>
+                  <span>Nombre</span>
+                </li>
+              </>
+            }
+            
           </ul>
 
         </div>

@@ -4,15 +4,20 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 import { Header } from './components/Header.tsx'
+import { LoginForm } from './components/LoginForm.tsx'
+
 
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [main, setMain] = useState(false)
+
 
   return (
     <>
       <Header />
+      { main ? <LoginForm /> : <></>}
+      <button onClick={() => setMain(!main)}>Login</button>
     </>
   )
 }
