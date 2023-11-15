@@ -1,15 +1,15 @@
 import { Document, Schema, model } from 'mongoose';
 import validator from 'validator';
 
-export interface CategoryDocumentInterface extends Document {
+export interface IngredientDocumentInterface extends Document {
   ingredient_id: Schema.Types.ObjectId;
   ingredient: string;
-  unitOfMeasurement: 'gr' | 'cl';
   description: string;
+  image: string;
 }
 
 
-const CategorySchema = new Schema<CategoryDocumentInterface>({
+const IngredientSchema = new Schema<IngredientDocumentInterface>({
   ingredient_id: {
     type: Schema.Types.ObjectId,
     default: function() {
@@ -23,12 +23,6 @@ const CategorySchema = new Schema<CategoryDocumentInterface>({
     required: true,
     trim: true,
   },
-  unitOfMeasurement: {
-    type: String,
-    required: true,
-    trim: true,
-    enum: ['gr', 'cl'],
-  },
   description: {
     type: String,
     required: true,
@@ -39,7 +33,10 @@ const CategorySchema = new Schema<CategoryDocumentInterface>({
       }
     },
   },
+  image: {
+    type: String
+  },
 });
 
 
-export const Category = model<CategoryDocumentInterface>('Category', CategorySchema);
+export const Ingredient = model<IngredientDocumentInterface>('Ingredient', IngredientSchema);
