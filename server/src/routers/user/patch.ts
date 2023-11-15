@@ -23,16 +23,16 @@ export const patchUserQuery =  async (req: any, res: any) => {
     }
 
     // Usuario antes de ser modificado
-    const userActual = await User.findOne({ username: req.query.username });
+    const currentUser = await User.findOne({ username: req.query.username });
     
     // Usuario después de ser modificado
     const user = await User.findOneAndUpdate({ username: req.query.username }, req.body, { new: true, runValidators: true, });
     
  
-    const userActualizado = await User.findOne({username: req.query.username});
+    const updatedUser = await User.findOne({username: req.query.username});
 
-    if (userActualizado) {
-      return res.status(200).send(userActualizado);
+    if (updatedUser) {
+      return res.status(200).send(updatedUser);
     }
     return res.status(404).send({msg: "El usuario no se actualizó correctamente"});
   } catch (error) {
@@ -62,16 +62,16 @@ export const patchUser = async (req: any, res: any) => {
     }
 
     // Usuario antes de ser modificado
-    const userActual = await User.findOne({ username: req.params.username });
+    const currentUser = await User.findOne({ username: req.params.username });
 
     // Usuario después de ser modificado
     const user = await User.findOneAndUpdate({ username: req.params.username }, req.body, { new: true, runValidators: true, });
 
 
-    const userActualizado = await User.findOne({username: req.params.username});
+    const updatedUser = await User.findOne({username: req.params.username});
 
-    if (userActualizado) {
-      return res.send(userActualizado);
+    if (updatedUser) {
+      return res.send(updatedUser);
     }
     return res.status(404).send({msg: "El usuario no se actualizó correctamente"});
 
