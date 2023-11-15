@@ -1,4 +1,4 @@
-import { Recipe } from "../../models/recipeModel.js";
+import { Category } from "../../models/categoryModel.js";
 
 /**
  * Manejador de la petición PATCH /users
@@ -8,13 +8,13 @@ import { Recipe } from "../../models/recipeModel.js";
  * @param res Response
  * @returns Response
  */
-export const patchRecipeQuery =  async (req: any, res: any) => {
-  if (!req.query.recipe_id) {
+export const patchCategoryQuery =  async (req: any, res: any) => {
+  if (!req.query.category_id) {
     return res.status(400).send({ msg: 'Se debe proporcionar un identificador de receta' });
   }
-
+  
   try {
-    const allowedUpdates = ["title", "category", "ingredients", "instructions", "images", "time", "numberOfServings", "difficulty", "interactions"];
+    const allowedUpdates = ["category", "description"];
     const actualUpdates = Object.keys(req.body);
     const isValidUpdate = actualUpdates.every((update) => allowedUpdates.includes(update));
 
@@ -23,16 +23,16 @@ export const patchRecipeQuery =  async (req: any, res: any) => {
     }
 
     // Receta antes de ser modificado
-    const currentRecipe = await Recipe.findOne({ recipe_id: req.query.recipe_id });
+    const currentCategory = await Category.findOne({ category_id: req.query.category_id });
     
     // Receta después de ser modificado
-    const recipe = await Recipe.findOneAndUpdate({ recipe_id: req.query.recipe_id }, req.body, { new: true, runValidators: true, });
+    const category = await Category.findOneAndUpdate({ category_id: req.query.category_id }, req.body, { new: true, runValidators: true, });
     
  
-    const updatedRecipe = await Recipe.findOne({recipe_id: req.query.recipe_id});
+    const updatedCategory = await Category.findOne({category_id: req.query.category_id});
 
-    if (updatedRecipe) {
-      return res.status(200).send(updatedRecipe);
+    if (updatedCategory) {
+      return res.status(200).send(updatedCategory);
     }
     return res.status(404).send({msg: "La receta no se actualizó correctamente"});
   } catch (error) {
@@ -48,12 +48,12 @@ export const patchRecipeQuery =  async (req: any, res: any) => {
  * @param res Response
  * @returns Response
  */
-export const patchRecipe = async (req: any, res: any) => {
-  if (!req.params.recipe_id) {
+export const patchCategory = async (req: any, res: any) => {
+  if (!req.params.category_id) {
     return res.status(400).send({ msg: 'Se debe proporcionar un identificador de receta' });
   }
   try {
-    const allowedUpdates = ["title", "category", "ingredients", "instructions", "images", "time", "numberOfServings", "difficulty", "interactions"];
+    const allowedUpdates = ["category", "description"];
     const actualUpdates = Object.keys(req.body);
     const isValidUpdate = actualUpdates.every((update) => allowedUpdates.includes(update));
 
@@ -62,16 +62,16 @@ export const patchRecipe = async (req: any, res: any) => {
     }
 
     // Receta antes de ser modificado
-    const currentRecipe = await Recipe.findOne({ recipe_id: req.params.recipe_id });
+    const currentCategory = await Category.findOne({ category_id: req.params.category_id });
 
     // Usuario después de ser modificado
-    const recipe = await Recipe.findOneAndUpdate({ recipe_id: req.params.recipe_id }, req.body, { new: true, runValidators: true, });
+    const category = await Category.findOneAndUpdate({ category_id: req.params.category_id }, req.body, { new: true, runValidators: true, });
 
 
-    const updatedRecipe = await Recipe.findOne({recipe_id: req.params.recipe_id});
+    const updatedCategory = await Category.findOne({category_id: req.params.category_id});
 
-    if (updatedRecipe) {
-      return res.send(updatedRecipe);
+    if (updatedCategory) {
+      return res.send(updatedCategory);
     }
     return res.status(404).send({msg: "La receta no se actualizó correctamente"});
 
@@ -79,3 +79,5 @@ export const patchRecipe = async (req: any, res: any) => {
     return res.status(500).send({msg: "Fallo en el servidor al actualizar", error});
   }
 };
+
+
