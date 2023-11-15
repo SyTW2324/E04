@@ -23,16 +23,16 @@ export const patchRecipeQuery =  async (req: any, res: any) => {
     }
 
     // Receta antes de ser modificado
-    const recipeActual = await Recipe.findOne({ recipe_id: req.query.recipe_id });
+    const currentRecipe = await Recipe.findOne({ recipe_id: req.query.recipe_id });
     
     // Receta después de ser modificado
     const recipe = await Recipe.findOneAndUpdate({ recipe_id: req.query.recipe_id }, req.body, { new: true, runValidators: true, });
     
  
-    const recipeActualizado = await Recipe.findOne({recipe_id: req.query.recipe_id});
+    const updatedRecipe = await Recipe.findOne({recipe_id: req.query.recipe_id});
 
-    if (recipeActualizado) {
-      return res.status(200).send(recipeActualizado);
+    if (updatedRecipe) {
+      return res.status(200).send(updatedRecipe);
     }
     return res.status(404).send({msg: "La receta no se actualizó correctamente"});
   } catch (error) {
@@ -62,16 +62,16 @@ export const patchRecipe = async (req: any, res: any) => {
     }
 
     // Receta antes de ser modificado
-    const recipeActual = await Recipe.findOne({ recipe_id: req.params.recipe_id });
+    const currentRecipe = await Recipe.findOne({ recipe_id: req.params.recipe_id });
 
     // Usuario después de ser modificado
     const recipe = await Recipe.findOneAndUpdate({ recipe_id: req.params.recipe_id }, req.body, { new: true, runValidators: true, });
 
 
-    const recipeActualizado = await Recipe.findOne({recipe_id: req.params.recipe_id});
+    const updatedRecipe = await Recipe.findOne({recipe_id: req.params.recipe_id});
 
-    if (recipeActualizado) {
-      return res.send(recipeActualizado);
+    if (updatedRecipe) {
+      return res.send(updatedRecipe);
     }
     return res.status(404).send({msg: "La receta no se actualizó correctamente"});
 
