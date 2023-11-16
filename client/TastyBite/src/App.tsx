@@ -5,6 +5,7 @@ import './App.css'
 
 import { Header } from './components/Header.tsx'
 import { LoginForm } from './components/LoginForm.tsx'
+import { ListRecipes } from './components/ListRecipes.tsx'
 
 
 
@@ -16,7 +17,7 @@ function App() {
   return (
     <>
       <Header />
-      { main ? <LoginForm /> : <></>}
+      { main ? <LoginForm /> : <ListRecipes />}
       <button onClick={() => setMain(!main)}>Login</button>
     </>
   )
