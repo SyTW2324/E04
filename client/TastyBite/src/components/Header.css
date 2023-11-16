@@ -1,21 +1,125 @@
 .header {
-  background-color: #f1f1f1;
-  padding: 20px;
+  background-color: white;
   text-align: center;
   display: flex;
-  justify-content: space-between;
   max-height: 100px;
+
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--secondary);
+  padding: 10px;
 }
 
 .left-container {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   width: 20%;
 }
 
-.left-container img {
+.left-container .lines {
   width: 100%;
   height: 100%;
-  max-width: 50px;
-  max-height: 50px;
+  max-width: 60px;
+  max-height: 22px;
+}
+
+.left-container .lines:hover{
+  background-color: var(--primary);
+  transition: ease-in-out 0.3s;
+}
+
+.left-container .logo {
+  width: 100%;
+  height: 100%;
+  max-width: 195px;
+  max-height: 97px;
+}
+
+.right-container {
+  display: flex;
+  justify-content: space-between;
+  width: 15%;
+  padding: 0 2rem;
+}
+
+.right-container .menu {
+  width: 100%;
+  height: 100%;
+  max-height: 30px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.menu-profile {
+  width: 100%;
+  height: 100%;
+  max-width: 40px;
+  max-height: 40px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+
+}
+
+
+.menu-profile img {
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  max-height: 108px;
+}
+
+
+
+.center-container {
+  display: flex;
+  width: 20%;
+  height: 100%;
+  min-height: 30px;
+  align-items: center;
+  gap: 1rem;
+}
+
+.center-container .input-search {
+  width: 100%;
+  height: 100%;
+  min-height: 30px;
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid var(--secondary);
+  font-size: 16px;
+  padding: 0 10px;
+  font-family: var(--primary-font);
+}
+
+.center-container .btn-search {
+  width: 100%;
+  height: 100%;
+  max-width: 30px;
+  max-height: 30px;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 16px;
+  font-family: var(--primary-font);
+  cursor: pointer;
+}
+
+.center-container .btn-search img {
+  width: 100%;
+  height: 100%;
+  max-width: 20px;
+  max-height: 20px;
+}
+
+.center-container .btn-search:hover {
+  background-color: var(--primary);
+  transition: ease-in-out 0.3s;
 }

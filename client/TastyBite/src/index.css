@@ -3,5 +3,17 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  width: 100%;
+  --primary: #ed8e07;
+  --secondary: #1b1a20;
+  --tertiary: #81b029;
+  --quaternary: #396929;
+}
+
+
+
+body {
+  margin: 0;
+  padding: 0;
 }
 
