@@ -24,7 +24,7 @@
 }
 
 .login-form-container__left-container {
-  width: 30%;
+  width: 25%;
   display: flex;
 }
 
@@ -93,6 +93,6 @@
 }
 
 .logo-cocodrilo {
-  width: 35%;
-  height: 35%;
+  width: 50%;
+  height: 50%;
 }
