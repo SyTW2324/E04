@@ -6,7 +6,7 @@ export interface UserDocumentInterface extends Document {
   first_name: string;
   last_name: string;
   profile_description: string;
-  profile_picture: string;
+  profile_picture: Schema.Types.ObjectId;
   email: string;
   // password: string;
   recipes: Schema.Types.ObjectId[];
@@ -53,7 +53,9 @@ const UserSchema = new Schema<UserDocumentInterface>({
     type: String
   },
   profile_picture: {
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: 'Image',
+    required: false,
   },
   email: {
     type: String,

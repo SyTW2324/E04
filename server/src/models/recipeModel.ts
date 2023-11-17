@@ -1,6 +1,7 @@
 import { Document, Schema, model } from 'mongoose';
 import validator from 'validator';
 import mongoose from 'mongoose';
+import { ImageDocumentInterface } from './imageModel.js';
 
 export interface RecipeDocumentInterface extends Document {
   recipe_id: Schema.Types.ObjectId;
@@ -8,7 +9,7 @@ export interface RecipeDocumentInterface extends Document {
   category: Schema.Types.ObjectId;
   ingredients: Schema.Types.ObjectId[]
   instructions: string[];
-  images: string[];
+  images: Schema.Types.ObjectId[];
   time: number;
   numberOfServings: number;
   difficulty: 'easy' | 'medium' | 'hard';
@@ -53,7 +54,8 @@ const RecipeSchema = new Schema<RecipeDocumentInterface>({
     },
   }],
   images: [{
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: 'Image',
     required: false,
   }],
   time: {
@@ -84,6 +86,7 @@ const RecipeSchema = new Schema<RecipeDocumentInterface>({
     required: false,
   }]
 });
+
 
 
 export const Recipe = model<RecipeDocumentInterface>('Recipe', RecipeSchema);

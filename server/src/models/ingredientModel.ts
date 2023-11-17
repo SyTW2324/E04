@@ -5,7 +5,6 @@ export interface IngredientDocumentInterface extends Document {
   ingredient_id: Schema.Types.ObjectId;
   ingredient: string;
   description: string;
-  image: string;
 }
 
 
@@ -32,10 +31,7 @@ const IngredientSchema = new Schema<IngredientDocumentInterface>({
         throw new Error('Description is too long');
       }
     },
-  },
-  image: {
-    type: String
-  },
+  }
 });
 
 

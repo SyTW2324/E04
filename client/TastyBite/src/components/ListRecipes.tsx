@@ -3,38 +3,76 @@ import { Recipe } from "../../types/Recipe.tsx";
 
 const fetchRecipes = async () => {
   const response = await fetch("http://localhost:3000/recipes");
-  return await response.json();
-}
+  const recipesData = await response.json();
 
+  // Recorrer las recetas y cargar las imágenes
+  const recipesWithImages = await Promise.all(
+    recipesData.map(async (recipe: Recipe) => {
+      const imageUrl = await fetchImageUrl(recipe.images[0]);
+      return { ...recipe, imageUrl };
+    })
+  );
+
+  return recipesWithImages;
+};
+
+const fetchImageUrl = async (imageId: string) => {
+  const response = await fetch(`http://localhost:3000/images?imageId=${imageId}`);
+  const blob = await response.blob();
+  return URL.createObjectURL(blob);
+};
 
 const useRecipes = () => {
   const [recipes, setRecipes] = useState([]);
 
-  useEffect(() => {
-    fetchRecipes().then((recipes) => setRecipes(recipes));
+  useEffect(() => { 
+    fetchRecipes().then((recipesWithImages) => {
+      setRecipes(recipesWithImages);
+    });
+
   }, []);
 
   return { recipes };
 }
 
+
 export function ListRecipes() {
   const { recipes } = useRecipes();
+  const [images, setImages] = useState([]);
+  
+  useEffect(() => {
+    recipes.forEach((recipe: Recipe) => {
+      recipe.images.forEach((imageId: string) => {
+        fetchImageUrl(imageId).then((image) => {
+          setImages([...images, image]);
+        });
+      });
+    });
+    console.log(images)
+  }
+  , [recipes]);
   
 
+
   return (
-    <div className="list-recipes">
-      <h1>Recipes</h1>
-      <ul>
-        {recipes.map((recipe: Recipe) => (
-          <li key={String(recipe.recipe_id)}>
-            <h2>{recipe.title}</h2>
-            <p>{String(recipe.recipe_id)}</p>
-            {recipe.instructions.map((instruction) => (
-              <p>{instruction}</p>
-            ))}
-          </li>
-        ))}
-      </ul>
+    <div>
+      {recipes.map((recipe) => (
+        <Recipe key={recipe.recipe_id} recipe={recipe} />
+        
+      ))}
     </div>
   );
 }
+
+const Recipe = ({ recipe }) => {
+  return (
+    <div>
+      <h2>{recipe.title}</h2>
+      <p>{String(recipe.recipe_id)}</p>
+      {recipe.instructions.map((instruction) => (
+        <p>{instruction}</p>
+      ))}
+      <img src={recipe.imageUrl} alt={recipe.name} />
+    </div>
+  );
+};
