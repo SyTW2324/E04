@@ -13,7 +13,7 @@
   ],
   "images": ["imagen_pastel_1.jpg", "imagen_pastel_2.jpg", "imagen_pastel_3.jpg"],
   "time": 45,
-  "numberOfServings": 8,
+  "number_servings": 8,
   "difficulty": "medium"
 }
 
@@ -34,7 +34,7 @@
   ],
   "images": ["imagen_ensalada_1.jpg", "imagen_ensalada_2.jpg", "imagen_ensalada_3.jpg"],
   "time": 25,
-  "numberOfServings": 4,
+  "number_servings": 4,
   "difficulty": "easy"
 }
 
@@ -54,7 +54,7 @@
   ],
   "images": ["imagen_tacos_1.jpg", "imagen_tacos_2.jpg", "imagen_tacos_3.jpg"],
   "time": 40,
-  "numberOfServings": 6,
+  "number_servings": 6,
   "difficulty": "medium"
 }
 
@@ -75,7 +75,7 @@
   ],
   "images": ["imagen_risotto_1.jpg", "imagen_risotto_2.jpg", "imagen_risotto_3.jpg"],
   "time": 35,
-  "numberOfServings": 4,
+  "number_servings": 4,
   "difficulty": "hard"
 }
 

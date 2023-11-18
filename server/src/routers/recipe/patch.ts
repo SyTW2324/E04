@@ -14,7 +14,7 @@ export const patchRecipeQuery =  async (req: any, res: any) => {
   }
 
   try {
-    const allowedUpdates = ["title", "category", "ingredients", "instructions", "images", "time", "numberOfServings", "difficulty", "interactions"];
+    const allowedUpdates = ["title", "category", "ingredients", "instructions", "images", "time", "number_servings", "difficulty", "interactions"];
     const actualUpdates = Object.keys(req.body);
     const isValidUpdate = actualUpdates.every((update) => allowedUpdates.includes(update));
 
@@ -53,7 +53,7 @@ export const patchRecipe = async (req: any, res: any) => {
     return res.status(400).send({ msg: 'Se debe proporcionar un identificador de receta' });
   }
   try {
-    const allowedUpdates = ["title", "category", "ingredients", "instructions", "images", "time", "numberOfServings", "difficulty", "interactions"];
+    const allowedUpdates = ["title", "category", "ingredients", "instructions", "images", "time", "number_servings", "difficulty", "interactions"];
     const actualUpdates = Object.keys(req.body);
     const isValidUpdate = actualUpdates.every((update) => allowedUpdates.includes(update));
 

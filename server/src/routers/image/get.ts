@@ -11,7 +11,7 @@ import { Image } from "../../models/imageModel.js";
  */
 export const getImageQuery =  async (req: any, res: any) => {
   try {
-    const image = await Image.findById(req.query.imageId);
+    const image = await Image.findById(req.query.image_id);
 
     if(image !== null) {
       res.set('Content-Type', image.image.contentType)
@@ -34,7 +34,7 @@ export const getImageQuery =  async (req: any, res: any) => {
 export const getImage =  async (req: any, res: any) => {
 
   try {
-    const image = await Image.findById(req.params.imageId);
+    const image = await Image.findById(req.params.image_id);
 
     if(image !== null) {
       res.set('Content-Type', image.image.contentType)

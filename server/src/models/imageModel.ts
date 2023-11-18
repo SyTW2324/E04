@@ -1,7 +1,7 @@
 import { Document, Schema, model } from 'mongoose';
 
 export interface ImageDocumentInterface extends Document {
-  imageId: Schema.Types.ObjectId;
+  image_id: Schema.Types.ObjectId;
   imageTitle: string;
   image: {
     data: Buffer;
@@ -10,7 +10,7 @@ export interface ImageDocumentInterface extends Document {
 }
 
 const ImageSchema = new Schema<ImageDocumentInterface>({
-  imageId: {
+  image_id: {
     type: Schema.Types.ObjectId,
     default: function() {
       return this._id;

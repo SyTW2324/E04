@@ -11,7 +11,7 @@ export interface RecipeDocumentInterface extends Document {
   instructions: string[];
   images: Schema.Types.ObjectId[];
   time: number;
-  numberOfServings: number;
+  number_servings: number;
   difficulty: 'easy' | 'medium' | 'hard';
   interactions: Schema.Types.ObjectId[];
 
@@ -67,7 +67,7 @@ const RecipeSchema = new Schema<RecipeDocumentInterface>({
       }
     },
   },
-  numberOfServings: {
+  number_servings: {
     type: Number,
     required: false,
     validate: (value: number) => {

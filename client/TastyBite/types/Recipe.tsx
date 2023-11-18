@@ -8,7 +8,7 @@ export interface Recipe {
   instructions: string[];
   images: string[];
   time: number;
-  numberOfServings: number;
+  number_servings: number;
   difficulty: 'easy' | 'medium' | 'hard';
   interactions: Schema.Types.ObjectId[];
 }

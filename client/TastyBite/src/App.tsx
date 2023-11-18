@@ -5,7 +5,9 @@ import './App.css'
 
 import { Header } from './components/Header.tsx'
 import { LoginForm } from './components/LoginForm.tsx'
+import { RegisterForm } from './components/RegisterForm.tsx'
 import { ListRecipes } from './components/ListRecipes.tsx'
+import { UserInfo } from './components/UserInfo.tsx'
 
 
 
@@ -17,8 +19,8 @@ function App() {
   return (
     <>
       <Header />
-      { main ? <LoginForm /> : <ListRecipes />}
-      <button onClick={() => setMain(!main)}>Login</button>
+      { main ? <RegisterForm /> : <UserInfo/>}
+      <button onClick={() => setMain(!main)}>Register</button>
     </>
   )
 }

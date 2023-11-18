@@ -16,8 +16,8 @@ const fetchRecipes = async () => {
   return recipesWithImages;
 };
 
-const fetchImageUrl = async (imageId: string) => {
-  const response = await fetch(`http://localhost:3000/images?imageId=${imageId}`);
+const fetchImageUrl = async (image_id: string) => {
+  const response = await fetch(`http://localhost:3000/images?image_id=${image_id}`);
   const blob = await response.blob();
   return URL.createObjectURL(blob);
 };
@@ -42,8 +42,8 @@ export function ListRecipes() {
   
   useEffect(() => {
     recipes.forEach((recipe: Recipe) => {
-      recipe.images.forEach((imageId: string) => {
-        fetchImageUrl(imageId).then((image) => {
+      recipe.images.forEach((image_id: string) => {
+        fetchImageUrl(image_id).then((image) => {
           setImages([...images, image]);
         });
       });
@@ -56,7 +56,7 @@ export function ListRecipes() {
 
   return (
     <div>
-      {recipes.map((recipe) => (
+      {recipes.map((recipe: Recipe) => (
         <Recipe key={recipe.recipe_id} recipe={recipe} />
         
       ))}
