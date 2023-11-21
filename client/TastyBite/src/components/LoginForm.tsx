@@ -26,7 +26,7 @@ export function LoginForm({ setUser }) {
       console.log('Formulario inválido');
       return false;
     } else {
-      const res = await axios.post(`http://${IP}:3000/users/login`, data);
+      const res = await axios.post(`http://localhost:3000/users/login`, data);
       setUser(res.data);
       console.log(res);
     }

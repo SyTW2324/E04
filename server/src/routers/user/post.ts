@@ -23,8 +23,6 @@ const TOKEN_KEY = process.env.TOKEN_KEY || '';
 
 export const postUserLogin = async (req: any, res: any) => {
   try {
-    console.log("Se ha recibido una peticion de ")
-    console.log(req.body);
     const usernameLogin = req.body.username;
     const passwordLogin = req.body.password;
     
@@ -36,7 +34,7 @@ export const postUserLogin = async (req: any, res: any) => {
     if (users.length !== 0) {
       const user = users[0];
       if(user.username === usernameLogin && user.password === passwordLogin) {
-        const token = jwt.sign({ username: user.username, email: user.email}, TOKEN_KEY, { expiresIn: '2h'});
+        const token = jwt.sign({ username: user.username, email: user.email}, TOKEN_KEY, { expiresIn: '1h'});
         let nDatos = { username: user.username, first_name: user.first_name, last_name: user.last_name, profile_description: user.profile_description,
           profile_picture: user.profile_picture, email: user.email, recipes: user.recipes, 
           favorites_recipes: user.favorites_recipes, friends: user.friends, token};
