@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 import { Header } from './components/Header.tsx'
@@ -13,13 +11,16 @@ import { UserInfo } from './components/UserInfo.tsx'
 
 
 function App() {
-  const [main, setMain] = useState(false)
+  const [main, setMain] = useState(true)
+  const [user, setUser] = useState({})
 
 
   return (
     <>
       <Header />
-      { main ? <RegisterForm /> : <UserInfo/>}
+      { main ? <LoginForm setUser={setUser} /> : <UserInfo user={user} />}
+
+      {/* { main ? <LoginForm /> : <UserInfo/>} */}
       <button onClick={() => setMain(!main)}>Register</button>
     </>
   )

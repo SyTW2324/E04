@@ -1,29 +1,49 @@
 // import './UserInfo.css'
 
+const IP = "10.6.128.69";
+
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const fetchImageUrl = async (image_id: string) => {
-  const response = await fetch(`http://localhost:3000/images?image_id=${image_id}`);
+  const response = await fetch(`http://${IP}:3000/images?image_id=${image_id}`);
   const blob = await response.blob();
   return URL.createObjectURL(blob);
 };
 
-const getUserInfo = async (username: string) => {
-  const response = await fetch(`http://localhost:3000/users/${username}`);
-  const userData = await response.json();
+const getUserInfo = async (user: any) => {
+  const token = user.token;
+  const username = user.username;
+
+  console.log('token', token);
+  console.log('username', username);
+
+  axios.get(`http:${IP}:3000/users/${username}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  })
+  .then(response => {
+    console.log("sjbhafijbfiasbfbasbnasf")
+    // Process the response data here
+    console.log('response', response.data);
+    return response.data;
+  })
+  .catch(error => {
+    // Handle errors
+    console.error('Error fetching data:', error);
+  });
   
-  const userWithImage = await fetchImageUrl(userData[0].profile_picture);
-  
-  return { ...userData[0] , userWithImage};
 }
 
-export function UserInfo() {
+
+export function UserInfo({ user }) {
   const [userInfo, setUserInfo] = useState({});
   
   useEffect(() => {
     console.log('useEffect')
-    getUserInfo('facundo').then((userInfo) => {
-      setUserInfo(userInfo);
+    getUserInfo(user).then((newUserInfo) => {
+      setUserInfo(newUserInfo);
     });
   }, []);
 

@@ -7,6 +7,7 @@ import { categoryRouter } from './routers/categoryRouter.js';
 import { ingredientRouter } from './routers/ingredientRouter.js';
 import { interactionRouter } from './routers/interactionRouter.js';
 import { imageRouter } from './routers/imageRouter.js';
+import cors from 'cors';
 
 /**
  * @description Esta es la aplicacion de express
@@ -14,6 +15,17 @@ import { imageRouter } from './routers/imageRouter.js';
  */
 export const app = express();
 
+// Configuración de CORS
+const corsOptions = {
+  origin: '*', // Permitir peticiones desde cualquier origen
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos permitidos
+  credentials: true, // Permitir el envío de cookies
+  optionsSuccessStatus: 204, // Establecer el código de estado para las solicitudes OPTIONS exitosas
+  exposedHeaders: ['Authorization'], // Cabeceras expuestas
+};
+
+// Habilitar CORS con opciones personalizadas
+app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5173');

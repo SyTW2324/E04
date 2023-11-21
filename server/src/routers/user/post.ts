@@ -14,3 +14,45 @@ export const postUser = async (req: any, res: any) => {
     return res.status(500).send({msg: "No se añadió correctamente el usuario", error: error});
   }
 };
+
+
+
+import jwt from 'jsonwebtoken';
+const TOKEN_KEY = process.env.TOKEN_KEY || '';
+
+
+export const postUserLogin = async (req: any, res: any) => {
+  try {
+    console.log("Se ha recibido una peticion de ")
+    console.log(req.body);
+    const usernameLogin = req.body.username;
+    const passwordLogin = req.body.password;
+    
+    const filter = req.body.username ? {username: req.body.username.toString()} : {};
+
+    const users = await User.find(filter);
+    
+
+    if (users.length !== 0) {
+      const user = users[0];
+      if(user.username === usernameLogin && user.password === passwordLogin) {
+        const token = jwt.sign({ username: user.username, email: user.email}, TOKEN_KEY, { expiresIn: '2h'});
+        let nDatos = { username: user.username, first_name: user.first_name, last_name: user.last_name, profile_description: user.profile_description,
+          profile_picture: user.profile_picture, email: user.email, recipes: user.recipes, 
+          favorites_recipes: user.favorites_recipes, friends: user.friends, token};
+        return res.status(200).json(nDatos);
+      }
+    }
+
+    
+    
+
+    // const user = new User(req.body);
+    // await user.save();
+    // return res.status(201).send(user);
+    return res.status(400).send("Inicio de sesión incorrecto");
+  } catch (error) {
+    return res.status(500).send({msg: "No se añadió correctamente el usuario", error: error});
+  }
+};
+

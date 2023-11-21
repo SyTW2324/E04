@@ -8,7 +8,7 @@ export interface UserDocumentInterface extends Document {
   profile_description: string;
   profile_picture: Schema.Types.ObjectId;
   email: string;
-  // password: string;
+  password: string;
   recipes: Schema.Types.ObjectId[];
   favorites_recipes: Schema.Types.ObjectId[];
   friends: Schema.Types.ObjectId[];
@@ -68,7 +68,10 @@ const UserSchema = new Schema<UserDocumentInterface>({
       }
     }
   },
-  // password
+  password: {
+    type: String,
+    required: true,
+  },
   recipes: [{
     type: Schema.Types.ObjectId,
     ref: 'Recipe'
