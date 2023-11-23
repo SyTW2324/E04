@@ -8,6 +8,7 @@
   --secondary: #1b1a20;
   --tertiary: #81b029;
   --quaternary: #396929;
+  box-sizing: border-box;
 }
 
 
@@ -15,5 +16,6 @@
 body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 

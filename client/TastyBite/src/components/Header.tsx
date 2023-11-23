@@ -6,7 +6,9 @@ export function Header() {
       <header className="header">
         <div className="left-container">
           <img className='lines' src='../icons/lines.svg'/>
-          <img className='logo' src='../images/Logo.png'/>
+          
+          <a href="/" ><img className='logo'   src='../images/Logo.png'/></a>
+
 
         </div>
         <div className="center-container">
@@ -19,8 +21,8 @@ export function Header() {
             {/* si esta logueado */}
             { true ? 
               <>
-                <li>Iniciar Sesión</li>
-                <li>Registarse</li>
+                <li><a href="/login">Iniciar Sesión</a></li>
+                <li><a href="/register">Registarse</a></li>
                 <li className="menu-profile">
                   <img src='../icons/profile.svg'/>
                 </li>

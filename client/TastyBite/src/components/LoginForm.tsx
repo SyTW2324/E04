@@ -1,6 +1,3 @@
-const IP = "10.6.128.69";
-
-
 import axios from 'axios';
 import './LoginForm.css'
 import React, { useState, ChangeEvent, FormEvent } from 'react';
@@ -28,7 +25,6 @@ export function LoginForm({ setUser }) {
     } else {
       const res = await axios.post(`http://localhost:3000/users/login`, data);
       setUser(res.data);
-      console.log(res);
     }
   }
 
@@ -40,16 +36,16 @@ export function LoginForm({ setUser }) {
       <div className="login-form-container">
 
         <div className="login-form-container__right-container">
-          <h1>Iniciar Sesión</h1>
+          <h1 className="login-title" >Iniciar Sesión</h1>
           <form onSubmit={handleSubmit} className="form-login">
             <div className="form-group">
-              <input type="text" onChange={handleInputChange} value={data.username} id="username" placeholder="nombre de usuario" />
+              <input type="text" onChange={handleInputChange} value={data.username} id="username" placeholder="Nombre de usuario" />
             </div>
             <div className="form-group">
-              <input type="password" onChange={handleInputChange} value={data.password} id="password" placeholder="contraseña" />
+              <input type="password" onChange={handleInputChange} value={data.password} id="password" placeholder="Contraseña" />
             </div>
             <div className="form-group">
-              <button type="submit">Login</button>
+              <button type="submit">Iniciar Sesión</button>
             </div>
             <div className="login-form-container__right-container__register">
               <p>¿No tienes cuenta? <a href="#">Registrate</a></p>

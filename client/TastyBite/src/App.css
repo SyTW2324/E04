@@ -13,6 +13,7 @@
   --spacing: 0.25rem;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   --max-width: 1170px;
+  box-sizing: border-box;
 }
 
 
