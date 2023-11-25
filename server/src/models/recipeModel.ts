@@ -14,7 +14,6 @@ export interface RecipeDocumentInterface extends Document {
   number_servings: number;
   difficulty: 'easy' | 'medium' | 'hard';
   interactions: Schema.Types.ObjectId[];
-
 }
 
 const RecipeSchema = new Schema<RecipeDocumentInterface>({

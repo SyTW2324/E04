@@ -123,3 +123,33 @@
   background-color: var(--primary);
   transition: ease-in-out 0.3s;
 }
+
+/* hacemos que sea resposive con media querys */
+
+@media screen and (max-width: 768px) {
+  .left-container .logo {
+    height: 100%;
+    max-height: 50px;    
+  }
+
+  .left-container {
+    width: 45%;
+  }
+
+  .header {
+    height: 10vh;
+  }
+
+  .center-container {
+    width: 50%;
+  }
+
+  .center-container .input-search{
+    height: 60%;
+  }
+
+  .right-container {
+    display: none;
+  }
+  
+}

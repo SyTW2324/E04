@@ -39,10 +39,10 @@ export function LoginForm({ setUser }) {
           <h1 className="login-title" >Iniciar Sesión</h1>
           <form onSubmit={handleSubmit} className="form-login">
             <div className="form-group">
-              <input type="text" onChange={handleInputChange} value={data.username} id="username" placeholder="Nombre de usuario" />
+              <input className="email" type="text" onChange={handleInputChange} value={data.username} id="username" placeholder="Nombre de usuario" />
             </div>
             <div className="form-group">
-              <input type="password" onChange={handleInputChange} value={data.password} id="password" placeholder="Contraseña" />
+              <input className="password-login" type="password" onChange={handleInputChange} value={data.password} id="password" placeholder="Contraseña" />
             </div>
             <div className="form-group">
               <button type="submit">Iniciar Sesión</button>

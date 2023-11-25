@@ -1,7 +1,9 @@
 import './RegisterForm.css'
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import axios from 'axios';
 import { PreviewImage } from './PreviewImage';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const postImage = async ({ username, image, setImage}) => {
@@ -30,8 +32,7 @@ const postImage = async ({ username, image, setImage}) => {
 };
 
 
-const postUser = async ({ image, setImage, setSuccess}) => {
-
+const postUser = async ({ image, setImage, setSuccess, errors, setErrors }) => {
   const username = document.getElementById('username') as HTMLInputElement
   const first_name = document.getElementById('first_name') as HTMLInputElement
   const last_name = document.getElementById('last_name') as HTMLInputElement
@@ -40,11 +41,92 @@ const postUser = async ({ image, setImage, setSuccess}) => {
   const password1 = document.getElementById('password-1') as HTMLInputElement
   const password2 = document.getElementById('password-2') as HTMLInputElement
 
-  if (password1.value !== password2.value) {
-    console.error('Las contraseñas no coinciden');
-    return;
+
+  if (!username.value) {
+    console.error('Por favor, ingrese un nombre de usuario.');
+    // añadimos el error al diccionario de errores, comprobando que no esté ya, para no repetirlo
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      username: 'Por favor, ingrese un nombre de usuario.',
+    }));
+  } else {
+    // comprobamos que no tengamos una entrada en el diccionario de errores con username, y si la tenemos, la eliminamos
+    // la quitamos del array de errores
+    if (errors.username) {
+      const { username, ...rest } = errors;
+      setErrors(rest);
+    }
   }
 
+  if (!first_name.value) {
+    console.error('Por favor, ingrese un nombre.');
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      first_name: 'Por favor, ingrese un nombre.',
+    }));
+  } else {
+    if (errors.first_name) {
+      const { first_name, ...rest } = errors;
+      setErrors(rest);
+    }
+  }
+
+  if (!last_name.value) {
+    console.error('Por favor, ingrese un apellido.');
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      last_name: 'Por favor, ingrese un apellido.',
+    }));
+  } else {
+    if (errors.last_name) {
+      const { last_name, ...rest } = errors;
+      setErrors(rest);
+    }
+  }
+
+  if (!profile_description.value) {
+    console.error('Por favor, ingrese una descripción de perfil.');
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      profile_description: 'Por favor, ingrese una descripción de perfil.',
+    }));
+  } else {
+    if (errors.profile_description) {
+      const { profile_description, ...rest } = errors;
+      setErrors(rest);
+    }
+  }
+
+  if (!email.value) {
+    console.error('Por favor, ingrese un correo electrónico.');
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      email: 'Por favor, ingrese un correo electrónico.',
+    }));
+  } else {
+    if (errors.email) {
+      const { email, ...rest } = errors;
+      setErrors(rest);
+    }
+  }
+
+  if (password1.value !== password2.value) {
+    console.error('Las contraseñas no coinciden');
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      password: 'Las contraseñas no coinciden',
+    }));
+  } else {
+    if (errors.password) {
+      const { password, ...rest } = errors;
+      setErrors(rest);
+    }
+  }
+
+  console.log('errors')
+  console.log(errors);
+
+  return;
 
   const result = await postImage({ username: username.value, image, setImage})
 
@@ -63,6 +145,7 @@ const postUser = async ({ image, setImage, setSuccess}) => {
   const response = await axios.post(`http://localhost:3000/users`, user);
   if (response.status === 201) {
     setSuccess(true);
+
   } else {
     console.error('Error al registrar el usuario:', response.data.message);
   }
@@ -72,11 +155,21 @@ const postUser = async ({ image, setImage, setSuccess}) => {
 export function RegisterForm() {
   const [image, setImage] = useState<File | null>(null);
   const [success, setSuccess] = useState<boolean>(null);
+  const [errors, setErrors] = useState({});
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
     setImage(file || null);
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (success) {
+      navigate('/login');
+    }
+  }, [success]);
+
   
   return (
     <>
@@ -90,24 +183,73 @@ export function RegisterForm() {
             
             <div className="register-form__left-container">
                <div className="form-group username">
-                 <input type="text" id="username" placeholder="Nombre de usuario" />
-                <input type="email" id="email" placeholder="Correo electrónico" />
+                  <div className="input-error-group">
+                    <input type="text" id="username" placeholder="Nombre de usuario" />
+                    {errors.username ? (
+                      <p className="error-message">{errors.username}</p>
+                    ) : (
+                      <p className="error-message"> </p>
+                    )}
+                  </div>
+                  <div className="input-error-group">
+                    <input type="email" id="email" placeholder="Correo electrónico" />
+                    {errors.email ? (
+                      <p className="error-message">{errors.email}</p>
+                    ) : (
+                      <p className="error-message"> </p>
+                    )}
+                  </div>
                </div>
                <div className="form-group personal-data">
-                 <input type="text" id="first_name" placeholder="Nombre" />
-                 <input type="text" id="last_name" placeholder="Apellidos" />
+                <div className="input-error-group">
+                  <input type="text" id="first_name" placeholder="Nombre" />
+                  {errors.first_name ? (
+                    <p className="error-message">{errors.first_name}</p>
+                  ) : (
+                    <p className="error-message"> </p>
+                  )}
+                </div>
+                <div className="input-error-group">
+                  <input type="text" id="last_name" placeholder="Apellidos" />
+                  {errors.last_name ? (
+                    <p className="error-message">{errors.last_name}</p>
+                  ) : (
+                    <p className="error-message"> </p>
+                  )}
+
+                </div>
                </div>
                <div className="form-group description">
-                 <input type="text" id="profile_description" placeholder="Descripción de perfil" />
+                <div className="description input-error-group">
+                  <input type="text" id="profile_description" placeholder="Descripción de perfil" />
+                  {errors.profile_description ? (
+                    <p className="error-message">{errors.profile_description}</p>
+                  ) : (
+                    <p className="error-message"> </p>
+                  )}
+                </div>
                </div>
 
-              <div className="form-group password">
-                <input type="password" id="password-1" placeholder="Contraseña" />
-                <input type="password" id="password-2" placeholder="Repetir Contraseña" />
+              <div className="form-group password-register">
+                <div className="input-error-group">
+                  <input type="password" id="password-1" placeholder="Contraseña" />
+                  {errors.password ? (
+                    <p className="error-message">{errors.password}</p>
+                  ) : (
+                    <p className="error-message"> </p>
+                  )}
+                </div>
+                <div className="input-error-group">
+                  <input type="password" id="password-2" placeholder="Repetir Contraseña" />
+                  {errors.password ? (
+                    <p className="error-message">{errors.password}</p>
+                  ) : (
+                    <p className="error-message"> </p>
+                  )}
+                </div>
               </div>
             </div>
             <div className="register-form__right-container">
-              
                <div>
                  {/* <label htmlFor="image">Seleccionar imagen:</label>
                  <input type="file" id="image" accept="image/*" onChange={handleImageChange} /> */}
@@ -116,13 +258,11 @@ export function RegisterForm() {
              </div>
             
           </form>
+          
           <div className="form-group button">
-            <button onClick={() => postUser({ username, image, setImage, setSuccess })}>Registrarse</button>
+            <button onClick={() => postUser({ username, image, setImage, setSuccess, errors, setErrors })}>Registrarse</button>
           </div>
-          {success && <div>Usuario registrado correctamente</div>}
-
-
-
+          
         </div>
         
       </div>

@@ -11,10 +11,22 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+.text-container {
+  padding: 1rem;
+  text-align: center;
+}
+
+#image {
+  margin-top: 1rem;
+}
+
+
+.file-input {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }

@@ -1,0 +1,22 @@
+
+
+
+/* añadimos imagenes en un grid que se va dimensionando */
+.recipe-image {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+
+}
+
+.prueba {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+button.active {
+  background-color: var(--primary);
+  color: white;
+}

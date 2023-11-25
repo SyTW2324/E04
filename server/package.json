@@ -12,7 +12,8 @@
     "test": "env-cmd -f ./config/test.env mocha --exit",
     "coverage": "c8 npm test && c8 report --reporter=lcov",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "jest": "jest --watchAll --verbose"
   },
   "keywords": [],
   "author": "",
@@ -40,6 +41,7 @@
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
     "inquirer": "^7.3.3",
+    "jest-cucumber": "^3.0.1",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "prettier": "^2.8.3",
