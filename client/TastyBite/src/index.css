@@ -9,6 +9,14 @@
   --tertiary: #81b029;
   --quaternary: #396929;
   box-sizing: border-box;
+  --title-size: 3rem;
+}
+
+h1 {
+  font-size: var(--title-size);
+  font-weight: 600;
+  margin-top: 2rem;
+  padding: 0;
 }
 
 

@@ -35,6 +35,8 @@ export function UserInfo({ user }) {
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
+    console.log("UserInfo useEffect");
+    console.log("user:", user);
     getUserInfo(user)
       .then((newUserInfo) => {
         setUserInfo(newUserInfo[0]);

@@ -34,7 +34,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 4rem;
+  gap: 3rem;
+  margin-top: 1rem;
   width: 100%;
 }
 
@@ -44,7 +45,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
   width: 100%;
   min-width: 700px;
 }
@@ -111,7 +111,7 @@
   align-items: center;
   justify-content: left;
   gap: 1rem;
-  width: 100%;
+  width: 10%;
 }
 
 .form-group input {
@@ -125,14 +125,9 @@
 }
 
 
-.logo-cocodrilo img {
-  width: 100%;
-}
 
-
-
-.form-group button {
-  margin-top: 2rem;
+.form-group-postuser button {
+  margin-top: 1rem;
   display: flex;
   width: auto;
   height: 3rem;
@@ -149,7 +144,7 @@
 }
 
 
-.form-group button:hover {
+.form-group-postuser button:hover {
   background-color: white;
   color: var(--secondary);
   border: 1px solid var(--secondary);

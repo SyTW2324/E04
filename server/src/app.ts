@@ -8,6 +8,7 @@ import { ingredientRouter } from './routers/ingredientRouter.js';
 import { interactionRouter } from './routers/interactionRouter.js';
 import { imageRouter } from './routers/imageRouter.js';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 
 /**
  * @description Esta es la aplicacion de express
@@ -26,6 +27,8 @@ const corsOptions = {
 
 // Habilitar CORS con opciones personalizadas
 app.use(cors(corsOptions));
+
+app.use(bodyParser.json({ limit: '5mb' }));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');

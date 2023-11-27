@@ -139,8 +139,8 @@ const postUser = async ({ image, setImage, setSuccess, errors, setErrors }) => {
     }
   }
 
-  return;
-
+  console.log("LASSSS IMAGENESSSS")
+  console.log(image);
   const result = await postImage({ username: username.value, image, setImage})
 
   const user = {
@@ -272,7 +272,7 @@ export function RegisterForm() {
             
           </form>
           
-          <div className="form-group button">
+          <div className="form-group-postuser button">
             <button onClick={() => postUser({ username, image, setImage, setSuccess, errors, setErrors })}>Registrarse</button>
           </div>
           

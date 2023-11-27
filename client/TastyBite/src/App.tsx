@@ -4,6 +4,10 @@ import { Header } from './components/Header'
 import { LoginForm } from './components/LoginForm';
 import { RegisterForm } from './components/RegisterForm';
 import { UploadRecipeForm } from './components/UploadRecipeForm';
+import { ListRecipes } from './components/ListRecipes';
+import { UserInfo } from './components/UserInfo';
+
+import { useUserStore } from './state/store';
 
 import {
   createBrowserRouter,
@@ -25,14 +29,19 @@ const Home = () => {
       <Link to="/upload-recipe">
         <button>Ir a subir receta</button>
       </Link>
+      <Link to="/profile">
+        <button>Ir al perfil</button>
+      </Link>
     </div>
   )
 }
 
 const Login = () => {
+  const setUser = useUserStore((state) => state.setUser);
+
   return (
     <div>
-      <LoginForm />
+      <LoginForm setUser={setUser} />
       <Link to="/">
         <button>Ir a Home</button>
       </Link>
@@ -41,6 +50,12 @@ const Login = () => {
       </Link>
       <Link to="/upload-recipe">
         <button>Ir a subir receta</button>
+      </Link>
+      <Link to="/recipes">
+        <button>Ir a Recetas</button>
+      </Link>
+      <Link to="/profile">
+        <button>Ir al perfil</button>
       </Link>
     </div>
   )
@@ -60,6 +75,12 @@ const Register = () => {
       <Link to="/upload-recipe">
         <button>Ir a subir receta</button>
       </Link>
+      <Link to="/recipes">
+        <button>Ir a Recetas</button>
+      </Link>
+      <Link to="/profile">
+        <button>Ir al perfil</button>
+      </Link>
     </div>
   )
 }
@@ -78,34 +99,84 @@ const UploadRecipe = () => {
       <Link to="/register">
         <button>Ir a Register</button>
       </Link>
+      <Link to="/recipes">
+        <button>Ir a Recetas</button>
+      </Link>
+      <Link to="/profile">
+        <button>Ir al perfil</button>
+      </Link>
     </div>
   )
 }
 
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/upload-recipe",
-    element: <UploadRecipe />,
-  },
-]);
+const Profile = () => {
+  const user = useUserStore((state) => state.user);
+
+  return (
+    <div>
+      <h1>Profile</h1>
+      <UserInfo user={user} />
+      <Link to="/">
+        <button>Ir a Home</button>
+      </Link>
+      <Link to="/login">
+        <button>Ir a login</button>
+      </Link>
+      <Link to="/register">
+        <button>Ir a Register</button>
+      </Link>
+      <Link to="/upload-recipe">
+        <button>Ir a subir receta</button>
+      </Link>
+      <Link to="/recipes">
+        <button>Ir a Recetas</button>
+      </Link>
+    </div>
+  )
+}
+
+
 
 
 
 function App() {
-  const [user, setUser] = useState({})
+  const user = useUserStore((state) => state.user);
+  const setUser = useUserStore((state) => state.setUser);
+
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/register",
+      element: <Register />,
+    },
+    {
+      path: "/upload-recipe",
+      element: <UploadRecipe />,
+    },
+    {
+      path: "/recipes",
+      element: <ListRecipes />,
+    },
+    {
+      path: "/profile",
+      element: <Profile />,
+    },
+    {
+      path: "*",
+      element: <h1>404</h1>,
+    }
+    
+  ]);
+  
 
 
   return (

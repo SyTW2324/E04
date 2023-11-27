@@ -25,6 +25,7 @@ export function LoginForm({ setUser }) {
     } else {
       const res = await axios.post(`http://localhost:3000/users/login`, data);
       setUser(res.data);
+      console.log(res.data);
     }
   }
 
@@ -45,7 +46,7 @@ export function LoginForm({ setUser }) {
             <div className="form-group">
               <input className="password-login" type="password" onChange={handleInputChange} value={data.password} id="password" placeholder="Contraseña" />
             </div>
-            <div className="form-group">
+            <div className="form-group-login">
               <button type="submit">Iniciar Sesión</button>
             </div>
             <div className="login-form-container__right-container__register">
