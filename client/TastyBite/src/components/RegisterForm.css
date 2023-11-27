@@ -134,7 +134,7 @@
 .form-group button {
   margin-top: 2rem;
   display: flex;
-  width: 100%;
+  width: auto;
   height: 3rem;
   padding: 0 1rem;
   border-radius: 0.5rem;

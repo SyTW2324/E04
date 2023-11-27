@@ -19,8 +19,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
-  margin: 1.5rem 3rem 0;
+  gap: 4rem;
+  margin: 4rem 3rem 2rem;
 }
 
 .login-form-container__left-container {
@@ -29,9 +29,7 @@
 }
 
 .login-form-container__left-container img {
-  width: 100%;
-  object-fit: cover;
-  
+  width: 80%; 
 }
 
 .login-form-container__right-container {
@@ -50,13 +48,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 2.5rem;
 }
 
-.form-group {
-  display: flex;
-  width: 100%;
-}
 
 .password-login {
   background-color: green;
@@ -70,49 +64,9 @@
   gap: 0.5rem;
 }
 
-.form-group button:hover {
-  background-color: white;
-  color: var(--secondary);
-  border: 1px solid var(--secondary);
-  transition: ease-in-out 0.3s;
-}
 
-.logo-cocodrilo {
-  width: 50%;
-  height: 50%;
-}
-
-
-@media screen and (max-width: 768px) {
-  .login-form-container {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .login-form-container__left-container {
-    width: 60%;
-  }
-
-  .login-form-container__right-container {
-
-    width: 100%;
-    padding: 0.5rem;
-  }
-
-  .login-title {
-    font-size: 3rem;
-  }
-
-  .form-group input {
-    height: 2.5rem;
-  }
-
-  .form-group button {
-    height: 2.5rem;
-  }
-
-  .logo-cocodrilo {
-    width: 100%;
-    height: 100%;
-  }
+.login-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

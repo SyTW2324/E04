@@ -126,6 +126,19 @@ const postUser = async ({ image, setImage, setSuccess, errors, setErrors }) => {
   console.log('errors')
   console.log(errors);
 
+  if (!password1.value || !password2.value) {
+    console.error('Por favor, ingrese una contraseña.');
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      password: 'Por favor, ingrese una contrasña.',
+    }));
+  } else {
+    if (errors.password1) {
+      const { password, ...rest } = errors;
+      setErrors(rest);
+    }
+  }
+
   return;
 
   const result = await postImage({ username: username.value, image, setImage})

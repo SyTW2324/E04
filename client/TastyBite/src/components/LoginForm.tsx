@@ -33,10 +33,11 @@ export function LoginForm({ setUser }) {
       <div className="breadcrumb">
         <a href="#">Tasty Bite</a> &gt; <a href="#">Iniciar sesión</a>
       </div>
+      <div className="login-title-container">
+        <h1 className="login-title" >Iniciar Sesión</h1>
+      </div>
       <div className="login-form-container">
-
         <div className="login-form-container__right-container">
-          <h1 className="login-title" >Iniciar Sesión</h1>
           <form onSubmit={handleSubmit} className="form-login">
             <div className="form-group">
               <input className="email" type="text" onChange={handleInputChange} value={data.username} id="username" placeholder="Nombre de usuario" />
