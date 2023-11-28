@@ -9,6 +9,12 @@ import { UserInfo } from './components/UserInfo';
 
 import { useUserStore } from './state/store';
 
+
+// sum.js
+export function sum(a, b) {
+  return a + b
+}
+
 import {
   createBrowserRouter,
   RouterProvider,

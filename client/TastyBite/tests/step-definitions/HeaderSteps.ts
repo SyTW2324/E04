@@ -1,17 +1,20 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import { render, screen } from '@testing-library/react';
-import { Header } from './Header';
-import { useUserStore } from '../state/store';
+import '@testing-library/jest-dom';
+import { Header } from '../../src/components/Header';
+import { useUserStore } from '../../src/state/store'
 import { act } from 'react-dom/test-utils';
 
-jest.mock('../state/store');
-
-const feature = loadFeature('./src/features/Header.feature');
+jest.mock('../../src/state/store', () => ({
+  useUserStore: jest.fn(),
+}));
+npm install --save-dev jest @types/jest ts-jest typescript
+const feature = loadFeature('./features/Header.feature');
 
 defineFeature(feature, (test) => {
   test('User is logged in', ({ given, then }) => {
     given('the user is logged in', () => {
-      useUserStore.mockImplementation(() => ({
+      (useUserStore as jest.Mock).mockImplementation(() => ({
         user: { username: 'testuser', profile_picture: 'testpicture' },
       }));
     });
@@ -21,13 +24,12 @@ defineFeature(feature, (test) => {
         render(<Header />);
       });
       expect(screen.getByText('testuser')).toBeInTheDocument();
-      // You might need to add additional checks for the profile picture
     });
   });
 
   test('User is not logged in', ({ given, then }) => {
     given('the user is not logged in', () => {
-      useUserStore.mockImplementation(() => ({
+      (useUserStore as jest.Mock).mockImplementation(() => ({
         user: null,
       }));
     });

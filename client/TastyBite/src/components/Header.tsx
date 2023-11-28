@@ -1,9 +1,11 @@
+import { FC, useEffect, useState } from 'react';
 import './Header.css'
 import { useUserStore } from '../state/store'
-import { useEffect, useState } from 'react';
+import React from 'react';
 
 
-const fetchImageUrl = async (image_id) => {
+
+const fetchImageUrl = async (image_id: string): Promise<string> => {
   console.log('fetching image url')
   console.log(image_id)
   const response = await fetch(`http://localhost:3000/images?image_id=${image_id}`);
@@ -11,10 +13,9 @@ const fetchImageUrl = async (image_id) => {
   return URL.createObjectURL(blob);
 };
 
-export function Header() {
-
-  const user = useUserStore((state) => state.user)
-  const [profilePicture, setProfilePicture] = useState()
+export const Header= () => {
+  const user = useUserStore((state: any) => state.user )
+  const [profilePicture, setProfilePicture] = useState<string | undefined>()
 
   useEffect(() => {
     // get para conseguir la profilePicture
@@ -24,24 +25,18 @@ export function Header() {
         console.log(url)
       })
     }
-
   }, [user])
-
 
   return (
     <>
       <header className="header">
         <div className="left-container">
           <img className='lines' src='../icons/lines.svg'/>
-          
           <a href="/" ><img className='logo'   src='../images/Logo.png'/></a>
-
-
         </div>
         <div className="center-container">
           <input className="input-search" type="text" placeholder="Search" />
           <img className="btn-search" src='../icons/search.svg'/>
-          
         </div>
         <div className="right-container"> 
           <ul className="menu">
@@ -63,14 +58,9 @@ export function Header() {
                 </li>
               </>
             }
-            
           </ul>
-
         </div>
       </header>
-      
-
-
     </>
   );
 } 
