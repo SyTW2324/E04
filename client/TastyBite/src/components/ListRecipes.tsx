@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Recipe } from "../../types/Recipe.tsx";
+import React from "react";
 
 const fetchRecipes = async () => {
   const response = await fetch("http://10.6.128.69:8080/api/recipes");

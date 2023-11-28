@@ -6,6 +6,7 @@ import { RegisterForm } from './components/RegisterForm';
 import { UploadRecipeForm } from './components/UploadRecipeForm';
 import { ListRecipes } from './components/ListRecipes';
 import { UserInfo } from './components/UserInfo';
+import Home from './components/Home';
 
 import { useUserStore } from './state/store';
 
@@ -22,25 +23,6 @@ import {
 } from "react-router-dom";
 
 
-const Home = () => {
-  return (
-    <div>
-      <h1>Home</h1>
-      <Link to="/login">
-        <button>Ir a Login</button>
-      </Link>
-      <Link to="/register">
-        <button>Ir a Register</button>
-      </Link>
-      <Link to="/upload-recipe">
-        <button>Ir a subir receta</button>
-      </Link>
-      <Link to="/profile">
-        <button>Ir al perfil</button>
-      </Link>
-    </div>
-  )
-}
 
 const Login = () => {
   const setUser = useUserStore((state) => state.setUser);

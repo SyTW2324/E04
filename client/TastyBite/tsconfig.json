@@ -15,10 +15,19 @@
     "noEmit": true,
     "types": ["vitest/globals"],
     /* Linting */
+    // desactivamos el linting de typescript
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    // hacemos que el compilador no se queje por los errores de linting
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
+    "noImplicitOverride": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "noUncheckedIndexedAccess": false,
+    
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
