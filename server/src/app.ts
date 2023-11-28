@@ -17,16 +17,9 @@ import bodyParser from 'body-parser';
 export const app = express();
 
 // Configuración de CORS
-const corsOptions = {
-  origin: '*', // Permitir peticiones desde cualquier origen
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos permitidos
-  credentials: true, // Permitir el envío de cookies
-  optionsSuccessStatus: 204, // Establecer el código de estado para las solicitudes OPTIONS exitosas
-  exposedHeaders: ['Authorization'], // Cabeceras expuestas
-};
-
-// Habilitar CORS con opciones personalizadas
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: 'http://10.6.128.69:8080'
+}));
 
 app.use(bodyParser.json({ limit: '5mb' }));
 

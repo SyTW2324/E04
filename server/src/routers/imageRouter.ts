@@ -7,10 +7,10 @@ import { deleteImageQuery, deleteImage } from "./image/delete.js";
 
 export const imageRouter = express.Router();
 
-imageRouter.post("/images", postImage)
-imageRouter.get("/images", getImageQuery)
-imageRouter.get("/images/:image_id", getImage)
-imageRouter.patch("/images", patchImageQuery)
-imageRouter.patch("/images/:image_id", patchImage)
-imageRouter.delete("/images", deleteImageQuery)
-imageRouter.delete("/images/:image_id", deleteImage)
+imageRouter.post("/api/images", postImage)
+imageRouter.get("/api/images", getImageQuery)
+imageRouter.get("/api/images/:image_id", getImage)
+imageRouter.patch("/api/images", patchImageQuery)
+imageRouter.patch("/api/images/:image_id", patchImage)
+imageRouter.delete("/api/images", deleteImageQuery)
+imageRouter.delete("/api/images/:image_id", deleteImage)

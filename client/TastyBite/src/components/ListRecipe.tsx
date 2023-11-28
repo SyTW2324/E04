@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 const getRecipes = () => {
-  return axios.get('http://localhost:3000/recipes')
+  return axios.get('http://10.6.128.69:8080/api/recipes')
     .then(response => {
       return response.data;
     })

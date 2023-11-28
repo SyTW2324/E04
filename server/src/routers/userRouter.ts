@@ -25,11 +25,11 @@ const verifyToken = (req: any, res: any, next: any) => {
   });
 }
 
-userRouter.post("/users", postUser)
-userRouter.post("/users/login", postUserLogin)
-userRouter.get("/users", getUserQuery)
-userRouter.get("/users/:username", verifyToken, getUser)
-userRouter.patch("/users", verifyToken, patchUserQuery)
-userRouter.patch("/users/:username", verifyToken, patchUser)
-userRouter.delete("/users", verifyToken, deleteUserQuery)
-userRouter.delete("/users/:username", verifyToken, deleteUser)
+userRouter.post("/api/users", postUser)
+userRouter.post("/api/users/login", postUserLogin)
+userRouter.get("/api/users", getUserQuery)
+userRouter.get("/api/users/:username", verifyToken, getUser)
+userRouter.patch("/api/users", verifyToken, patchUserQuery)
+userRouter.patch("/api/users/:username", verifyToken, patchUser)
+userRouter.delete("/api/users", verifyToken, deleteUserQuery)
+userRouter.delete("/api/users/:username", verifyToken, deleteUser)

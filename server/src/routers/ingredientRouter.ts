@@ -7,10 +7,10 @@ import { deleteIngredientQuery, deleteIngredient } from "./ingredient/delete.js"
 
 export const ingredientRouter = express.Router();
 
-ingredientRouter.post("/ingredients", postIngredient)
-ingredientRouter.get("/ingredients", getIngredientQuery)
-ingredientRouter.get("/ingredients/:ingredient_id", getIngredient)
-ingredientRouter.patch("/ingredients", patchIngredientQuery)
-ingredientRouter.patch("/ingredients/:ingredient_id", patchIngredient)
-ingredientRouter.delete("/ingredients", deleteIngredientQuery)
-ingredientRouter.delete("/ingredients/:ingredient_id", deleteIngredient)
+ingredientRouter.post("/api/ingredients", postIngredient)
+ingredientRouter.get("/api/ingredients", getIngredientQuery)
+ingredientRouter.get("/api/ingredients/:ingredient_id", getIngredient)
+ingredientRouter.patch("/api/ingredients", patchIngredientQuery)
+ingredientRouter.patch("/api/ingredients/:ingredient_id", patchIngredient)
+ingredientRouter.delete("/api/ingredients", deleteIngredientQuery)
+ingredientRouter.delete("/api/ingredients/:ingredient_id", deleteIngredient)

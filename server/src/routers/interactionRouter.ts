@@ -7,10 +7,10 @@ import { deleteInteractionQuery, deleteInteraction } from "./interaction/delete.
 
 export const interactionRouter = express.Router();
 
-interactionRouter.post("/interactions", postInteraction)
-interactionRouter.get("/interactions", getInteractionQuery)
-interactionRouter.get("/interactions/:interaction_id", getInteraction)
-interactionRouter.patch("/interactions", patchInteractionQuery)
-interactionRouter.patch("/interactions/:interaction_id", patchInteraction)
-interactionRouter.delete("/interactions", deleteInteractionQuery)
-interactionRouter.delete("/interactions/:interaction_id", deleteInteraction)
+interactionRouter.post("/api/interactions", postInteraction)
+interactionRouter.get("/api/interactions", getInteractionQuery)
+interactionRouter.get("/api/interactions/:interaction_id", getInteraction)
+interactionRouter.patch("/api/interactions", patchInteractionQuery)
+interactionRouter.patch("/api/interactions/:interaction_id", patchInteraction)
+interactionRouter.delete("/api/interactions", deleteInteractionQuery)
+interactionRouter.delete("/api/interactions/:interaction_id", deleteInteraction)

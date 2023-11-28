@@ -7,10 +7,10 @@ import { deleteCategoryQuery, deleteCategory } from "./category/delete.js";
 
 export const categoryRouter = express.Router();
 
-categoryRouter.post("/categories", postCategory)
-categoryRouter.get("/categories", getCategoryQuery)
-categoryRouter.get("/categories/:category_id", getCategory)
-categoryRouter.patch("/categories", patchCategoryQuery)
-categoryRouter.patch("/categories/:category_id", patchCategory)
-categoryRouter.delete("/categories", deleteCategoryQuery)
-categoryRouter.delete("/categories/:category_id", deleteCategory)
+categoryRouter.post("/api/categories", postCategory)
+categoryRouter.get("/api/categories", getCategoryQuery)
+categoryRouter.get("/api/categories/:category_id", getCategory)
+categoryRouter.patch("/api/categories", patchCategoryQuery)
+categoryRouter.patch("/api/categories/:category_id", patchCategory)
+categoryRouter.delete("/api/categories", deleteCategoryQuery)
+categoryRouter.delete("/api/categories/:category_id", deleteCategory)

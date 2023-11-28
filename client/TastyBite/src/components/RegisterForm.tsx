@@ -16,7 +16,7 @@ const postImage = async ({ username, image, setImage}) => {
   formData.append('file', image);
   try {
     // Cambia la URL a la que corresponda en tu aplicación
-    const result = await axios.post('http://localhost:3000/images', formData, {
+    const result = await axios.post('http://10.6.128.69:8080/api/images', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -155,7 +155,7 @@ const postUser = async ({ image, setImage, setSuccess, errors, setErrors }) => {
 
   console.log(user);
   
-  const response = await axios.post(`http://localhost:3000/users`, user);
+  const response = await axios.post(`http://10.6.128.69:8080/api/users`, user);
   if (response.status === 201) {
     setSuccess(true);
 

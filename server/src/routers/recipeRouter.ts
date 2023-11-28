@@ -7,10 +7,10 @@ import { deleteRecipeQuery, deleteRecipe } from "./recipe/delete.js";
 
 export const recipeRouter = express.Router();
 
-recipeRouter.post("/recipes", postRecipe)
-recipeRouter.get("/recipes", getRecipeQuery)
-recipeRouter.get("/recipes/:recipe_id", getRecipe)
-recipeRouter.patch("/recipes", patchRecipeQuery)
-recipeRouter.patch("/recipes/:recipe_id", patchRecipe)
-recipeRouter.delete("/recipes", deleteRecipeQuery)
-recipeRouter.delete("/recipes/:username", deleteRecipe)
+recipeRouter.post("/api/recipes", postRecipe)
+recipeRouter.get("/api/recipes", getRecipeQuery)
+recipeRouter.get("/api/recipes/:recipe_id", getRecipe)
+recipeRouter.patch("/api/recipes", patchRecipeQuery)
+recipeRouter.patch("/api/recipes/:recipe_id", patchRecipe)
+recipeRouter.delete("/api/recipes", deleteRecipeQuery)
+recipeRouter.delete("/api/recipes/:username", deleteRecipe)

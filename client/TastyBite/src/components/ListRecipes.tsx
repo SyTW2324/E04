@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Recipe } from "../../types/Recipe.tsx";
 
 const fetchRecipes = async () => {
-  const response = await fetch("http://localhost:3000/recipes");
+  const response = await fetch("http://10.6.128.69:8080/api/recipes");
   const recipesData = await response.json();
 
   // Recorrer las recetas y cargar las imágenes
@@ -17,7 +17,7 @@ const fetchRecipes = async () => {
 };
 
 const fetchImageUrl = async (image_id: string) => {
-  const response = await fetch(`http://localhost:3000/images?image_id=${image_id}`);
+  const response = await fetch(`http://10.6.128.69:8080/api/images?image_id=${image_id}`);
   const blob = await response.blob();
   return URL.createObjectURL(blob);
 };

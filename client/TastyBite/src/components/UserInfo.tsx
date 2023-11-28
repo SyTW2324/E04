@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const IP = "10.6.128.69";
 
 const fetchImageUrl = async (image_id) => {
-  const response = await fetch(`http://localhost:3000/images?image_id=${image_id}`);
+  const response = await fetch(`http://10.6.128.69:8080/api/images?image_id=${image_id}`);
   const blob = await response.blob();
   return URL.createObjectURL(blob);
 };
@@ -13,7 +13,7 @@ const getUserInfo = async (user) => {
   const username = user.username;
 
   try {
-    const response = await fetch(`http://localhost:3000/users/${username}`, {
+    const response = await fetch(`http://10.6.128.69:8080/api/users/${username}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
