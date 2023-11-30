@@ -1,13 +1,9 @@
 
-// cypress/integration/login_form_spec.ts
 
-describe('Register Form Component', () => {
-  beforeEach(() => {
+describe('Componente para el registro de usuario', () => {
+
+  it('Se renderiza correctamente el contenido de la página', () => {
     cy.visit('http://10.6.128.69:8080/register');
-  });
-
-  it('renders login form and submits successfully', () => {
-    // Verifica que los elementos del formulario estén presentes
     cy.get('#username').should('exist');
     cy.get('#email').should('exist');
     cy.get('#password-1').should('exist');
@@ -15,20 +11,31 @@ describe('Register Form Component', () => {
     cy.get('#first_name').should('exist');
     cy.get('#last_name').should('exist');
     cy.get('#profile_description').should('exist');
+  });
 
-    // Completa el formulario
-    cy.get('#username').type('daniel');
-    cy.get('#email').type('daniel@gmail.com');
-    cy.get('#first_name').type('Daniel');
-    cy.get('#last_name').type('Gomez');
+  it('Se carga correctamente cada campo con su debido valor', () => {
+    cy.visit('http://10.6.128.69:8080/register');
+    cy.get('#username').type('usertest');
+    cy.get('#email').type('usertest@gmail.com');
+    cy.get('#first_name').type('usertest');
+    cy.get('#last_name').type('Rodriguez');
     cy.get('#profile_description').type('Soy informatico');
     cy.get('#password-1').type('12345');
     cy.get('#password-2').type('12345');
-
-
-    // Envía el formulario haciendo click en el boton de registrarse
     cy.get('#button-register').click();
+  });
 
-
+  it('Se cargan todos los valores menos uno para que de error', () => {
+    cy.visit('http://10.6.128.69:8080/register');
+    cy.get('#username').type('usertest');
+    cy.get('#email').type('usertest@gmail.com');
+    cy.get('#first_name').type('usertest');
+    cy.get('#profile_description').type('Soy informatico');
+    cy.get('#password-1').type('12345');
+    cy.get('#password-2').type('12345');
+    cy.get('#button-register').click();
+    cy.get('.error-message').should('have.text', '   Por favor, ingrese un apellido.   ');
   });
 });
+
+

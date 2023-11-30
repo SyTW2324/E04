@@ -17,15 +17,15 @@ export const Header= () => {
   const user = useUserStore((state: any) => state.user )
   const [profilePicture, setProfilePicture] = useState<string | undefined>()
 
-  useEffect(() => {
-    // get para conseguir la profilePicture
-    if(user) {
-      fetchImageUrl(user.profile_picture).then((url) => {
-        setProfilePicture(url)
-        console.log(url)
-      })
-    }
-  }, [user])
+  // useEffect(() => {
+  //   // get para conseguir la profilePicture
+  //   if(user) {
+  //     fetchImageUrl(user.profile_picture).then((url) => {
+  //       setProfilePicture(url)
+  //       console.log(url)
+  //     })
+  //   }
+  // }, [user])
 
   return (
     <>
@@ -45,7 +45,7 @@ export const Header= () => {
               user ? 
               <>
                 <li className="menu-profile">
-                  <img src={profilePicture} />
+                  {/* <img src={profilePicture} /> */}
                   <span>{user.username}</span> {/* Asegúrate de que tu objeto de usuario tenga una propiedad 'name' */}
                 </li>
               </>

@@ -1,38 +1,36 @@
 
-// cypress/integration/login_form_spec.ts
 
-describe('Login Form Component', () => {
-  beforeEach(() => {
+describe('Componente para el inicio de sesión de un usuario', () => {
+
+  it('Se verifica que los elementos del formulario estén presentes', () => {
     cy.visit('http://10.6.128.69:8080/login');
-  });
-
-  it('renders login form and submits successfully', () => {
-    // Verifica que los elementos del formulario estén presentes
     cy.get('.email').should('exist');
     cy.get('.password-login').should('exist');
     cy.get('button').should('exist');
-
-    // Completa el formulario
-    cy.get('.email').type('daniel');
+  });
+  
+  it('Se introducen valores en los campos correspondientes, se envía el formulario correctamente y se verifca que se haya redirigido a la página del perfil del usuario, /profile', () => {
+    cy.visit('http://10.6.128.69:8080/login');
+    cy.get('.email').type('usertest');
     cy.get('.password-login').type('12345');
-
-    // Envía el formulario
     cy.get('form').submit();
-
-    // Verifcamos que se haya redirigido a la página del perfil del usuario, /profile
     cy.url().should('include', '/profile');
-
-    // esperamos que la página se cargue
     cy.wait(1000);
-
-
-    // Verificamos quue existe un <p> que ctiene como indicador username y que el texto del mismo es el nombre de usuario
-    cy.get('p#username').should('have.text', 'daniel');
-    cy.get('p#email').should('have.text', 'daniel@gmail.com');
-    cy.get('p#first_name').should('have.text', 'Daniel');
-    cy.get('p#last_name').should('have.text', 'Gomez');
+    cy.get('p#username').should('have.text', 'usertest');
+    cy.get('p#email').should('have.text', 'usertest@gmail.com');
+    cy.get('p#first_name').should('have.text', 'usertest');
+    cy.get('p#last_name').should('have.text', 'Rodriguez');
     cy.get('p#profile_description').should('have.text', 'Soy informatico');
+  });
 
-    
+  it('Se introducen valores sin el nombre de usuario para que no se pueda iniciar sesión', () => {
+    cy.visit('http://10.6.128.69:8080/login');
+    cy.get('.password-login').type('12345');
+  });
+  
+  it('Se envía el formulario correctamente y no se accede a la página del perfil del usuario, ya que da un error', () => {
+    cy.visit('http://10.6.128.69:8080/login');
+    cy.get('form').submit();
+    cy.url().should('include', '/login');
   });
 });
