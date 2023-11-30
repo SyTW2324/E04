@@ -1,9 +1,13 @@
 import axios from 'axios';
 import './LoginForm.css'
-import React, { useState, ChangeEvent, FormEvent } from 'react';
-
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import { useUserStore } from '../state/store';
+import { useNavigate } from 'react-router-dom';
 
 export function LoginForm({ setUser }) {
+  const user = useUserStore((state: any) => state.user )
+  const [success, setSuccess] = useState(null);
+
   const [data, setData] = useState({
     username: '',
     password: ''
@@ -17,6 +21,14 @@ export function LoginForm({ setUser }) {
 
   }
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (success) {
+      navigate('/profile');
+    }
+  }, [success]);
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     if (!event.target.checkValidity()) {
@@ -26,8 +38,14 @@ export function LoginForm({ setUser }) {
       const res = await axios.post(`http://10.6.128.69:8080/api/users/login`, data);
       setUser(res.data);
       console.log(res.data);
+      if (res.data.username) {
+        setSuccess(true);
+      }
+      
     }
   }
+
+
 
   return (
     <>

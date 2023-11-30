@@ -7,10 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const postImage = async ({ username, image, setImage}) => {
-  if (!image) {
-    console.error('Por favor, ingrese una imagen.');
-    return;
-  }
+
   const formData = new FormData();
   formData.append('title', `profile_picture_${username}`);
   formData.append('file', image);
@@ -139,21 +136,31 @@ const postUser = async ({ image, setImage, setSuccess, errors, setErrors }) => {
     }
   }
 
-  console.log("LASSSS IMAGENESSSS")
-  console.log(image);
-  const result = await postImage({ username: username.value, image, setImage})
-
-  const user = {
-    username: username.value,
-    first_name: first_name.value,
-    last_name: last_name.value,
-    profile_description: profile_description.value,
-    profile_picture: result.image_id,
-    email: email.value,
-    password: password1.value,
+  let user = {}
+  if (image) {
+    const result = await postImage({ username: username.value, image, setImage})
+    user = {
+      username: username.value,
+      first_name: first_name.value,
+      last_name: last_name.value,
+      profile_description: profile_description.value,
+      profile_picture: result.image_id,
+      email: email.value,
+      password: password1.value,
+    }
+  } else {
+    user = {
+      username: username.value,
+      first_name: first_name.value,
+      last_name: last_name.value,
+      profile_description: profile_description.value,
+      email: email.value,
+      password: password1.value,
+    }
   }
 
-  console.log(user);
+  console.log('user')
+  console.log(user)
   
   const response = await axios.post(`http://10.6.128.69:8080/api/users`, user);
   if (response.status === 201) {
@@ -179,6 +186,7 @@ export function RegisterForm() {
 
   useEffect(() => {
     if (success) {
+      console.log('success')
       navigate('/login');
     }
   }, [success]);
@@ -273,7 +281,7 @@ export function RegisterForm() {
           </form>
           
           <div className="form-group-postuser button">
-            <button onClick={() => postUser({ username, image, setImage, setSuccess, errors, setErrors })}>Registrarse</button>
+            <button id="button-register" onClick={() => postUser({ username, image, setImage, setSuccess, errors, setErrors })}>Registrarse</button>
           </div>
           
         </div>

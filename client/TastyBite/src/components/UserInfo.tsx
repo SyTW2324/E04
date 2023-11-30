@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-const IP = "10.6.128.69";
 
 const fetchImageUrl = async (image_id) => {
   const response = await fetch(`http://10.6.128.69:8080/api/images?image_id=${image_id}`);
@@ -53,12 +52,16 @@ export function UserInfo({ user }) {
         <h1>UserInfo</h1>
         {userInfo && (
           <div>
-            <p>{userInfo.username}</p>
-            <p>{userInfo.first_name}</p>
-            <p>{userInfo.last_name}</p>
-            <p>{userInfo.profile_description}</p>
-            {/* <img src={userInfo.userWithImage} alt="User" /> */}
-            <p>{userInfo.email}</p>
+            <p id="username" >{userInfo.username}</p>
+
+            <p id="first_name" >{userInfo.first_name}</p>
+
+            <p id="last_name" >{userInfo.last_name}</p>
+
+            <p id="profile_description" >{userInfo.profile_description}</p>
+
+            <p id="email" >{userInfo.email}</p>
+            
           </div>
         )}
       </div>
