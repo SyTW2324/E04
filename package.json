@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "test_frontend": "cd client && npx cypress run",
+    "test_backend": "cd server && npm run test"
+  },
   "devDependencies": {
     "@types/mocha": "^10.0.6",
     "jest-cucumber": "^3.0.1",
