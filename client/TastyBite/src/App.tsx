@@ -124,6 +124,29 @@ const Profile = () => {
   )
 }
 
+const Recipes = () => {
+  return (
+    <div>
+      <ListRecipes />
+      <Link to="/">
+        <button>Ir a Home</button>
+      </Link>
+      <Link to="/login">
+        <button>Ir a login</button>
+      </Link>
+      <Link to="/register">
+        <button>Ir a Register</button>
+      </Link>
+      <Link to="/upload-recipe">
+        <button>Ir a subir receta</button>
+      </Link>
+      <Link to="/profile">
+        <button>Ir al perfil</button>
+      </Link>
+    </div>
+  )
+}
+
 
 
 
@@ -152,7 +175,7 @@ function App() {
     },
     {
       path: "/recipes",
-      element: <ListRecipes />,
+      element: <Recipes />,
     },
     {
       path: "/profile",
