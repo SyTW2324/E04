@@ -1,0 +1,10 @@
+
+> proyecto-sytw@1.0.0 server
+> tsc-watch --onSuccess "env-cmd -f ./config/dev.env node dist/index.js"
+
+c20:40:44 - Starting compilation in watch mode...
+
+
+20:41:00 -[32m Found 0 errors. Watching for file changes.[39m
+Connection to MongoDB server established
+Server started at http://localhost:3000
