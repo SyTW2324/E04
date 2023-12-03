@@ -11,7 +11,7 @@ import mongoose from 'mongoose';
 
 describe('POST /users', () => {
   it('Se crea un usuario correctamente', async () => {
-    const url = 'http://10.6.128.69:8080/api/users';
+    const url = 'https://teal-monkey-hem.cyclic.app/api/users';
     const userFacu = {
       "username": "faculito",
       "first_name": "Facundo",
@@ -35,7 +35,7 @@ describe('POST /users', () => {
 
 describe('GET /users', () => {
   it('Se obtienen todos los usuarios correctamente', async () => {
-    const url = 'http://10.6.128.69:8080/api/users';
+    const url = 'https://teal-monkey-hem.cyclic.app/api/users';
     const response = await axios.get(url);
     expect(response.status).to.be.equal(200);
     expect(response.data.length).to.be.equal(1);   
@@ -49,7 +49,7 @@ describe('PATCH /users/:username', () => {
   it('Se modifica un usuario correctamente', async () => {
 
     // conseguimos el token primero
-    const urlToken = "http://10.6.128.69:8080/api/users/login";
+    const urlToken = "https://teal-monkey-hem.cyclic.app/api/users/login";
     const userFacuLogin = {
       "username": "faculito",
       "password": "1234"
@@ -57,7 +57,7 @@ describe('PATCH /users/:username', () => {
     const responseToken = await axios.post(urlToken, userFacuLogin);
     const token = responseToken.data.token;
 
-    const url = "http://10.6.128.69:8080/api/users/faculito";
+    const url = "https://teal-monkey-hem.cyclic.app/api/users/faculito";
     const userFacu = {
       "first_name": "DonFaucundo",
       "last_name": "DonGarcia"
@@ -76,7 +76,7 @@ describe('PATCH /users/:username', () => {
 
 describe('DELETE /users/:username', () => {
   it('Se elimina un usuario correctamente', async () => {
-    const urlToken = "http://10.6.128.69:8080/api/users/login";
+    const urlToken = "https://teal-monkey-hem.cyclic.app/api/users/login";
     const userFacuLogin = {
       "username": "faculito",
       "password": "1234"
@@ -85,7 +85,7 @@ describe('DELETE /users/:username', () => {
     const token = responseToken.data.token;
 
     
-    const url = "http://10.6.128.69:8080/api/users/faculito";
+    const url = "https://teal-monkey-hem.cyclic.app/api/users/faculito";
     const response = await axios.delete(url, { headers: { Authorization: `Bearer ${token}` } });
     expect(response.status).to.be.equal(200);
     expect(response.data).to.be.an('object');
