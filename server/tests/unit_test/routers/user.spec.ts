@@ -29,7 +29,6 @@ describe('POST /users', () => {
     // expect(response.data).to.have.property('email');
     // expect(response.data).to.have.property('password');
   });
-
 });
 
 
