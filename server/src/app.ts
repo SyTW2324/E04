@@ -18,13 +18,13 @@ export const app = express();
 
 // Configuración de CORS
 app.use(cors({
-  origin: 'http://10.6.128.69:8080'
+  origin: 'https://teal-monkey-hem.cyclic.app/'
 }));
 
 app.use(bodyParser.json({ limit: '5mb' }));
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', 'https://teal-monkey-hem.cyclic.app/');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   
