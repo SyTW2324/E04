@@ -9,7 +9,8 @@ export const userRouter = express.Router();
 
 import jwt from 'jsonwebtoken';
 
-const TOKEN_KEY = process.env.TOKEN_KEY || '';
+// const TOKEN_KEY = process.env.TOKEN_KEY || '';
+const TOKEN_KEY = "x4TvnErxRETbVcqaL15dqM1115eN1p5y";
 
 
 

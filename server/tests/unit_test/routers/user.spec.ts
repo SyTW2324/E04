@@ -10,10 +10,17 @@ import mongoose from 'mongoose';
 
 
 describe('POST /users', () => {
+  
+  before(async function () {
+    this.timeout(20000); // Establece un límite de tiempo de 5 segundos
+    await User.deleteMany({});
+  });
+  
+
   it('Se crea un usuario correctamente', async () => {
     const url = 'https://teal-monkey-hem.cyclic.app/api/users';
     const userFacu = {
-      "username": "faculito",
+      "username": "messiFacu",
       "first_name": "Facundo",
       "last_name": "Garcia",
       "email": "facu@gmail.com",
@@ -38,7 +45,7 @@ describe('GET /users', () => {
     const url = 'https://teal-monkey-hem.cyclic.app/api/users';
     const response = await axios.get(url);
     expect(response.status).to.be.equal(200);
-    expect(response.data.length).to.be.equal(1);   
+    expect(response.data.length).to.be.equal(10);   
   });
 });
 
@@ -51,13 +58,13 @@ describe('PATCH /users/:username', () => {
     // conseguimos el token primero
     const urlToken = "https://teal-monkey-hem.cyclic.app/api/users/login";
     const userFacuLogin = {
-      "username": "faculito",
+      "username": "messiFacu",
       "password": "1234"
     }
     const responseToken = await axios.post(urlToken, userFacuLogin);
     const token = responseToken.data.token;
 
-    const url = "https://teal-monkey-hem.cyclic.app/api/users/faculito";
+    const url = "https://teal-monkey-hem.cyclic.app/api/users/messiFacu";
     const userFacu = {
       "first_name": "DonFaucundo",
       "last_name": "DonGarcia"
@@ -78,14 +85,14 @@ describe('DELETE /users/:username', () => {
   it('Se elimina un usuario correctamente', async () => {
     const urlToken = "https://teal-monkey-hem.cyclic.app/api/users/login";
     const userFacuLogin = {
-      "username": "faculito",
+      "username": "messiFacu",
       "password": "1234"
     }
     const responseToken = await axios.post(urlToken, userFacuLogin);
     const token = responseToken.data.token;
 
     
-    const url = "https://teal-monkey-hem.cyclic.app/api/users/faculito";
+    const url = "https://teal-monkey-hem.cyclic.app/api/users/messiFacu";
     const response = await axios.delete(url, { headers: { Authorization: `Bearer ${token}` } });
     expect(response.status).to.be.equal(200);
     expect(response.data).to.be.an('object');
