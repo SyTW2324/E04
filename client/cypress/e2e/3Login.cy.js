@@ -38,7 +38,7 @@ describe('Componente para el inicio de sesión de un usuario', () => {
     cy.get('p#first_name').should('have.text', 'usertest');
     cy.get('p#last_name').should('have.text', 'Rodriguez');
     cy.get('p#profile_description').should('have.text', 'Soy informatico');
-  }); 
+  });
 
   it('Se introducen valores sin el nombre de usuario para que no se pueda iniciar sesión', () => {
     cy.visit('https://resilient-crostata-07c0da.netlify.app');
