@@ -3,7 +3,7 @@
 describe('Componente para el registro de usuario', () => {
 
   it('Se renderiza correctamente el contenido de la página', () => {
-    cy.visit('https://resilient-crostata-07c0da.netlify.app');
+    cy.visit('https://coruscating-pithivier-0f8225.netlify.app/');
     cy.contains('Ir a Register').click();
     cy.url().should('include', '/register');
     cy.get('#username').should('exist');
@@ -16,7 +16,7 @@ describe('Componente para el registro de usuario', () => {
   }); 
 
   it('Se carga correctamente cada campo con su debido valor', () => {
-    cy.visit('https://resilient-crostata-07c0da.netlify.app');
+    cy.visit('https://coruscating-pithivier-0f8225.netlify.app/');
     cy.contains('Ir a Register').click();
     cy.url().should('include', '/register');
     cy.get('#username').type('usertest');
@@ -30,7 +30,7 @@ describe('Componente para el registro de usuario', () => {
   });
 
   it('Se cargan todos los valores menos uno para que de error', () => {
-    cy.visit('https://resilient-crostata-07c0da.netlify.app');
+    cy.visit('https://coruscating-pithivier-0f8225.netlify.app/');
     cy.contains('Ir a Register').click();
     cy.url().should('include', '/register');
     cy.get('#username').type('usertest');

@@ -2,7 +2,7 @@
 
 describe('Componente para el inicio de sesión de un usuario', () => {
   it('Se carga correctamente cada campo con su debido valor', () => {
-    cy.visit('https://resilient-crostata-07c0da.netlify.app');
+    cy.visit('https://coruscating-pithivier-0f8225.netlify.app/');
     cy.contains('Ir a Register').click();
     cy.url().should('include', '/register');
     cy.get('#username').type('usertest');
@@ -16,7 +16,7 @@ describe('Componente para el inicio de sesión de un usuario', () => {
   });
   
   it('Se verifica que los elementos del formulario estén presentes', () => {
-    cy.visit('https://resilient-crostata-07c0da.netlify.app');
+    cy.visit('https://coruscating-pithivier-0f8225.netlify.app/');
     cy.contains('Ir a Login').click();
     cy.url().should('include', '/login');
     cy.get('.email').should('exist');
@@ -25,7 +25,7 @@ describe('Componente para el inicio de sesión de un usuario', () => {
   });
   
   it('Se introducen valores en los campos correspondientes, se envía el formulario correctamente y se verifica que se haya redirigido a la página del perfil del usuario, /profile', () => {
-    cy.visit('https://resilient-crostata-07c0da.netlify.app');
+    cy.visit('https://coruscating-pithivier-0f8225.netlify.app/');
     cy.contains('Ir a Login').click();
     cy.url().should('include', '/login');
     cy.get('.email').type('usertest');
@@ -41,14 +41,14 @@ describe('Componente para el inicio de sesión de un usuario', () => {
   }); 
 
   it('Se introducen valores sin el nombre de usuario para que no se pueda iniciar sesión', () => {
-    cy.visit('https://resilient-crostata-07c0da.netlify.app');
+    cy.visit('https://coruscating-pithivier-0f8225.netlify.app/');
     cy.contains('Ir a Login').click();
     cy.url().should('include', '/login');
     cy.get('.password-login').type('12345');
   });
   
   it('Se envía el formulario correctamente y no se accede a la página del perfil del usuario, ya que da un error', () => {
-    cy.visit('https://resilient-crostata-07c0da.netlify.app');
+    cy.visit('https://coruscating-pithivier-0f8225.netlify.app/');
     cy.contains('Ir a Login').click();
     cy.url().should('include', '/login');
     cy.get('form').submit();
