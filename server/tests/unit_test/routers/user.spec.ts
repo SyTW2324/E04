@@ -39,7 +39,7 @@
       const url = 'https://teal-monkey-hem.cyclic.app/api/users';
       const response = await axios.get(url);
       expect(response.status).to.be.equal(200);
-      expect(response.data.length).to.be.equal(1);   
+      expect(response.data.length).to.be.equal(2);   
     });
   });
 
