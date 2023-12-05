@@ -136,7 +136,7 @@ export const postUser = async ({ image, setImage, setSuccess, errors, setErrors 
   console.log('user')
   console.log(user)
   
-  const response = await axios.post(`http://10.6.128.69:8080/api/users`, user);
+  const response = await axios.post(`https://teal-monkey-hem.cyclic.app/api/users`, user);
   if (response.status === 201) {
     setSuccess(true);
 

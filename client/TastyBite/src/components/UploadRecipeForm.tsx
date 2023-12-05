@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const getCategoryList = async () => {
   try {
-    const response = await fetch(`http://10.6.128.69:8080/api/categories`);
+    const response = await fetch(`https://teal-monkey-hem.cyclic.app/api/categories`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -21,7 +21,7 @@ const getCategoryList = async () => {
 
 const getIngredientList = async () => {
   try {
-    const response = await fetch(`http://10.6.128.69:8080/api/ingredients`);
+    const response = await fetch(`https://teal-monkey-hem.cyclic.app/api/ingredients`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -40,7 +40,7 @@ const postImage = async ({ image }) => {
   formData.append('file', image);
   try {
     // Cambia la URL a la que corresponda en tu aplicación
-    const result = await axios.post('http://10.6.128.69:8080/api/images', formData, {
+    const result = await axios.post('https://teal-monkey-hem.cyclic.app/api/images', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -81,7 +81,7 @@ const postRecipe = async ({ steps, selectedIngredients, difficulty, images, cate
   }
   console.log(recipe);
   
-  const response = await axios.post(`http://10.6.128.69:8080/api/recipes`, recipe);
+  const response = await axios.post(`https://teal-monkey-hem.cyclic.app/api/recipes`, recipe);
   if (response.status === 201) {
     console.log('Receta registrada correctamente');
 

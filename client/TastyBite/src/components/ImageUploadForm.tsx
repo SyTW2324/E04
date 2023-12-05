@@ -32,7 +32,7 @@ const ImageUploadForm: React.FC<ImageUploadFormProps> = () => {
       console.log("image");
       console.log(image);
       // Cambia la URL a la que corresponda en tu aplicación
-      await axios.post('http://10.6.128.69:8080/api/images', formData, {
+      await axios.post('https://teal-monkey-hem.cyclic.app/api/images', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

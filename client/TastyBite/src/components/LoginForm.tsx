@@ -35,7 +35,7 @@ export function LoginForm({ setUser }) {
       console.log('Formulario inválido');
       return false;
     } else {
-      const res = await axios.post(`http://10.6.128.69:8080/api/users/login`, data);
+      const res = await axios.post(`https://teal-monkey-hem.cyclic.app/api/users/login`, data);
       setUser(res.data);
       console.log(res.data);
       if (res.data.username) {

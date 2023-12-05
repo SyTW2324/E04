@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 const getRecipes = () => {
-  return axios.get('http://10.6.128.69:8080/api/recipes')
+  return axios.get('https://teal-monkey-hem.cyclic.app/api/recipes')
     .then(response => {
       return response.data;
     })

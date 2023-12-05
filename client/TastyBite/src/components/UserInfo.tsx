@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 
 const fetchImageUrl = async (image_id) => {
-  const response = await fetch(`http://10.6.128.69:8080/api/images?image_id=${image_id}`);
+  const response = await fetch(`https://teal-monkey-hem.cyclic.app/api/images?image_id=${image_id}`);
   const blob = await response.blob();
   return URL.createObjectURL(blob);
 };
@@ -12,7 +12,7 @@ const getUserInfo = async (user) => {
   const username = user.username;
 
   try {
-    const response = await fetch(`http://10.6.128.69:8080/api/users/${username}`, {
+    const response = await fetch(`https://teal-monkey-hem.cyclic.app/api/users/${username}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

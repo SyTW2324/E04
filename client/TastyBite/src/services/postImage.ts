@@ -10,7 +10,7 @@ export const postImage = async ({ username, image, setImage}) => {
   formData.append('file', image);
   try {
     // Cambia la URL a la que corresponda en tu aplicación
-    const result = await axios.post('http://10.6.128.69:8080/api/images', formData, {
+    const result = await axios.post('https://teal-monkey-hem.cyclic.app/api/images', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
