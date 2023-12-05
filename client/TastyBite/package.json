@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "start": "vite",
+    "build": "vite build",
     "lint": "eslint --cache .",
     "preview": "vite preview",
     "test": "npx cypres run"

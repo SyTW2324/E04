@@ -13,7 +13,7 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "jest": "jest --watchAll --verbose",
-    "test": "env-cmd -f ./config/test.env mocha --exit"
+    "test": "env-cmd -f ./config/dev.env mocha --exit"
   },
   "keywords": [],
   "author": "",
