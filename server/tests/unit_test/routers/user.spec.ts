@@ -89,7 +89,7 @@
       expect(response.status).to.be.equal(200);
       expect(response.data).to.be.an('object');
       expect(response.data).to.have.property('username');
-      expect(response.data).to.have.property('first_name');
+      expect(response.data).to.have.property('first_name'); 
       expect(response.data).to.have.property('last_name');
       expect(response.data).to.have.property('email');
       expect(response.data).to.have.property('password');
