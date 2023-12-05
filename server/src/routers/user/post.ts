@@ -18,7 +18,9 @@ export const postUser = async (req: any, res: any) => {
 
 
 import jwt from 'jsonwebtoken';
-const TOKEN_KEY = process.env.TOKEN_KEY || '';
+// const TOKEN_KEY = process.env.TOKEN_KEY || '';
+
+const TOKEN_KEY = "x4TvnErxRETbVcqaL15dqM1115eN1p5y";
 
 
 export const postUserLogin = async (req: any, res: any) => {
@@ -50,7 +52,7 @@ export const postUserLogin = async (req: any, res: any) => {
     // return res.status(201).send(user);
     return res.status(400).send("Inicio de sesión incorrecto");
   } catch (error) {
-    return res.status(500).send({msg: "No se añadió correctamente el usuario", error: error});
+    return res.status(500).send({msg: "No se inició sesión correctamente", error: error});
   }
 };
 
