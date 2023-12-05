@@ -11,11 +11,9 @@
 
   describe('POST /users', () => {
 
-    
-
     it('Se crea un usuario correctamente', async () => {
       const url = 'https://teal-monkey-hem.cyclic.app/api/users';
-      const userFacu = {
+      const userMessi = {
         "username": "messi",
         "first_name": "Messi",
         "last_name": "Lionel",
@@ -23,14 +21,14 @@
         "password": "messi"
       }
       
-      const response = await axios.post(url, userFacu);
+      const response = await axios.post(url, userMessi);
       expect(response.status).to.be.equal(201);
-      // expect(response.data).to.be.an('object');
-      // expect(response.data).to.have.property('username');
-      // expect(response.data).to.have.property('first_name');
-      // expect(response.data).to.have.property('last_name');
-      // expect(response.data).to.have.property('email');
-      // expect(response.data).to.have.property('password');
+      expect(response.data).to.be.an('object');
+      expect(response.data).to.have.property('username');
+      expect(response.data).to.have.property('first_name');
+      expect(response.data).to.have.property('last_name');
+      expect(response.data).to.have.property('email');
+      expect(response.data).to.have.property('password');
     });
     
   });
@@ -48,25 +46,23 @@
 
   describe('PATCH /users/:username', () => {
 
-    
-
     it('Se modifica un usuario correctamente', async () => {
 
       // conseguimos el token primero
       const urlToken = "https://teal-monkey-hem.cyclic.app/api/users/login";
-      const userFacuLogin = {
+      const userMessiLogin = {
         "username": "messi",
         "password": "messi"
       }
-      const responseToken = await axios.post(urlToken, userFacuLogin);
+      const responseToken = await axios.post(urlToken, userMessiLogin);
       const token = responseToken.data.token;
 
       const url = "https://teal-monkey-hem.cyclic.app/api/users/messi";
-      const userFacu = {
+      const userMessi = {
         "first_name": "Lionel",
         "last_name": "Cuccitini"
       }
-      const response = await axios.patch(url, userFacu, { headers: { Authorization: `Bearer ${token}` } });
+      const response = await axios.patch(url, userMessi, { headers: { Authorization: `Bearer ${token}` } });
       expect(response.status).to.be.equal(200);
       expect(response.data).to.be.an('object');
       expect(response.data).to.have.property('username');
@@ -81,11 +77,11 @@
   describe('DELETE /users/:username', () => {
     it('Se elimina un usuario correctamente', async () => {
       const urlToken = "https://teal-monkey-hem.cyclic.app/api/users/login";
-      const userFacuLogin = {
+      const userMessiLogin = {
         "username": "messi",
         "password": "messi"
       }
-      const responseToken = await axios.post(urlToken, userFacuLogin);
+      const responseToken = await axios.post(urlToken, userMessiLogin);
       const token = responseToken.data.token;
 
       const url = "https://teal-monkey-hem.cyclic.app/api/users/messi";
