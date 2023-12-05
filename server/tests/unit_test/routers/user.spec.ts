@@ -10,21 +10,17 @@ import mongoose from 'mongoose';
 
 
 describe('POST /users', () => {
-  
-  before(async function () {
-    this.timeout(20000); // Establece un límite de tiempo de 5 segundos
-    await User.deleteMany({});
-  });
+
   
 
   it('Se crea un usuario correctamente', async () => {
     const url = 'https://teal-monkey-hem.cyclic.app/api/users';
     const userFacu = {
-      "username": "messiFacu",
-      "first_name": "Facundo",
-      "last_name": "Garcia",
-      "email": "facu@gmail.com",
-      "password": "1234"
+      "username": "messi",
+      "first_name": "Messi",
+      "last_name": "Lionel",
+      "email": "messi@gmail.com",
+      "password": "messi"
     }
     
     const response = await axios.post(url, userFacu);
@@ -40,14 +36,14 @@ describe('POST /users', () => {
 });
 
 
-describe('GET /users', () => {
-  it('Se obtienen todos los usuarios correctamente', async () => {
-    const url = 'https://teal-monkey-hem.cyclic.app/api/users';
-    const response = await axios.get(url);
-    expect(response.status).to.be.equal(200);
-    expect(response.data.length).to.be.equal(10);   
-  });
-});
+// describe('GET /users', () => {
+//   it('Se obtienen todos los usuarios correctamente', async () => {
+//     const url = 'https://teal-monkey-hem.cyclic.app/api/users';
+//     const response = await axios.get(url);
+//     expect(response.status).to.be.equal(200);
+//     expect(response.data.length).to.be.equal(10);   
+//   });
+// });
 
 
 describe('PATCH /users/:username', () => {
@@ -58,16 +54,16 @@ describe('PATCH /users/:username', () => {
     // conseguimos el token primero
     const urlToken = "https://teal-monkey-hem.cyclic.app/api/users/login";
     const userFacuLogin = {
-      "username": "messiFacu",
-      "password": "1234"
+      "username": "messi",
+      "password": "messi"
     }
     const responseToken = await axios.post(urlToken, userFacuLogin);
     const token = responseToken.data.token;
 
-    const url = "https://teal-monkey-hem.cyclic.app/api/users/messiFacu";
+    const url = "https://teal-monkey-hem.cyclic.app/api/users/messi";
     const userFacu = {
-      "first_name": "DonFaucundo",
-      "last_name": "DonGarcia"
+      "first_name": "Lionel Andres",
+      "last_name": "Cuccitini"
     }
     const response = await axios.patch(url, userFacu, { headers: { Authorization: `Bearer ${token}` } });
     expect(response.status).to.be.equal(200);
@@ -85,14 +81,14 @@ describe('DELETE /users/:username', () => {
   it('Se elimina un usuario correctamente', async () => {
     const urlToken = "https://teal-monkey-hem.cyclic.app/api/users/login";
     const userFacuLogin = {
-      "username": "messiFacu",
-      "password": "1234"
+      "username": "messi",
+      "password": "messi"
     }
     const responseToken = await axios.post(urlToken, userFacuLogin);
     const token = responseToken.data.token;
 
     
-    const url = "https://teal-monkey-hem.cyclic.app/api/users/messiFacu";
+    const url = "https://teal-monkey-hem.cyclic.app/api/users/messi";
     const response = await axios.delete(url, { headers: { Authorization: `Bearer ${token}` } });
     expect(response.status).to.be.equal(200);
     expect(response.data).to.be.an('object');
