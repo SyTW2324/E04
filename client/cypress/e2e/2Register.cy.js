@@ -11,7 +11,7 @@ describe('Componente para el registro de usuario', () => {
     cy.get('#first_name').should('exist');
     cy.get('#last_name').should('exist');
     cy.get('#profile_description').should('exist');
-  });
+  }); 
 
   it('Se carga correctamente cada campo con su debido valor', () => {
     cy.visit('https://resilient-crostata-07c0da.netlify.app/register');
