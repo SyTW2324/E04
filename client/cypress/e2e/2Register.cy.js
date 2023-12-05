@@ -3,7 +3,7 @@
 describe('Componente para el registro de usuario', () => {
 
   it('Se renderiza correctamente el contenido de la página', () => {
-    cy.visit('http://10.6.128.69:8080/register');
+    cy.visit('https://resilient-crostata-07c0da.netlify.app/register');
     cy.get('#username').should('exist');
     cy.get('#email').should('exist');
     cy.get('#password-1').should('exist');
@@ -14,7 +14,7 @@ describe('Componente para el registro de usuario', () => {
   });
 
   it('Se carga correctamente cada campo con su debido valor', () => {
-    cy.visit('http://10.6.128.69:8080/register');
+    cy.visit('https://resilient-crostata-07c0da.netlify.app/register');
     cy.get('#username').type('usertest');
     cy.get('#email').type('usertest@gmail.com');
     cy.get('#first_name').type('usertest');
@@ -26,7 +26,7 @@ describe('Componente para el registro de usuario', () => {
   });
 
   it('Se cargan todos los valores menos uno para que de error', () => {
-    cy.visit('http://10.6.128.69:8080/register');
+    cy.visit('https://resilient-crostata-07c0da.netlify.app/register');
     cy.get('#username').type('usertest');
     cy.get('#email').type('usertest@gmail.com');
     cy.get('#first_name').type('usertest');

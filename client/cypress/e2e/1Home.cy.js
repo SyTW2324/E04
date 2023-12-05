@@ -2,7 +2,7 @@
 
 describe('Componente principal Home', () => {
   beforeEach(() => {
-    cy.visit('http://10.6.128.69:8080/');
+    cy.visit('https://resilient-crostata-07c0da.netlify.app/');
   });
 
   it('Se renderiza correctamente la página principal, junto con un título', () => {
