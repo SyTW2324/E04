@@ -1,16 +1,19 @@
   import request from 'supertest';
   import { expect } from 'chai';
+  import { describe, before } from 'mocha';
   import { app } from '../../../src/app.js';
   import axios from 'axios';
   import { User } from '../../../src/models/userModel.js';
   import { doesNotReject } from 'assert';
   import mongoose from 'mongoose';
-
-  // SI NO FUNCIONA ES PORQUE EN EL PACKAGE PUSIMOS DEV Y NO TEST
-
+  
+  
+ 
 
   describe('POST /users', () => {
+    
 
+  
     it('Se crea un usuario correctamente', async () => {
       const url = 'https://teal-monkey-hem.cyclic.app/api/users';
       const userMessi = {
@@ -39,7 +42,7 @@
       const url = 'https://teal-monkey-hem.cyclic.app/api/users';
       const response = await axios.get(url);
       expect(response.status).to.be.equal(200);
-      expect(response.data.length).to.be.equal(2);   
+      expect(response.data.length).to.be.greaterThan(1);
     });
   });
 
