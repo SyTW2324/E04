@@ -1,0 +1,24 @@
+
+name: Notification Slack
+
+on:
+  push:
+    branches: [ "release/v0.1" ]
+  pull_request:
+    branches: [ "release/v0.1" ]
+
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    #environment: Production
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    - name: Slack Notification
+      uses: act10ns/slack@v1
+      with: 
+        status: ${{ job.status }}
+        channel: '#04'
+        message: Deployed {{ env.GITHUB_REF_NAME }} branch Successfully
+      if: always()   
