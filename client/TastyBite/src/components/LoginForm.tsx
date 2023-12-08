@@ -73,7 +73,7 @@ export function LoginForm({ setUser }) {
           </form>
         </div>
         <div className="login-form-container__left-container">
-          <img src="../images/Cocodrilo.png" alt="Cocodrilo señalando login" />
+          <img src="../Cocodrilo.png" alt="Cocodrilo señalando login" />
         </div>
       </div>
     </>

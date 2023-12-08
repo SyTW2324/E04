@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 
-export interface Category {
+export interface CategoryInterface {
   ingredient_id: Schema.Types.ObjectId;
   ingredient: string;
   unitOfMeasurement: 'gr' | 'cl';
