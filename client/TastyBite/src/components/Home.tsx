@@ -20,6 +20,9 @@ const Home = (): JSX.Element => {
       <Link to="/categories">
         <button>Ir a categorias</button>
       </Link>
+      <Link to="/ingredients">
+        <button>Ir a Ingredientes</button>
+      </Link>
     </div>
   )
 }
