@@ -1,5 +1,5 @@
 import React from "react";
-import { useIngredients } from "../hooks/useIngredients";
+import { useIngredients } from "../../hooks/useIngredients";
 
 
 

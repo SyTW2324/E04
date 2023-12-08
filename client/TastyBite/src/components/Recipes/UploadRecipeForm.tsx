@@ -1,7 +1,7 @@
 import './UploadRecipeForm.css'
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import axios from 'axios';
-import { PreviewImage } from './PreviewImage';
+import { PreviewImage } from '../PreviewImage';
 import { useNavigate } from 'react-router-dom';
 
 const getCategoryList = async () => {

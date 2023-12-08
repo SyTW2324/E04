@@ -1,8 +1,11 @@
+import './ListRecipes.css';
+
 import React, { useEffect, useState } from 'react';
 // import { useRecipes } from '../hooks/useRecipes';
 import { Recipe } from '../types/Recipe';
 import axios from 'axios';
-import { getRecipes } from '../services/getRecipes';
+import { getRecipes } from '../../services/getRecipes';
+import { RecipeTarget } from './RecipeTarget';
 
 
 
@@ -87,16 +90,15 @@ export function ListRecipes() {
 
   return (
     <div>
-      <h1>Recipes</h1>
-      {recipes && recipes.map((recipe, index) => (
-        <div key={recipe._id}>
-          <h2>{recipe.title}</h2>
-          {recipe.instructions && recipe.instructions.map((instruction, index) => (
-            <p key={index}>{instruction}</p>
-          ))}
-          {images[index] && <img src={images[index]} alt={recipe.title} />}
-        </div>
-      ))}
+      <h1 className="title-recipes">Recipes</h1>
+      <p className="teaser-recipes" >Con más de {recipes.length} recetas para elegir, encontrar la comida ideal nunca fue tan fácil. ¿Cuál te provoca hoy?"</p>
+      <div className="recipes-container">
+        {recipes && recipes.map((recipe, index) => (
+          <>
+            <RecipeTarget recipe={recipe} image={images[index]} key={recipe._id} />
+          </>
+        ))}
+      </div>
     </div>
   );
 }
