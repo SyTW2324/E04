@@ -28,7 +28,7 @@ export const PreviewImage = ({ setImage }) => {
         </div>
       ) : (
         <div className="preview-image-container">
-          <img src="../../images/CocodriloCorbata.jpg" alt="Imagen predeterminada" style={{ maxWidth: '100%' }} />
+          <img src="../../CocodriloCorbata.jpg" alt="Imagen predeterminada" style={{ maxWidth: '100%' }} />
         </div>
       )}
 

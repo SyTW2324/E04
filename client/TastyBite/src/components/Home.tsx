@@ -17,6 +17,9 @@ const Home = (): JSX.Element => {
       <Link to="/profile">
         <button>Ir al perfil</button>
       </Link>
+      <Link to="/categories">
+        <button>Ir a categorias</button>
+      </Link>
     </div>
   )
 }

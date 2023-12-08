@@ -21,6 +21,7 @@ import {
   RouterProvider,
   Link
 } from "react-router-dom";
+import { ListCategory } from './components/ListCategory';
 
 
 
@@ -180,6 +181,10 @@ function App() {
     {
       path: "/profile",
       element: <Profile />,
+    },
+    {
+      path: "/categories",
+      element: <ListCategory />,
     },
     {
       path: "*",
