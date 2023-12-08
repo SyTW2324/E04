@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import './App.css'
 import { Header } from './components/Header'
-import { LoginForm } from './components/LoginForm';
-import { RegisterForm } from './components/RegisterForm';
-import { UploadRecipeForm } from './components/UploadRecipeForm';
-import { ListRecipes } from './components/ListRecipes';
-import { UserInfo } from './components/UserInfo';
+import { LoginForm } from './components/Sign/LoginForm';
+import { RegisterForm } from './components/Sign/RegisterForm';
+import { UploadRecipeForm } from './components/Recipes/UploadRecipeForm';
+import { ListRecipes } from './components/Recipes/ListRecipes';
+import { UserInfo } from './components/Users/UserInfo';
 import Home from './components/Home';
-import { ListCategory } from './components/ListCategory';
-import { ListIngredients } from './components/ListIngredients';
+import { ListCategory } from './components/Categories/ListCategory';
+import { ListIngredients } from './components/Ingredients/ListIngredients';
 
 import { useUserStore } from './state/store';
 

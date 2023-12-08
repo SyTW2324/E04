@@ -1,7 +1,7 @@
 import axios from 'axios';
 import './LoginForm.css'
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import { useUserStore } from '../state/store';
+import { useUserStore } from '../../state/store';
 import { useNavigate } from 'react-router-dom';
 
 export function LoginForm({ setUser }) {

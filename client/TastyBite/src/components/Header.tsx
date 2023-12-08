@@ -31,12 +31,12 @@ export const Header= () => {
     <>
       <header className="header">
         <div className="left-container">
-          <img className='lines' src='../icons/lines.svg'/>
+          <img className='lines' src='../lines.svg'/>
           <a href="/" ><img className='logo'   src='../Logo.png'/></a>
         </div>
         <div className="center-container">
           <input className="input-search" type="text" placeholder="Search" />
-          <img className="btn-search" src='../icons/search.svg'/>
+          <img className="btn-search" src='../search.svg'/>
         </div>
         <div className="right-container"> 
           <ul className="menu">
