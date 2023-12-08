@@ -7,6 +7,8 @@ import { UploadRecipeForm } from './components/UploadRecipeForm';
 import { ListRecipes } from './components/ListRecipes';
 import { UserInfo } from './components/UserInfo';
 import Home from './components/Home';
+import { ListCategory } from './components/ListCategory';
+import { ListIngredients } from './components/ListIngredients';
 
 import { useUserStore } from './state/store';
 
@@ -21,7 +23,7 @@ import {
   RouterProvider,
   Link
 } from "react-router-dom";
-import { ListCategory } from './components/ListCategory';
+
 
 
 
@@ -185,6 +187,10 @@ function App() {
     {
       path: "/categories",
       element: <ListCategory />,
+    },
+    {
+      path: "/ingredients",
+      element: <ListIngredients />,
     },
     {
       path: "*",
