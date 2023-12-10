@@ -9,7 +9,7 @@ import { UserInfo } from './components/Users/UserInfo';
 import Home from './components/Home';
 import { ListCategory } from './components/Categories/ListCategory';
 import { ListIngredients } from './components/Ingredients/ListIngredients';
-
+import { Recipe } from './components/Recipes/Recipe';
 import { useUserStore } from './state/store';
 
 
@@ -193,10 +193,14 @@ function App() {
       element: <ListIngredients />,
     },
     {
+      path: "/recipes/:recipe_id",
+      element: <Recipe />,
+    },
+    {
       path: "*",
       element: <h1>404</h1>,
     }
-    
+
   ]);
   
 

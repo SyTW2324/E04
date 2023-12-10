@@ -1,5 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import { useCategory } from "../../hooks/useCategory";
 import { useRecipe } from "../../hooks/useRecipe";
+import { Recipe } from "./Recipe";
 import "./RecipeTarget.css";
 
 import React, { useEffect } from "react";
@@ -11,9 +13,10 @@ export function RecipeTarget({ recipe, image }) {
   // console.log("VEAMOS QUE PASA");
   // console.log(category);
   // console.log(ingredients);
+  const navigate = useNavigate();
 
   return (
-    <div className="recipe-container" key={recipe._id}>
+    <div  onClick={() => navigate(`/recipes/${recipe._id}`)} className="recipe-container-target" key={recipe._id}>
       <div className="recipe-container-body">
         <h2 className="recipe-title">{recipe.title}</h2>
         <div className="recipe-info">
