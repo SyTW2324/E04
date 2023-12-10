@@ -1,21 +1,18 @@
 import axios from "axios";
 
-
-export const getNameSpecificIngredients = async (ingredients_id) => {
+export const getNameSpecificIngredients = async ({ingredients_ids}) => {
   try {
-    // pedimos los ingredientes, en ingredients_id tenemos los ids, entonces tenemos varias peticiones
-    // a la api para obtener los ingredientes
-    const response = ingredients_id.map(async (id) => {
-      const response = await axios.get(`https://teal-monkey-hem.cyclic.app/api/ingredients/${id}`);
-
-      return response.data.ingredient;
-    }
+    const promises = ingredients_ids.map(id => 
+      axios.get(`https://teal-monkey-hem.cyclic.app/api/ingredients/${id}`)
     );
-    // esperamos a que todas las peticiones terminen
-    const results = await Promise.all(response);
-    console.log("results de getNameSpecificIngredients");
-    console.log(results);
-    return results;
+
+    const responses = await Promise.all(promises);
+
+    const ingredients = responses.map(response => response.data[0]);
+    console.log("ingredients");
+    console.log(ingredients);
+
+    return ingredients;
   }
   catch (error) {
     console.log(error);

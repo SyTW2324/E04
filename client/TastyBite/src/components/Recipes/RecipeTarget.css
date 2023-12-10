@@ -1,11 +1,22 @@
-.recipe-container {
+.recipe-container-target {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   gap: 2rem;
   justify-items: center;
   padding-bottom: 2rem;
+  border: 2px solid transparent;
   border-bottom: 2px solid black;
+
+}
+
+.recipe-container-target:hover {
+  background-color: #ffffffc0;
+  border: 2px solid black;
+  border-radius: 20px;
+  cursor: pointer;
+  
+  transition: all 0.5s ease;
 
 }
 
@@ -35,6 +46,8 @@
   font-size: 2rem;
   gap: 1rem;
 }
+
+
 
 .logo-info img {
   width: 50px;

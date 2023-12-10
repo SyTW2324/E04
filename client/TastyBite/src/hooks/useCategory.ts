@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCategory } from "../services/getCategory.ts.FIX";
+import { getCategory } from "../services/getCategory.ts";
 
 
 export const useCategory = (category: string) => {
