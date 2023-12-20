@@ -1,9 +1,9 @@
   import request from 'supertest';
   import { expect } from 'chai';
   import { describe, before } from 'mocha';
-  import { app } from '../../../src/app.js';
+  import { app } from '../../src/app.js';
   import axios from 'axios';
-  import { User } from '../../../src/models/userModel.js';
+  import { User } from '../../src/models/userModel.js';
   import { doesNotReject } from 'assert';
   import mongoose from 'mongoose';
   
