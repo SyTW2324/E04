@@ -1,8 +1,8 @@
 import './RegisterForm.css'
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import { PreviewImage } from './PreviewImage';
+import { PreviewImage } from '../PreviewImage';
 import { useNavigate } from 'react-router-dom';
-import { postUser } from '../services/postUser';
+import { postUser } from '../../services/postUser';
 
 
 export function RegisterForm() {

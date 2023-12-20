@@ -1,7 +1,7 @@
 import axios from 'axios';
 import './LoginForm.css'
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import { useUserStore } from '../state/store';
+import { useUserStore } from '../../state/store';
 import { useNavigate } from 'react-router-dom';
 
 export function LoginForm({ setUser }) {
@@ -73,7 +73,7 @@ export function LoginForm({ setUser }) {
           </form>
         </div>
         <div className="login-form-container__left-container">
-          <img src="../images/Cocodrilo.png" alt="Cocodrilo señalando login" />
+          <img src="../Cocodrilo.png" alt="Cocodrilo señalando login" />
         </div>
       </div>
     </>

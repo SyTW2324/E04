@@ -1,8 +1,12 @@
+import './ListRecipes.css';
+
 import React, { useEffect, useState } from 'react';
 // import { useRecipes } from '../hooks/useRecipes';
-import { Recipe } from '../types/Recipe';
 import axios from 'axios';
-import { getRecipes } from '../services/getRecipes';
+import { Recipe } from '../types/Recipe';
+import { getRecipes } from '../../services/getRecipes';
+import { RecipeTarget } from './RecipeTarget';
+import { useImages } from '../../hooks/useImages';
 
 
 
@@ -38,13 +42,7 @@ import { getRecipes } from '../services/getRecipes';
 //   return images;
 // }
 
-export const fetchImageUrl = async (image_id: string): Promise<string> => {
-  console.log('fetching image url')
-  console.log(image_id)
-  const response = await fetch(`https://teal-monkey-hem.cyclic.app/api/images?image_id=${image_id}`);
-  const blob = await response.blob();
-  return URL.createObjectURL(blob);
-};
+
 
 export function useRecipes() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -62,22 +60,7 @@ export function useRecipes() {
 }
 
 
-export function useImages(recipes: Recipe[]) {
-  const [images, setImages] = useState([]);
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      const newImages = await Promise.all(
-        recipes.map(recipe => fetchImageUrl(recipe.images[0]))
-      );
-      setImages(newImages);
-    };
-
-    fetchImages();
-  }, [recipes]);
-
-  return images;
-}
 
 
 
@@ -87,16 +70,15 @@ export function ListRecipes() {
 
   return (
     <div>
-      <h1>Recipes</h1>
-      {recipes && recipes.map((recipe, index) => (
-        <div key={recipe._id}>
-          <h2>{recipe.title}</h2>
-          {recipe.instructions && recipe.instructions.map((instruction, index) => (
-            <p key={index}>{instruction}</p>
-          ))}
-          {images[index] && <img src={images[index]} alt={recipe.title} />}
-        </div>
-      ))}
+      <h1 className="title-recipes">Recipes</h1>
+      <p className="teaser-recipes" >Con más de {recipes.length} recetas para elegir, encontrar la comida ideal nunca fue tan fácil. ¿Cuál te provoca hoy?"</p>
+      <div className="recipes-container">
+        {recipes && recipes.map((recipe, index) => (
+          <>
+            <RecipeTarget recipe={recipe} image={images[index]} key={recipe._id} />
+          </>
+        ))}
+      </div>
     </div>
   );
 }

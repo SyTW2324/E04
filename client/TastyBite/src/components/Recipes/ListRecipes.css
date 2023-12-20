@@ -1,0 +1,27 @@
+.title-recipes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 7rem;
+  margin-bottom: 0;
+}
+
+.teaser-recipes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  
+}
+
+.recipes-container {
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  margin: 0 auto;
+}
+
+

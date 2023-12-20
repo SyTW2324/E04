@@ -14,8 +14,17 @@ const Home = (): JSX.Element => {
       <Link to="/upload-recipe">
         <button>Ir a subir receta</button>
       </Link>
+      <Link to="/recipes">
+        <button>Ir a recetas</button>
+      </Link>
       <Link to="/profile">
         <button>Ir al perfil</button>
+      </Link>
+      <Link to="/categories">
+        <button>Ir a categorias</button>
+      </Link>
+      <Link to="/ingredients">
+        <button>Ir a Ingredientes</button>
       </Link>
     </div>
   )
