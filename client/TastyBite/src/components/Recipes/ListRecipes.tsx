@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Recipe } from '../../../types/Recipe';
 import { getRecipes } from '../../services/getRecipes';
 import { RecipeTarget } from './RecipeTarget';
+import { useRecipe } from '../../hooks/useRecipe';
 
 
 export function useRecipes() {
@@ -40,17 +41,23 @@ export function useRecipes() {
 
 
 export function ListRecipes() {
-  const recipes: Recipe[] = useRecipes();
+  const recipes = useRecipe({});
+  console.log('ListRecipes');
+  console.log(recipes);
 
   return (
-    <div>
-      <h1 className="title-recipes">Recipes</h1>
-      <p className="teaser-recipes" >Con más de {recipes.length} recetas para elegir, encontrar la comida ideal nunca fue tan fácil. ¿Cuál te provoca hoy?"</p>
-      <div className="recipes-container">
-        {recipes && recipes.map((recipe) => (
-          <RecipeTarget recipe={recipe} key={recipe.recipe_id} />
-        ))}
-      </div> 
-    </div>
+      <div>
+        <h1 className="title-recipes">Recipes</h1>
+        {recipes && 
+          <>
+            <p className="teaser-recipes" >Con más de {recipes.length} recetas para elegir, encontrar la comida ideal nunca fue tan fácil. ¿Cuál te provoca hoy?"</p>
+            <div className="recipes-container">
+              {recipes.map((recipe) => (
+                <RecipeTarget recipe={recipe} key={recipe.recipe_id} />
+                ))}
+            </div> 
+          </>
+        }
+      </div>
   );
 }

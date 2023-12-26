@@ -7,12 +7,24 @@ import { set } from "mongoose";
 import { Recipe } from "../../types/Recipe";
 
 
-export function useRecipe({ recipe_id }) {
+export function useRecipe({ recipe_id = null, category_id = null }) {
   const [recipe, setRecipe] = useState<Recipe>();
 
   useEffect(() => {
     const fetchRecipe = async () => {
-      const data = await getRecipe({ recipe_id });
+      let data;
+      if (recipe_id) {
+        console.log('useRecipe recipe_id');
+        console.log(recipe_id);
+        data = await getRecipe({ recipe_id });
+      } else if (category_id !== null) {
+        console.log('useRecipe category_id');
+        console.log(category_id);
+        data = await getRecipe({ category_id });
+      } else {
+        data = await getRecipe({});
+
+      }
       // cambiamos la images por la url de la imagen
       const updatedRecipe = data.map((recipe: any) => {
         return {
@@ -24,9 +36,16 @@ export function useRecipe({ recipe_id }) {
           }),
         };
       });
-      setRecipe(updatedRecipe[0]);
-      console.log('useRecipe');
-      console.log(updatedRecipe[0]);
+      if (updatedRecipe.length === 1) {
+
+        setRecipe(updatedRecipe[0]);
+        console.log('useRecipe');
+        console.log(updatedRecipe[0]);
+      } else {
+        console.log('useRecipe varias recetas');
+        console.log(updatedRecipe);
+        setRecipe(updatedRecipe);
+      }
     };
 
     fetchRecipe();
