@@ -38,10 +38,12 @@ const RecipeSchema = new Schema<RecipeDocumentInterface>({
   category: {
     type: Schema.Types.ObjectId,
     required: false,
+    ref: 'Category',
   },
   ingredients: [{
     type: Schema.Types.ObjectId,
     required: false,
+    ref: 'Ingredient',
   }],
   instructions: [{
     type: String,

@@ -1,6 +1,7 @@
 import { Schema } from "mongoose";
 import mongoose from "mongoose";
 import { Recipe } from "../../models/recipeModel.js";
+import { Ingredient } from "../../models/ingredientModel.js";
 
 /**
  * Manejador de la petición GET /users
@@ -13,7 +14,7 @@ export const getRecipeQuery =  async (req: any, res: any) => {
   try {
     const filter = req.query.recipe_id ? {recipe_id: req.query.recipe_id.toString()} : {};
 
-    const recipes = await Recipe.find(filter);
+    const recipes = await Recipe.find(filter).populate('category').populate('ingredients').populate('images');
 
     if (recipes.length !== 0) {
       return res.status(200).send(recipes);
@@ -37,7 +38,7 @@ export const getRecipe =  async (req: any, res: any) => {
 
     const filter = req.params.recipe_id ? {recipe_id: new mongoose.Types.ObjectId(req.params.recipe_id)} : {};
 
-    const recipes = await Recipe.find(filter);
+    const recipes = await Recipe.find(filter).populate('category').populate('ingredients').populate('images');
 
     if (recipes.length !== 0) {
       return res.status(200).send(recipes);
