@@ -12,7 +12,13 @@ import { Ingredient } from "../../models/ingredientModel.js";
  */
 export const getRecipeQuery =  async (req: any, res: any) => {
   try {
-    const filter = req.query.recipe_id ? {recipe_id: req.query.recipe_id.toString()} : {};
+    let filter = {};
+    if (req.query.recipe_id) {
+      filter = {recipe_id: req.query.recipe_id.toString()};
+
+    } else if (req.query.category_id) {
+      filter = {category: req.query.category_id.toString()};
+    }
 
     const recipes = await Recipe.find(filter).populate('category').populate('ingredients').populate('images');
 

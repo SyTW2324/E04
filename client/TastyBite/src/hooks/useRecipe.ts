@@ -3,32 +3,36 @@ import { getRecipe } from "../services/getRecipe";
 import { getNameSpecificIngredients } from "../services/getNameSpecificIngredients";
 import { getCategory } from "../services/getCategory";
 import { fetchImageUrl } from "../services/getImage";
+import { set } from "mongoose";
+import { Recipe } from "../../types/Recipe";
 
-export const useRecipe = (recipe_id) => {
-  const [recipe, setRecipe] = useState(null);
 
+export function useRecipe({ recipe_id }) {
+  const [recipe, setRecipe] = useState<Recipe>();
 
   useEffect(() => {
     const fetchRecipe = async () => {
-      const response = await getRecipe({recipe_id});
-      const response2 = await getNameSpecificIngredients({ingredients_ids: response[0].ingredients});
-      const response3 = await getCategory({category_id: response[0].category});
-      console.log("AVER QWUE HAY !");
-      const image_id = response[0].images[0] as string;
-      const response4 = await fetchImageUrl( image_id )
-      console.log("eppaa!");
-      console.log({...response[0], ingredients: response2, category: response3, images: response4});
-      setRecipe({ ...response[0]  , ingredients: response2, category: response3, images: response4});
-    }
+      const data = await getRecipe({ recipe_id });
+      // cambiamos la images por la url de la imagen
+      const updatedRecipe = data.map((recipe: any) => {
+        return {
+          ...recipe,
+          images: recipe.images.map((image: any) => {
+            const buffer = new Uint8Array(image.image.data.data);
+            const blob = new Blob([buffer], { type: image.image.contentType });
+            return URL.createObjectURL(blob);
+          }),
+        };
+      });
+      setRecipe(updatedRecipe[0]);
+      console.log('useRecipe');
+      console.log(updatedRecipe[0]);
+    };
 
-    if (recipe_id){
-      fetchRecipe();      
-    }
-  }, [recipe_id]);
+    fetchRecipe();
+  }, []);
 
-  return { recipe };
+  return recipe;
 }
 
-function getImages(arg0: { image_id: any; }) {
-  throw new Error("Function not implemented.");
-}
+
