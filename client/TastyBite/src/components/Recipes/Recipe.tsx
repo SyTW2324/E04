@@ -128,7 +128,7 @@ function getEmoji(ingredient) {
 
 export function Recipe() {
   const { recipe_id } = useParams();
-  const recipe  = useRecipe({recipe_id});
+  const recipe  = useRecipe({ recipe_id });
 
   
   if (!recipe) {

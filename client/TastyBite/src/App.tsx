@@ -23,6 +23,7 @@ import {
   RouterProvider,
   Link
 } from "react-router-dom";
+import { RecipesByCategory } from './components/Recipes/RecipesByCategory';
 
 
 
@@ -195,6 +196,10 @@ function App() {
     {
       path: "/recipes/:recipe_id",
       element: <Recipe />,
+    },
+    {
+      path: "/categories/:category",
+      element: <RecipesByCategory />,
     },
     {
       path: "*",

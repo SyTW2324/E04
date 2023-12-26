@@ -8,7 +8,6 @@ export const useCategories = () => {
 
   useEffect(() => {
     getCategories().then((data) => {
-      console.log("los dato", data);
       setCategories(data);
       setIsLoading(false);
     });
