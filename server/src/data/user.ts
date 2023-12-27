@@ -1,6 +1,12 @@
-import { MongoClient } from 'mongodb';
-import { MongoClientOptions } from 'mongodb';
+import { MongoClient, MongoClientOptions } from 'mongodb';
+import * as fs from 'fs';
 
+interface User {
+  username: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+}
 
 async function insertUsers() {
   const client = new MongoClient("mongodb://127.0.0.1:27017/tasty-bite-api");
@@ -12,13 +18,20 @@ async function insertUsers() {
     const db = client.db("tasty-bite-api");
     const collection = db.collection('users');
 
-    // Datos a insertar
-    const datos = [
-      { username: "pepe", first_name: "Juan Jose", last_name: "Garcia Perez", email: "alu@gmail.es" },
-    ];
+    const filePath = '/home/usuario/E04/data/user.json';
+
+    const rawData = fs.readFileSync(filePath, 'utf-8');
+
+    let jsonData = JSON.parse(rawData);
+    let users: User[] = [];
+
+    jsonData.forEach((element: User) => {
+      users.push(element);
+    });
+
 
     // Insertar datos en la colección
-    await collection.insertMany(datos);
+    await collection.insertMany(users);
     console.log('Datos insertados correctamente');
   } finally {
     // Cerrar la conexión
