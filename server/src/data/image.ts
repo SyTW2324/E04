@@ -50,7 +50,16 @@ async function insertImages() {
 
 
     // Insertar datos en la colección
-    await collection.insertMany(images);
+    const insertResult = await collection.insertMany(images);
+
+    // Convert the insertedIds object into an array
+    const insertedIdsArray = Object.values(insertResult.insertedIds);
+
+    // Imprimir el ID de cada elemento insertado
+    insertedIdsArray.forEach((id: any) => {
+      console.log(`Elemento insertado con ID: ${id}`);
+    });
+     
     console.log('Datos insertados correctamente');
   } finally {
     // Cerrar la conexión

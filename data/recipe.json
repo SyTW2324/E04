@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Ensalada de Quinoa",
+    "instructions": [
+      "Cocina la quinoa según las instrucciones del paquete.",
+      "En un tazón grande, mezcla la quinoa cocida con los vegetales frescos.",
+      "Prepara un aderezo con aceite de oliva, limón y sal.",
+      "Añade el aderezo a la ensalada y mezcla bien.",
+      "Sirve la ensalada en platos individuales.",
+      "Decora con aguacate y nueces.",
+      "¡Listo para saborear esta deliciosa ensalada!"
+    ],
+    "time": 25,
+    "numberOfServings": 4,
+    "difficulty": "easy"
+  },
+  {
+    "title": "Pastel de Chocolate",
+    "instructions": [
+      "Precalienta el horno a 180°C.",
+      "Mezcla la harina, el cacao y el polvo de hornear.",
+      "En otro recipiente, bate los huevos y añade el azúcar.",
+      "Agrega la mezcla de ingredientes secos a los ingredientes húmedos.",
+      "Vierte la masa en un molde y hornea durante 30 minutos.",
+      "Decora con crema de chocolate y frutas.",
+      "¡Listo para disfrutar!"
+    ],
+    "time": 45,
+    "number_servings": 8,
+    "difficulty": "medium"
+  }
+]

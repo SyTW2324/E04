@@ -1,4 +1,3 @@
 [
-  { "username": "pepe", "first_name": "Juan Jose", "last_name": "Garcia Perez", "email": "pepe@gmail.es" },
-  { "username": "juan", "first_name": "Juan", "last_name": "Rodriguez Hernandez", "email": "juan@gmail.com" }
+  { "username": "juan", "first_name": "Juan", "last_name": "Rodriguez Hernandez", "email": "juan@gmail.com", "profile_picture": "/home/usuario/E04/data/user/Juan.png" }
 ]
