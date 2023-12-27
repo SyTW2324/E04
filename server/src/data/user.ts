@@ -2,7 +2,7 @@ import { MongoClient } from 'mongodb';
 import { MongoClientOptions } from 'mongodb';
 
 
-async function insertData() {
+async function insertUsers() {
   const client = new MongoClient("mongodb://127.0.0.1:27017/tasty-bite-api");
 
   try {
@@ -28,4 +28,4 @@ async function insertData() {
 }
 
 // Ejecutar la función
-insertData();
+insertUsers();
