@@ -1,34 +1,36 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 
-const fetchImageUrl = async (image_id) => {
-  const response = await fetch(`https://teal-monkey-hem.cyclic.app/api/images?image_id=${image_id}`);
-  const blob = await response.blob();
-  return URL.createObjectURL(blob);
 
-  // Esto es lo que tenemos en recetas deberiamos tener algo parecido en users
-  // const buffer = new Uint8Array(image.image.data.data);
-  // const blob = new Blob([buffer], { type: image.image.contentType });
-  // return URL.createObjectURL(blob);
-};
 
 const getUserInfo = async (user) => {
   const token = user.token;
   const username = user.username;
 
   try {
-    const response = await fetch(`https://teal-monkey-hem.cyclic.app/api/users/${username}`, {
+    const response = await axios.get(`https://teal-monkey-hem.cyclic.app/api/users/${username}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+    const user = response.data[0];
+    console.log("useraaa:", user);
+    const buffer = new Uint8Array(user.profile_picture.image.data.data);
+    console.log("desp buffer:", user);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+    const blob = new Blob([buffer], { type: user.profile_picture.image.contentType });
+    console.log("desp blob:", user);
 
-    const userData = await response.json();
-    return userData;
+    const url_profile = URL.createObjectURL(blob);
+    const updateUser = {
+      ...user,
+      profile_picture: url_profile
+      
+    };
+    
+
+    return [updateUser];
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error; // Rethrow the error to be caught by the caller
@@ -67,6 +69,7 @@ export function UserInfo({ user }) {
 
             <p id="email" >{userInfo.email}</p>
             
+            <img src={userInfo.profile_picture} alt="profile_picture" />
           </div>
         )}
       </div>
