@@ -30,7 +30,7 @@ export const postUserLogin = async (req: any, res: any) => {
     
     const filter = req.body.username ? {username: req.body.username.toString()} : {};
 
-    const users = await User.find(filter);
+    const users = await User.find(filter).populate('profile_picture');
     
 
     if (users.length !== 0) {
