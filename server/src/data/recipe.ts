@@ -9,6 +9,7 @@ interface RecipeJSON {
   instructions: string[];
   images: string[];
   time: number;
+  category: Schema.Types.ObjectId;
   numberOfServings: number;
   difficulty: string;
 }
@@ -18,6 +19,7 @@ interface Recipe {
   instructions: string[];
   images: Schema.Types.ObjectId[];
   time: number;
+  category: Schema.Types.ObjectId;
   numberOfServings: number;
   difficulty: string;
 }
@@ -79,10 +81,12 @@ async function insertRecipes() {
 
         ids.push(result.data.image_id)
       }
+      console.log(recipe.category);
       let recipeToInsert: Recipe = {
         title: recipe.title,
         instructions: recipe.instructions,
         time: recipe.time,
+        category : recipe.category,
         numberOfServings: recipe.numberOfServings,
         difficulty: recipe.difficulty,
         images: ids,

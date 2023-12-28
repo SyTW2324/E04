@@ -13,7 +13,6 @@ export const getRecipe = async ({ recipe_id = null, category_id = null }) => {
     } else {
       const response = await axios.get(`https://teal-monkey-hem.cyclic.app/api/recipes`);
       return response.data;
-    
     }
 
   }
