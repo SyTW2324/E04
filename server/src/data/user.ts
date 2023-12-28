@@ -57,12 +57,11 @@ async function insertUsers() {
       const imageToInsert = fs.readFileSync(user.profile_picture);
       const formData = new FormData();
       formData.append('title', user.username);
-      formData.append('file', imageToInsert);
-      const result = await axios.post('https://teal-monkey-hem.cyclic.app/api/images', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+      formData.append('file', imageToInsert, {
+        filename: 'imagen.png',
+        contentType: 'image/png',
       });
+      const result = await axios.post('https://teal-monkey-hem.cyclic.app/api/images', formData);
       // console.log(result.data.image_id);
       // const insertedId = new Schema.Types.ObjectId(result.data.image_id.toString());
       // console.log(insertedId);

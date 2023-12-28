@@ -1,10 +1,10 @@
 [
   {
-    "username": "juan",
-    "first_name": "Juan",
+    "username": "marta",
+    "first_name": "Marta",
     "last_name": "Rodriguez Hernandez",
-    "email": "juan@gmail.com",
+    "email": "marrta@gmail.com",
     "password": "12345",
-    "profile_picture": "/home/usuario/E04/data/user/Juan.png"
+    "profile_picture": "/home/usuario/E04/data/user/Marta.png"
   }
 ]
