@@ -10,23 +10,9 @@
       "Decora con aguacate y nueces.",
       "¡Listo para saborear esta deliciosa ensalada!"
     ],
+    "images": ["/home/usuario/E04/data/recipe/EnsaladaQuinoa.png", "/home/usuario/E04/data/recipe/EnsaladaQuinoa2.png"],
     "time": 25,
     "numberOfServings": 4,
     "difficulty": "easy"
-  },
-  {
-    "title": "Pastel de Chocolate",
-    "instructions": [
-      "Precalienta el horno a 180°C.",
-      "Mezcla la harina, el cacao y el polvo de hornear.",
-      "En otro recipiente, bate los huevos y añade el azúcar.",
-      "Agrega la mezcla de ingredientes secos a los ingredientes húmedos.",
-      "Vierte la masa en un molde y hornea durante 30 minutos.",
-      "Decora con crema de chocolate y frutas.",
-      "¡Listo para disfrutar!"
-    ],
-    "time": 45,
-    "number_servings": 8,
-    "difficulty": "medium"
   }
 ]

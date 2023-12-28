@@ -1,6 +1,5 @@
 import { MongoClient, MongoClientOptions } from 'mongodb';
 import * as fs from 'fs';
-import { profile } from 'console';
 import { Schema } from 'mongoose';
 
 interface UserJSON {
