@@ -1,12 +1,15 @@
 import { MongoClient, MongoClientOptions } from 'mongodb';
 import * as fs from 'fs';
 import { Schema } from 'mongoose';
+import FormData from 'form-data';
+import axios from 'axios';
 
 interface UserJSON {
   username: string;
   first_name: string;
   last_name: string;
   email: string;
+  password: string;
   profile_picture: string;
 }
 
@@ -15,6 +18,7 @@ interface User {
   first_name: string;
   last_name: string;
   email: string;
+  password: string;
   profile_picture: Schema.Types.ObjectId;
 }
 
@@ -28,15 +32,15 @@ interface Image {
 }
 
 async function insertUsers() {
-  const client = new MongoClient("mongodb://127.0.0.1:27017/tasty-bite-api");
-
+  // const client = new MongoClient("mongodb://127.0.0.1:27017/tasty-bite-api");
+  const URL = 'https://teal-monkey-hem.cyclic.app/api/users';
   try {
-    await client.connect();
+    // await client.connect();
     console.log('Conectado a la base de datos');
 
-    const db = client.db("tasty-bite-api");
-    const collectionUsers = db.collection('users');
-    const collectionImages = db.collection('images');
+    // const db = client.db("tasty-bite-api");
+    // const collectionUsers = db.collection('users');
+    // const collectionImages = db.collection('images');
 
     const filePath = '/home/usuario/E04/data/user.json';
 
@@ -50,24 +54,30 @@ async function insertUsers() {
     });
 
     for (const user of users) {
-      const image = fs.readFileSync(user.profile_picture);
-      let profile_picture: Image = {
-        imageTitle: user.username,
-        image: {
-          data: image,
-          contentType: 'image/png',
+      const imageToInsert = fs.readFileSync(user.profile_picture);
+      const formData = new FormData();
+      formData.append('title', user.username);
+      formData.append('file', imageToInsert);
+      const result = await axios.post('https://teal-monkey-hem.cyclic.app/api/images', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
         },
-      }
-      const insertResult = await collectionImages.insertOne(profile_picture);
-      const insertedId = new Schema.Types.ObjectId(insertResult.insertedId.toString());
+      });
+      // console.log(result.data.image_id);
+      // const insertedId = new Schema.Types.ObjectId(result.data.image_id.toString());
+      // console.log(insertedId);
       let userToInsert: User = {
         username: user.username,
+        password: user.password,
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email,
-        profile_picture: insertedId,
+        profile_picture: result.data.image_id,
       }
-      await collectionUsers.insertOne(userToInsert);
+    
+      console.log(userToInsert);
+      const resultado = await axios.post(URL, userToInsert);
+      console.log(resultado);
     };
 
     console.log('Datos insertados correctamente');
@@ -75,9 +85,9 @@ async function insertUsers() {
     console.log('Error al insertar los datos');
   } finally {
     // Cerrar la conexión
-    if (client) {
-      await client.close();
-    }
+    // if (client) {
+    //   await client.close();
+    // }
     console.log('Conexión cerrada');
   }
 }

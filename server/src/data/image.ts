@@ -46,7 +46,7 @@ async function insertImages() {
       const formData = new FormData();
       formData.append('title', image.imageTitle);
       formData.append('file', imageToInsert);
-      const result = await axios.post('https://teal-monkey-hem.cyclic.app/api/images', formData, {
+      const result = await axios.post(URL, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
