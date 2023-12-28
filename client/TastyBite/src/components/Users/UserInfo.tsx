@@ -5,6 +5,11 @@ const fetchImageUrl = async (image_id) => {
   const response = await fetch(`https://teal-monkey-hem.cyclic.app/api/images?image_id=${image_id}`);
   const blob = await response.blob();
   return URL.createObjectURL(blob);
+
+  // Esto es lo que tenemos en recetas deberiamos tener algo parecido en users
+  // const buffer = new Uint8Array(image.image.data.data);
+  // const blob = new Blob([buffer], { type: image.image.contentType });
+  // return URL.createObjectURL(blob);
 };
 
 const getUserInfo = async (user) => {
