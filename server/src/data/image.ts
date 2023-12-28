@@ -1,5 +1,7 @@
 import { MongoClient, MongoClientOptions } from 'mongodb';
 import * as fs from 'fs';
+import axios from 'axios';
+import FormData from 'form-data';
 
 interface ImageJSON {
   imageTitle: string;
@@ -16,54 +18,51 @@ interface Image {
 }
 
 async function insertImages() {
-  const client = new MongoClient("mongodb://127.0.0.1:27017/tasty-bite-api");
-
+  // const client = new MongoClient("mongodb://127.0.0.1:27017/tasty-bite-api");
+  const URL = "https://teal-monkey-hem.cyclic.app/api/images"
+  
   try {
-    await client.connect();
+    // await client.connect();
     console.log('Conectado a la base de datos');
 
-    const db = client.db("tasty-bite-api");
-    const collection = db.collection('images');
+    // const db = client.db("tasty-bite-api");
+    // const collection = db.collection('images');
 
     const filePath = '/home/usuario/E04/data/image.json';
 
     const rawData = fs.readFileSync(filePath, 'utf-8');
 
     let jsonData = JSON.parse(rawData);
-    let images: Image[] = [];
+    let images: ImageJSON[] = [];
 
-    // a partir de la path obtenemos la imagen
-    // y la convertimos en un buffer
     jsonData.forEach((element: ImageJSON) => {
-      const image = fs.readFileSync(element.image);
-    //   const imageType = element.image.contentType;
-      const imageTitle = element.imageTitle;
+      images.push(element);
+    });
 
-      images.push({
-        imageTitle: imageTitle,
-        image: {
-          data: image,
-          contentType: 'image/png',
+
+    for (const image of images) {
+    //   await axios.post(URL, image);
+      const imageToInsert = fs.readFileSync(image.image);
+      const formData = new FormData();
+      formData.append('title', image.imageTitle);
+      formData.append('file', imageToInsert);
+      const result = await axios.post('https://teal-monkey-hem.cyclic.app/api/images', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
         },
       });
-    });
+    }
+    // }
+
 
 
     // Insertar datos en la colección
-    const insertResult = await collection.insertMany(images);
-
-    // Convert the insertedIds object into an array
-    const insertedIdsArray = Object.values(insertResult.insertedIds);
-
-    // Imprimir el ID de cada elemento insertado
-    insertedIdsArray.forEach((id: any) => {
-      console.log(`Elemento insertado con ID: ${id}`);
-    });
+    // const insertResult = await collection.insertMany(images);
      
     console.log('Datos insertados correctamente');
   } finally {
     // Cerrar la conexión
-    await client.close();
+    // await client.close();
     console.log('Conexión cerrada');
   }
 }
