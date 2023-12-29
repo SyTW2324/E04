@@ -1,0 +1,16 @@
+/* Sidebar.css */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Inicialmente fuera de la pantalla */
+  width: 250px;
+  height: 100%;
+  background-color: #fff;
+  z-index: 1000;
+  transition: left 0.3s ease; /* Agrega una transición suave para la animación */
+  /* Otros estilos según tus necesidades */
+}
+
+.sidebar.visible {
+  left: 0; /* Muestra el sidebar al ajustar la posición a 0 */
+}

@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import './Header.css'
 import { useUserStore } from '../state/store'
 import React from 'react';
-
+import Sidebar from './Sidebar/Sidebar';
 
 
 const fetchImageUrl = async (image_id: string): Promise<string> => {
@@ -16,6 +16,11 @@ const fetchImageUrl = async (image_id: string): Promise<string> => {
 export const Header= () => {
   const user = useUserStore((state: any) => state.user )
   const [profilePicture, setProfilePicture] = useState<string | undefined>()
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarVisible(!sidebarVisible);
+  };
 
   // useEffect(() => {
   //   // get para conseguir la profilePicture
@@ -31,13 +36,15 @@ export const Header= () => {
     <>
       <header className="header">
         <div className="left-container">
-          <img className='lines' src='../lines.svg'/>
+          <img className='lines' src='../lines.svg' onClick={toggleSidebar} />
+
           <a href="/" ><img className='logo'   src='../Logo.png'/></a>
         </div>
         <div className="center-container">
           <input className="input-search" type="text" placeholder="Search" />
           <img className="btn-search" src='../search.svg'/>
         </div>
+        <Sidebar isVisible={sidebarVisible} onClose={toggleSidebar} />
         <div className="right-container"> 
           <ul className="menu">
             {/* si esta logueado */}
