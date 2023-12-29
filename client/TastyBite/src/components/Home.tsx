@@ -26,6 +26,9 @@ const Home = (): JSX.Element => {
       <Link to="/ingredients">
         <button>Ir a Ingredientes</button>
       </Link>
+      <Link to="/about">
+        <button>Ir a About</button>
+      </Link>
     </div>
   )
 }

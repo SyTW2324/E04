@@ -12,6 +12,7 @@ export function RecipesByCategory() {
   const category = useCategory({ category_id });
   const recipes = useRecipe({ category_id });
 
+  
 
   if (!recipes) {
     console.log('no hay recetas');

@@ -11,12 +11,8 @@ import { ListCategory } from './components/Categories/ListCategory';
 import { ListIngredients } from './components/Ingredients/ListIngredients';
 import { Recipe } from './components/Recipes/Recipe';
 import { useUserStore } from './state/store';
+import { AboutPage } from './components/About/About';
 
-
-// sum.js
-export function sum(a, b) {
-  return a + b
-}
 
 import {
   createBrowserRouter,
@@ -49,6 +45,9 @@ const Login = () => {
       <Link to="/profile">
         <button>Ir al perfil</button>
       </Link>
+      <Link to="/about">
+        <button>Ir a about</button>
+      </Link>
     </div>
   )
 }
@@ -73,6 +72,9 @@ const Register = () => {
       <Link to="/profile">
         <button>Ir al perfil</button>
       </Link>
+      <Link to="/about">
+        <button>Ir a about</button>
+      </Link>
     </div>
   )
 }
@@ -96,6 +98,9 @@ const UploadRecipe = () => {
       </Link>
       <Link to="/profile">
         <button>Ir al perfil</button>
+      </Link>
+      <Link to="/about">
+        <button>Ir a about</button>
       </Link>
     </div>
   )
@@ -124,6 +129,9 @@ const Profile = () => {
       <Link to="/recipes">
         <button>Ir a Recetas</button>
       </Link>
+      <Link to="/about">
+        <button>Ir a about</button>
+      </Link>
     </div>
   )
 }
@@ -147,12 +155,39 @@ const Recipes = () => {
       <Link to="/profile">
         <button>Ir al perfil</button>
       </Link>
+      <Link to="/about">
+        <button>Ir a about</button>
+      </Link>
     </div>
   )
 }
 
 
-
+const About = () => {
+  return (
+    <div>
+      <ListRecipes />
+      <Link to="/">
+        <button>Ir a Home</button>
+      </Link>
+      <Link to="/login">
+        <button>Ir a login</button>
+      </Link>
+      <Link to="/register">
+        <button>Ir a Register</button>
+      </Link>
+      <Link to="/upload-recipe">
+        <button>Ir a subir receta</button>
+      </Link>
+      <Link to="/profile">
+        <button>Ir al perfil</button>
+      </Link>
+      <Link to="/recipes">
+        <button>Ir a recetas</button>
+      </Link>
+    </div>
+  )
+}
 
 
 function App() {
@@ -200,6 +235,10 @@ function App() {
     {
       path: "/categories/:category",
       element: <RecipesByCategory />,
+    },
+    {
+      path: "/about",
+      element: <AboutPage />,
     },
     {
       path: "*",
