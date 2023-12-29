@@ -2,15 +2,60 @@
 .sidebar {
   position: fixed;
   top: 0;
-  left: -250px; /* Inicialmente fuera de la pantalla */
-  width: 250px;
+  left: -300px;
+  width: 300px;
   height: 100%;
   background-color: #fff;
+  border-right: 1px solid var(--secondary);
   z-index: 1000;
-  transition: left 0.3s ease; /* Agrega una transición suave para la animación */
-  /* Otros estilos según tus necesidades */
+  transition: left 0.3s ease;
+
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  padding: 1rem;
+}
+
+.logo {
+  height: 3rem;
 }
 
 .sidebar.visible {
-  left: 0; /* Muestra el sidebar al ajustar la posición a 0 */
+  left: 0;
+}
+
+.close-button {
+  align-items: right;
+  background-color: #fafafa;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+
+.sidebar-button button {
+  margin-top: 1rem;
+  height: 2rem;
+  width: 80%;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: var(--secondary);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+.sidebar-button button:hover {
+  background-color: white;
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+  transition: ease-in-out 0.3s;
 }

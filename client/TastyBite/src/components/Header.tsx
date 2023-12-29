@@ -13,7 +13,7 @@ const fetchImageUrl = async (image_id: string): Promise<string> => {
   return URL.createObjectURL(blob);
 };
 
-export const Header= () => {
+export const Header = () => {
   const user = useUserStore((state: any) => state.user )
   const [profilePicture, setProfilePicture] = useState<string | undefined>()
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -22,6 +22,7 @@ export const Header= () => {
     setSidebarVisible(!sidebarVisible);
   };
 
+  
   // useEffect(() => {
   //   // get para conseguir la profilePicture
   //   if(user) {
@@ -39,6 +40,7 @@ export const Header= () => {
           <img className='lines' src='../lines.svg' onClick={toggleSidebar} />
 
           <a href="/" ><img className='logo'   src='../Logo.png'/></a>
+          {/* <a href="/" onClick={() => navigate('/')}>Tasty Bite</a> */}
         </div>
         <div className="center-container">
           <input className="input-search" type="text" placeholder="Search" />

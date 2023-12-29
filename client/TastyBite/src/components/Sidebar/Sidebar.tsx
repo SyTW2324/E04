@@ -1,13 +1,24 @@
-// Sidebar.js
 import React from 'react';
-import './Sidebar.css'; // Asegúrate de tener un archivo de estilos para el Sidebar
+import './Sidebar.css';
 
 const Sidebar = ({ isVisible, onClose }) => {
   return (
     <div className={`sidebar ${isVisible ? 'visible' : ''}`}>
-      {/* Contenido del sidebar */}
-      <p>Información del Sidebar</p>
-      <button onClick={onClose}>Cerrar Sidebar</button>
+      <div className="logo-container">
+        <img className='logo' src='../Logo.png'/>
+        <button className="close-button" onClick={onClose}>
+          <img className='close' src='../close.svg'/>
+        </button>
+      </div>
+      <div className="sidebar-container">
+        <div className="sidebar-button">
+          <button >Log In</button>
+        </div>
+        <div className="sidebar-button">
+          <button >Sign In</button>
+        </div>
+      </div>
+      
     </div>
   );
 };

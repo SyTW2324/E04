@@ -21,12 +21,10 @@
   height: 100%;
   max-width: 60px;
   max-height: 22px;
+  cursor: pointer;
 }
 
-.left-container .lines:hover{
-  background-color: var(--primary);
-  transition: ease-in-out 0.3s;
-}
+
 
 .left-container .logo {
   width: 100%;
@@ -119,10 +117,6 @@
   max-height: 20px;
 }
 
-.center-container .btn-search:hover {
-  background-color: var(--primary);
-  transition: ease-in-out 0.3s;
-}
 
 /* hacemos que sea resposive con media querys */
 
