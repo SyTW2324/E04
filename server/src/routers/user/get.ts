@@ -11,7 +11,7 @@ export const getUserQuery =  async (req: any, res: any) => {
   try {
     const filter = req.query.username ? {username: req.query.username.toString()} : {};
 
-    const users = await User.find(filter);
+    const users = await User.find(filter).populate("profile_picture");
 
     if (users.length !== 0) {
       return res.status(200).send(users);
@@ -35,7 +35,7 @@ export const getUser =  async (req: any, res: any) => {
 
     const filter = req.params.username ? {username: req.params.username.toString()} : {};
 
-    const users = await User.find(filter);
+    const users = await User.find(filter).populate("profile_picture");
 
     if (users.length !== 0) {
       return res.status(200).send(users);

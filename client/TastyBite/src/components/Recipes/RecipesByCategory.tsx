@@ -31,6 +31,7 @@ export function RecipesByCategory() {
   
   }, []);
 
+  
 
   if (!recipes) {
     console.log('no hay recetas');

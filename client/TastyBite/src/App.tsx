@@ -14,7 +14,7 @@ import { Profile } from './components/Users/Profile';
 import { Recipes } from './components/Recipes/Recipes';
 import { UploadRecipe } from './components/Recipes/UploadRecipe';
 import { Register } from './components/Sign/Register';
-
+import { AboutPage } from './components/About/About';
 
 function App() {
   const router = createBrowserRouter([
@@ -57,6 +57,10 @@ function App() {
     {
       path: "/categories/:category_id",
       element: <RecipesByCategory />,
+    },
+    {
+      path: "/about",
+      element: <AboutPage />,
     },
     {
       path: "*",
