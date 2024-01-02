@@ -1,165 +1,22 @@
-import { useState } from 'react'
 import './App.css'
+import React from 'react';
+
 import { Header } from './components/Header'
-import { LoginForm } from './components/Sign/LoginForm';
-import { RegisterForm } from './components/Sign/RegisterForm';
-import { UploadRecipeForm } from './components/Recipes/UploadRecipeForm';
-import { ListRecipes } from './components/Recipes/ListRecipes';
-import { UserInfo } from './components/Users/UserInfo';
-import Home from './components/Home';
+import { Home } from './components/Home';
+import { Login } from './components/Sign/Login'
 import { ListCategory } from './components/Categories/ListCategory';
 import { ListIngredients } from './components/Ingredients/ListIngredients';
 import { Recipe } from './components/Recipes/Recipe';
 import { useUserStore } from './state/store';
-
-
-// sum.js
-export function sum(a, b) {
-  return a + b
-}
-
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Link
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RecipesByCategory } from './components/Recipes/RecipesByCategory';
-
-
-
-
-const Login = () => {
-  const setUser = useUserStore((state) => state.setUser);
-
-  return (
-    <div>
-      <LoginForm setUser={setUser} />
-      <Link to="/">
-        <button>Ir a Home</button>
-      </Link>
-      <Link to="/register">
-        <button>Ir a Register</button>
-      </Link>
-      <Link to="/upload-recipe">
-        <button>Ir a subir receta</button>
-      </Link>
-      <Link to="/recipes">
-        <button>Ir a Recetas</button>
-      </Link>
-      <Link to="/profile">
-        <button>Ir al perfil</button>
-      </Link>
-    </div>
-  )
-}
-
-
-const Register = () => {
-  return (
-    <div>
-      <RegisterForm />
-      <Link to="/">
-        <button>Ir a Home</button>
-      </Link>
-      <Link to="/login">
-        <button>Ir a login</button>
-      </Link>
-      <Link to="/upload-recipe">
-        <button>Ir a subir receta</button>
-      </Link>
-      <Link to="/recipes">
-        <button>Ir a Recetas</button>
-      </Link>
-      <Link to="/profile">
-        <button>Ir al perfil</button>
-      </Link>
-    </div>
-  )
-}
-
-
-const UploadRecipe = () => {
-  return (
-    <div>
-      <UploadRecipeForm />
-      <Link to="/">
-        <button>Ir a Home</button>
-      </Link>
-      <Link to="/login">
-        <button>Ir a login</button>
-      </Link>
-      <Link to="/register">
-        <button>Ir a Register</button>
-      </Link>
-      <Link to="/recipes">
-        <button>Ir a Recetas</button>
-      </Link>
-      <Link to="/profile">
-        <button>Ir al perfil</button>
-      </Link>
-    </div>
-  )
-}
-
-
-const Profile = () => {
-  const user = useUserStore((state) => state.user);
-
-  return (
-    <div>
-      <h1>Profile</h1>
-      <UserInfo user={user} />
-      <Link to="/">
-        <button>Ir a Home</button>
-      </Link>
-      <Link to="/login">
-        <button>Ir a login</button>
-      </Link>
-      <Link to="/register">
-        <button>Ir a Register</button>
-      </Link>
-      <Link to="/upload-recipe">
-        <button>Ir a subir receta</button>
-      </Link>
-      <Link to="/recipes">
-        <button>Ir a Recetas</button>
-      </Link>
-    </div>
-  )
-}
-
-const Recipes = () => {
-  return (
-    <div>
-      <ListRecipes />
-      <Link to="/">
-        <button>Ir a Home</button>
-      </Link>
-      <Link to="/login">
-        <button>Ir a login</button>
-      </Link>
-      <Link to="/register">
-        <button>Ir a Register</button>
-      </Link>
-      <Link to="/upload-recipe">
-        <button>Ir a subir receta</button>
-      </Link>
-      <Link to="/profile">
-        <button>Ir al perfil</button>
-      </Link>
-    </div>
-  )
-}
-
-
-
+import { Profile } from './components/Users/Profile';
+import { Recipes } from './components/Recipes/Recipes';
+import { UploadRecipe } from './components/Recipes/UploadRecipe';
+import { Register } from './components/Sign/Register';
 
 
 function App() {
-  const user = useUserStore((state) => state.user);
-  const setUser = useUserStore((state) => state.setUser);
-
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -198,7 +55,7 @@ function App() {
       element: <Recipe />,
     },
     {
-      path: "/categories/:category",
+      path: "/categories/:category_id",
       element: <RecipesByCategory />,
     },
     {
@@ -212,32 +69,11 @@ function App() {
 
   return (
     <>
-      <Header />
       <RouterProvider router={router} />
-
     </>
+    
   )
 }
 
 export default App
 
-
-
-// function App() {
-//   const [main, setMain] = useState(true)
-//   const [user, setUser] = useState({})
-
-
-//   return (
-//     <>
-//       <Header />
-//       { main ? <LoginForm setUser={setUser} /> : <UserInfo user={user} />}
-//       <RegisterForm/>
-
-//       {/* { main ? <LoginForm /> : <UserInfo/>} */}
-//       <button onClick={() => setMain(!main)}>Register</button>
-//     </>
-//   )
-// }
-
-// export default App

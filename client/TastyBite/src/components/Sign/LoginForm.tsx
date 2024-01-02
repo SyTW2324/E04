@@ -1,8 +1,8 @@
 import axios from 'axios';
 import './LoginForm.css'
-import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useUserStore } from '../../state/store';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export function LoginForm({ setUser }) {
   const user = useUserStore((state: any) => state.user )
@@ -50,7 +50,8 @@ export function LoginForm({ setUser }) {
   return (
     <>
       <div className="breadcrumb">
-        <a href="#">Tasty Bite</a> &gt; <a href="#">Iniciar sesión</a>
+        <Link to="/">Tasty Bite</Link> &gt;
+        <span>Iniciar sesión</span>
       </div>
       <div className="login-title-container">
         <h1 className="login-title" >Iniciar Sesión</h1>

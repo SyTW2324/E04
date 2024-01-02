@@ -3,6 +3,7 @@ import './Header.css'
 import { useUserStore } from '../state/store'
 import React from 'react';
 import Sidebar from './Sidebar/Sidebar';
+import { Link } from 'react-router-dom';
 
 
 const fetchImageUrl = async (image_id: string): Promise<string> => {
@@ -38,9 +39,7 @@ export const Header = () => {
       <header className="header">
         <div className="left-container">
           <img className='lines' src='../lines.svg' onClick={toggleSidebar} />
-
-          <a href="/" ><img className='logo'   src='../Logo.png'/></a>
-          {/* <a href="/" onClick={() => navigate('/')}>Tasty Bite</a> */}
+          <Link to="/"><img className='logo'   src='../Logo.png'/></Link>
         </div>
         <div className="center-container">
           <input className="input-search" type="text" placeholder="Search" />
@@ -51,20 +50,15 @@ export const Header = () => {
           <ul className="menu">
             {/* si esta logueado */}
             { 
-              user ? 
+              user.username !== undefined ?
               <>
-                <li className="menu-profile">
-                  {/* <img src={profilePicture} /> */}
-                  <span>{user.username}</span> {/* Asegúrate de que tu objeto de usuario tenga una propiedad 'name' */}
-                </li>
+                <li><Link to="/profile">{user.username}</Link></li>
+                <li><Link to="/">Cerrar sesión</Link></li>
               </>
               :
               <>
-                <li><a href="/login">Iniciar Sesión</a></li>
-                <li><a href="/register">Registarse</a></li>
-                <li className="menu-profile">
-                  {/* <img src={profilePicture} /> */}
-                </li>
+                <li><Link to="/login">Iniciar Sesión</Link></li>
+                <li><Link to="/register">Registarse</Link></li>
               </>
             }
           </ul>

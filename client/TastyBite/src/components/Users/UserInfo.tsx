@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import "./UserInfo.css";
 
 const fetchImageUrl = async (image_id) => {
   const response = await fetch(`https://teal-monkey-hem.cyclic.app/api/images?image_id=${image_id}`);
@@ -34,8 +34,7 @@ export function UserInfo({ user }) {
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
-    console.log("UserInfo useEffect");
-    console.log("user:", user);
+
     getUserInfo(user)
       .then((newUserInfo) => {
         setUserInfo(newUserInfo[0]);
@@ -49,19 +48,14 @@ export function UserInfo({ user }) {
   return (
     <>
       <div>
-        <h1>UserInfo</h1>
         {userInfo && (
-          <div>
+          <div className="userinfo-container">
             <p id="username" >{userInfo.username}</p>
-
             <p id="first_name" >{userInfo.first_name}</p>
-
             <p id="last_name" >{userInfo.last_name}</p>
-
             <p id="profile_description" >{userInfo.profile_description}</p>
-
             <p id="email" >{userInfo.email}</p>
-            
+            <img>{userInfo.profile_picture}</img>
           </div>
         )}
       </div>
