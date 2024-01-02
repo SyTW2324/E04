@@ -24,4 +24,8 @@
   margin: 0 auto;
 }
 
-
+.title-recipes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

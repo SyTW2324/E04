@@ -5,6 +5,7 @@ import { Recipe } from '../../../types/Recipe';
 import { getRecipes } from '../../services/getRecipes';
 import { RecipeTarget } from './RecipeTarget';
 import { useRecipe } from '../../hooks/useRecipe';
+import { Link } from 'react-router-dom';
 
 
 export function useRecipes() {
@@ -44,7 +45,13 @@ export function ListRecipes() {
 
   return (
       <div>
-        <h1 className="title-recipes">Recipes</h1>
+        <div className="breadcrumb">
+          <Link to="/">Tasty Bite</Link> &gt;
+          <span>Recetas</span>
+        </div>
+        <div className="login-title-container">
+          <h1 className="login-title" >Recetas</h1>
+        </div>
         {recipes && 
           <>
             <p className="teaser-recipes" >Con más de {recipes.length} recetas para elegir, encontrar la comida ideal nunca fue tan fácil. ¿Cuál te provoca hoy?"</p>

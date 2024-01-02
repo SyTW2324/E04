@@ -2,7 +2,7 @@ import './UploadRecipeForm.css'
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import axios from 'axios';
 import { PreviewImage } from '../PreviewImage';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const getCategoryList = async () => {
   try {
@@ -213,7 +213,8 @@ export function UploadRecipeForm() {
   return (
     <>
       <div className="breadcrumb">
-        <a href="#">Tasty Bite</a> &gt; <a href="#">Subir una receta</a>
+        <Link to="/">Tasty Bite</Link> &gt;
+        <span>Subir receta</span>
       </div>
       <div className="upload-recipe-form-container">
         <div className="upload-recipe-form-container__right-container">

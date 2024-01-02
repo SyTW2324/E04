@@ -1,18 +1,28 @@
 import React from "react";
 import { useCategories } from "../../hooks/useCategories";
 import { Link } from "react-router-dom";
+import { Header } from "../Header";
+import { Loader } from "../Loader/Loader";
 
 export function ListCategory() {
   const { categories, isLoading } = useCategories();
   
 
   if (isLoading) {
-    return <div className="loader">Loading...</div>;
+    return <Loader />;
   }
 
   return (
+    <>
+    <Header/>
     <div>
-      <h1>Categorias</h1>
+      <div className="breadcrumb">
+        <Link to="/">Tasty Bite</Link> &gt;
+        <span>Categorías de recetas</span>
+      </div>
+      <div className="profile-title-container">
+        <h1 className="profile-title" >Categorías</h1>
+      </div>
       {categories && categories.map((category) => (
         <div key={category._id} >
         <h2>
@@ -22,5 +32,6 @@ export function ListCategory() {
       </div>
       ))}
     </div>
+    </>
   )
 }

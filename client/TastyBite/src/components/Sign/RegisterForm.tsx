@@ -1,7 +1,7 @@
 import './RegisterForm.css'
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { PreviewImage } from '../PreviewImage';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { postUser } from '../../services/postUser';
 
 
@@ -27,8 +27,10 @@ export function RegisterForm() {
   
   return (
     <>
+    
       <div className="breadcrumb">
-        <a href="#">Tasty Bite</a> &gt; <a href="#">Registro de usuario</a>
+        <Link to="/">Tasty Bite</Link> &gt;
+        <span>Registro de usuario</span>
       </div>
       <div className="register-form-container">
         <div className="register-form-container__right-container">

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
+import "./UserInfo.css";
 import axios from "axios";
-
-
 
 
 const getUserInfo = async (user) => {
@@ -41,8 +40,7 @@ export function UserInfo({ user }) {
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
-    console.log("UserInfo useEffect");
-    console.log("user:", user);
+
     getUserInfo(user)
       .then((newUserInfo) => {
         setUserInfo(newUserInfo[0]);
@@ -56,20 +54,13 @@ export function UserInfo({ user }) {
   return (
     <>
       <div>
-        <h1>UserInfo</h1>
         {userInfo && (
-          <div>
+          <div className="userinfo-container">
             <p id="username" >{userInfo.username}</p>
-
             <p id="first_name" >{userInfo.first_name}</p>
-
             <p id="last_name" >{userInfo.last_name}</p>
-
             <p id="profile_description" >{userInfo.profile_description}</p>
-
             <p id="email" >{userInfo.email}</p>
-            
-            <img src={userInfo.profile_picture} alt="profile_picture" />
           </div>
         )}
       </div>

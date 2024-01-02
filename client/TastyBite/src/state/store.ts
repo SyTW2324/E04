@@ -28,3 +28,19 @@ export const useUserStore = create(persist(
     },
   }
 ));
+
+type CategoryState = {
+  categories: Array<string>,
+  setCategories: (categories: Array<string>) => void
+};
+
+export const useCategoryStore = create(persist(
+  (set) => ({
+    categories: [],
+    setCategories: (categories) => set({ categories }),
+  }),
+  {
+    name: 'category_storage', // unique name
+    getStorage: () => localStorage, // (optional) by default 'localStorage' is used
+  }
+));
