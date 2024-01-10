@@ -1,9 +1,80 @@
+.home-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
 
+.home-img{
+  width: 20%;
+  height: 20%;
+}
+
+.home-button {
+  margin-bottom: 10rem;
+  width: 35%;
+  height: 3rem;
+  border-radius: 0.5rem;
+  background-color: var(--secondary);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid var(--secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-button:hover {
+  background-color: white;
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+  transition: ease-in-out 0.3s;
+}
+
+.home-text-container p {
+  margin-top: 3rem;
+  padding-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+
+.home-container {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.home-text-container {
+  flex: 1;
+  margin-left: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: justify;
+}
+
+
+.home-image-container {
+  flex: 1;
+  margin-right: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: justify;
+}
+
+.home-image-container img {
+  width: 25rem;
+  height: 25rem;
+}
 
 .categories__container {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: left;
   justify-content: center;
   margin: 0 auto;
   width: 80%;
@@ -14,12 +85,30 @@
   color: var(--secondary);
   text-decoration: none;
   padding: 1rem;
-  border-left: 1px solid var(--secondary);
-  border-right: 1px solid var(--secondary);
-
 }
 
-.categories__label:hover {
+.categories__label h2:hover {
   color: var(--primary);
   transition: all 0.3s ease-in-out;
+}
+
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 0.1em solid black;
+  white-space: nowrap;
+  animation:
+    blink-caret step-end infinite 1s;
+}
+
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgb(0, 0, 0);
+  }
 }

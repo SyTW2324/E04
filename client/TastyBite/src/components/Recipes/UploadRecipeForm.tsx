@@ -57,7 +57,7 @@ const postImage = async ({ image }) => {
 
 
 
-const postRecipe = async ({ steps, selectedIngredients, difficulty, images, category }) => {
+const postRecipe = async ({ steps, selectedIngredients, difficulty, images, category, navigate }) => {
   const title = document.getElementById('recipe-title') as HTMLInputElement
   const time = document.getElementById('recipe-time') as HTMLInputElement
   const number_servings = document.getElementById('recipe-servings') as HTMLInputElement
@@ -84,7 +84,7 @@ const postRecipe = async ({ steps, selectedIngredients, difficulty, images, cate
   const response = await axios.post(`https://teal-monkey-hem.cyclic.app/api/recipes`, recipe);
   if (response.status === 201) {
     console.log('Receta registrada correctamente');
-
+    navigate(`/recipes/${response.data.recipe_id}`);
   } else {
     console.error('Error al registrar el usuario:', response.data.message);
   }
@@ -338,7 +338,7 @@ export function UploadRecipeForm() {
           </form>
           
           <div className="form-group-postrecipe button">
-            <button onClick={() => postRecipe({ steps, selectedIngredients, difficulty, images, category: selectedCategory.category_id })}>Subir receta</button>
+            <button onClick={() => postRecipe({ steps, selectedIngredients, difficulty, images, category: selectedCategory.category_id, navigate })}>Subir receta</button>
           </div>
           
         </div>

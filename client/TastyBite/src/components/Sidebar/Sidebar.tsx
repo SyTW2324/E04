@@ -1,12 +1,11 @@
 import React from 'react';
 import './Sidebar.css';
 import { Link } from 'react-router-dom';
+import { logout } from '../../utils/logout';
 
 
 function Sidebar ({ isVisible, onClose }) {
-  // const navigate = useNavigate();
-  
-  
+
   return (
     <div className={`sidebar ${isVisible ? 'visible' : ''}`}>
       <div className="logo-container">
@@ -29,7 +28,7 @@ function Sidebar ({ isVisible, onClose }) {
         <hr className="separator"></hr>
         <div className="sidebar-down-container">
           <Link className="sidebar-button" to="/profile">Mi perfil</Link>
-          <button className="logout-button">Cerrar sesión</button>
+          <button onClick={logout} className="logout-button">Cerrar sesión</button>
         </div>
       </div>
       
