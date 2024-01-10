@@ -61,6 +61,7 @@ export function UserInfo({ user }) {
             <p id="last_name" >{userInfo.last_name}</p>
             <p id="profile_description" >{userInfo.profile_description}</p>
             <p id="email" >{userInfo.email}</p>
+            <img id="profile_picturere" src={userInfo.profile_picture} />
           </div>
         )}
       </div>

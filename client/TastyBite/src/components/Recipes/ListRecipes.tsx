@@ -6,6 +6,7 @@ import { getRecipes } from '../../services/getRecipes';
 import { RecipeTarget } from './RecipeTarget';
 import { useRecipe } from '../../hooks/useRecipe';
 import { Link } from 'react-router-dom';
+import { Loader } from '../Loader/Loader';
 
 
 export function useRecipes() {
@@ -42,6 +43,10 @@ export function ListRecipes() {
   const recipes = useRecipe({});
   console.log('ListRecipes');
   console.log(recipes);
+  
+  if (!recipes) {
+    return <Loader />;
+  }
 
   return (
       <div>

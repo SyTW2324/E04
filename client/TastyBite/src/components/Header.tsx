@@ -4,6 +4,7 @@ import { useUserStore } from '../state/store'
 import React from 'react';
 import Sidebar from './Sidebar/Sidebar';
 import { Link } from 'react-router-dom';
+import { logout } from '../utils/logout';
 
 
 const fetchImageUrl = async (image_id: string): Promise<string> => {
@@ -52,13 +53,13 @@ export const Header = () => {
             { 
               user.username !== undefined ?
               <>
-                <li><Link to="/profile">{user.username}</Link></li>
-                <li><Link to="/">Cerrar sesión</Link></li>
+                <li><Link className="header-button" to="/profile">{user.username}</Link></li>
+                <li><button className="header-button" onClick={logout}>Cerrar sesión</button></li>
               </>
               :
               <>
-                <li><Link to="/login">Iniciar Sesión</Link></li>
-                <li><Link to="/register">Registarse</Link></li>
+                <li><Link className="header-button" to="/login">Iniciar Sesión</Link></li>
+                <li><Link className="header-button" to="/register">Registarse</Link></li>
               </>
             }
           </ul>
