@@ -3,7 +3,7 @@ import { useIngredients } from "../../hooks/useIngredients";
 import { Header } from "../Header";
 import "./ListIngredients.css";
 import { Link } from "react-router-dom";
-import { getEmoji } from "/home/usuario/E04/client/TastyBite/src/components/Recipes/Recipe.tsx";
+import { getEmoji } from "../Recipes/Recipe";
 
 export function ListIngredients()  {
   const { ingredients, isLoading } = useIngredients();
