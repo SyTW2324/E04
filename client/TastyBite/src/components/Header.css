@@ -47,8 +47,7 @@
 .right-container {
   display: flex;
   justify-content: space-between;
-  width: 15%;
-  padding: 0 2rem;
+
 }
 
 .right-container .menu {
@@ -85,11 +84,6 @@
   max-width: 500px;
   max-height: 108px;
 }
-
-.header-button {
-  
-}
-
 
 
 .center-container {
@@ -142,10 +136,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--primary);
+  background-color: var(--secondary);
   list-style: none;
   text-decoration: none;
-  color: var(--secondary);
+  color: white;
   font-weight: bold;
   padding: 0.3rem 0.9rem;
   border-radius: 20px;
@@ -158,5 +152,11 @@
 .header-button:hover {
   transform: scale(1.1);
   transition: transform ease-in-out 0.1s;
+  background-color: white;
+  color: var(--secondary);
 }
 
+.header-button {
+  font-weight: bold;
+  font-size: 16px;
+}

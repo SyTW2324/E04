@@ -15,6 +15,7 @@ import { Recipes } from './components/Recipes/Recipes';
 import { UploadRecipe } from './components/Recipes/UploadRecipe';
 import { Register } from './components/Sign/Register';
 import { AboutPage } from './components/About/About';
+import { ProfileEdit } from './components/Users/ProfileEdit';
 
 function App() {
   const router = createBrowserRouter([

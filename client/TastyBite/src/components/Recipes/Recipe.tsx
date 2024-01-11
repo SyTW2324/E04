@@ -38,7 +38,7 @@ export function Recipe() {
                 recipe.difficulty === 'medium' ? '../../difficulty-logo-medium.svg' :
                 '../../difficulty-logo-hard.svg'
               } alt="icono de dificultad" />
-              <span className="recipe-target-info-item">Dificiltad {
+              <span className="recipe-target-info-item">Dificultad {
                 recipe.difficulty === 'easy' ? 'Fácil' :
                 recipe.difficulty === 'medium' ? 'Media' :
                 'Difícil'

@@ -1,10 +1,95 @@
 
 .userinfo-container {
   display: flex;
+}
+
+.userinfo-info-container {
+  flex: 1;
+  padding: 1rem;
+  margin: 10px;
+  display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  text-align: justify;
+}
+
+.userinfo-info-text-container {
+  flex: 1;
+  padding: 1rem;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+
+}
+
+.userinfo-picture-container {
+  flex: 1;
+  padding: 1rem;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: justify;
+  max-width: 40%;
+}
+
+.userinfo-picture-container img {
+  max-width: 70%;
+  max-height: 70%;
+  padding: 1.5rem;
+}
+
+.userinfo-info-container h3 {
+  font-size: 1rem;
+  color: var(--secondary);
+}
+
+.userinfo-info-username,
+.userinfo-info-first-name,
+.userinfo-info-last-name,
+.userinfo-info-email,
+.userinfo-info-description {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.userinfo-info-username h3,
+.userinfo-info-first-name h3,
+.userinfo-info-last-name h3,
+.userinfo-info-email h3,
+.userinfo-info-description h3 {
+  font-size: 1rem;
+  color: var(--secondary);
+  min-width: 10rem;
+}
+
+
+.userinfo-info-username p,
+.userinfo-info-first-name p,
+.userinfo-info-last-name p,
+.userinfo-info-email p {
+  display: flex;
   width: 100%;
-  height: 100%;
+  height: 2rem;
+  padding: 0 1rem;
+  margin-left: 2.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  align-items: center;
+}
+
+.userinfo-info-description p {
+  display: flex;
+  width: 100%;
+  height: 6rem;
+  padding: 0 1rem;
+  margin-left: 2.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+
 }

@@ -6,6 +6,7 @@ import { Header } from "./Header";
 import { useCategories } from "../hooks/useCategories";
 import { getCategories } from "../services/getCategories";
 import { useCategoryStore } from "../state/store";
+import { CategoryBubble } from "./Categories/CategoryBubble";
 
 
 export function Home () {
@@ -18,26 +19,32 @@ export function Home () {
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
-  
-    const dynamicTexts = ["Tasty Bite", "No se que poner", "Texto de ejemplo", "p"];
-  
+
+    const dynamicTexts = ["Tasty Bite", "Comparte tus recetas con todo el mundo", "Todos somos cocineros en algún momento", "Cocina de calidad, al alcance de tu ratón"];
+
     const typeText = (text: string, charIndex: number) => {
       if (charIndex < text.length) {
         setCurrentText(text.substring(0, charIndex + 1));
-        timeoutId = setTimeout(() => typeText(text, charIndex + 1), 200);
+        timeoutId = setTimeout(() => typeText(text, charIndex + 1), 100);
       } else {
-        timeoutId = setTimeout(() => {
-          setDynamicTextIndex((prevIndex) => (prevIndex + 1) % dynamicTexts.length);
-        }, 5000); // Wait for 5 seconds
+        timeoutId = setTimeout(() => eraseText(text, text.length - 1), 6000); // Wait for 5 seconds
       }
     };
-  
+
+    const eraseText = (text: string, charIndex: number) => {
+      if (charIndex > 0) {
+        setCurrentText(text.substring(0, charIndex));
+        timeoutId = setTimeout(() => eraseText(text, charIndex - 1), 100);
+      } else {
+        setCurrentText(" "); // Set to a single space instead of empty string
+        setDynamicTextIndex((prevIndex) => (prevIndex + 1) % dynamicTexts.length);
+      }
+    };
+
     typeText(dynamicTexts[dynamicTextIndex], 0);
-  
+
     return () => clearTimeout(timeoutId); // Clear timeout
   }, [dynamicTextIndex]);
-
-
   
   useEffect(() => {
     if (categories.length > 0) {
@@ -51,13 +58,14 @@ export function Home () {
   return (
     <>
     <Header />
+    
     <div className="home-title-container">
       <h1 className="typewriter">
         {currentText}
       </h1>
     </div>
 
-
+    
     <div className="home-container">
       <div className="home-text-container">
         <p>
@@ -72,15 +80,14 @@ export function Home () {
       </div>
     </div>
 
-    <div className="categories__container">
-    {categories && categories.map((category: any) => (
-      <Link to={`/categories/${category._id}`} key={category._id} className="categories__label"> 
-        <h2>{category.category}</h2>
-        <p>{category.description}</p>
-      </Link>
-    ))
-    }
-    </div>
+    <section className="categories__container">
+      {categories && categories.map((category: any) => (
+        <CategoryBubble key={category._id} category={category} image={`./${category.category}-icon.svg`} /> 
+        
+      ))}
+    </section>
+    
+    
     </>
   )
 }
