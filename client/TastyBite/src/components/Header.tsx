@@ -58,8 +58,8 @@ export const Header = () => {
               </>
               :
               <>
-                <li><Link className="header-button" to="/login">Iniciar Sesión</Link></li>
-                <li><Link className="header-button" to="/register">Registarse</Link></li>
+                <li><Link className="header-button" to="/login">Log In</Link></li>
+                <li><Link className="header-button" to="/register">Sign In</Link></li>
               </>
             }
           </ul>

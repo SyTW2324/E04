@@ -128,6 +128,7 @@ export const postUser = async ({ image, setImage, setSuccess, errors, setErrors 
       first_name: first_name.value,
       last_name: last_name.value,
       profile_description: profile_description.value,
+      profile_picture: "659fda2c77fcce812aa370a8",
       email: email.value,
       password: password1.value,
     }

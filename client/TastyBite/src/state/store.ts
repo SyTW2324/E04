@@ -7,11 +7,10 @@ type UserState = {
 };
 
 const TWO_HOURS_IN_MS = 2 * 60 * 60 * 1000; // Two hours in milliseconds
-
 export const useUserStore = create(persist(
   (set) => ({
     user: {},
-    setUser: (user) => set({ user }),
+    setUser: (user) => set(state => ({ user: { ...state.user, ...user } })),
   }),
   {
     name: 'user_storage', // unique name

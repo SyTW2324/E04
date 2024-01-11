@@ -1,20 +1,8 @@
-
-.form-upload-recipe {
+.principal-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4rem;
-  margin-top: 1rem;
-  width: 100%;
-}
-
-.upload-recipe-form-container__right-container {
-  display: flex;
-  width: 60%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: left;
-
 }
 
 .upload-recipe-form-container {
@@ -22,9 +10,46 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
 }
 
+.form-upload-recipe-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-width: 50%;
+  max-width: 50%;
+}
+
+.form-upload-recipe-right {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  flex-direction: column;
+  min-width: 100%;
+  max-width: 100%;
+  margin-left: 4rem;
+}
+
+.upload-recipe-form-container__left-container p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.upload-recipe-form-container__right-container p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.input-error-group-upload-recipe {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+}
 
 button.active {
   background-color: var(--primary);
@@ -70,13 +95,21 @@ button.active {
   transition: ease-in-out 0.3s;
 }
 
+.form-group-difficulty {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
 
 .difficulty button {
   margin-top: 1rem;
   flex-direction: row;
   height: 3rem;
   padding: 1rem;
-  margin: 1rem;
+  margin: 2rem;
   border-radius: 0.5rem;
   border: none;
   background-color: var(--secondary);
@@ -101,3 +134,66 @@ button.active {
   background-color: var(--primary);
 }
 
+.input-step {
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  padding: 0 1rem;
+}
+
+.delete-step {
+  height: 2rem;
+  width: 8rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  background-color: #ac1919;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-step:hover {
+  background-color: white;
+  border: 1px solid var(--secondary);
+  color: #ac1919;
+  transition: ease-in-out 0.2s;
+}
+
+.add-step {
+  height: 2rem;
+  width: 8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--secondary);
+  color: #fff;
+  
+  border: 1px solid transparent;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-step:hover {
+  background-color: white;
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+
+  transition: ease-in-out 0.2s;
+}
+
+
+.input-category {
+  transform: scale(0.3);
+}
+
+.input-ingredient {
+  transform: scale(0.3);
+}
