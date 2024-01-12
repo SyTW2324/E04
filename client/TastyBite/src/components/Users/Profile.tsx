@@ -4,6 +4,8 @@ import { useUserStore } from '../../state/store';
 import { UserInfo } from './UserInfo';
 import { Header } from "../Header";
 import "./Profile.css";
+import { IncorrectLogin } from '../Errors/IncorrectLogin';
+
 
 export function Profile() {
   const user = useUserStore((state: any) => state.user);
@@ -24,16 +26,7 @@ export function Profile() {
       {(user.token !== undefined) ?
         <UserInfo user={user} />
       :
-        <div className="profile-text">
-          <p>
-            Ups parace que no has iniciado sesión, por favor inicia sesión o registrate para poder ver tu perfil.
-          </p>
-          <div className="profile-buttons">
-            <Link className="profile-button" to="/login">Log In</Link>
-            <Link className="profile-button" to="/register">Sign In</Link>
-          </div>
-          <img className="profile-image" src="./CocodriloAsustado.png" alt="imagen de perfil" />
-        </div>
+        <IncorrectLogin></IncorrectLogin>
       }
     </div>
     </>

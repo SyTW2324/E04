@@ -103,6 +103,9 @@
     blink-caret step-end infinite 1s;
 }
 
+.wave {
+  height: 50px; /* Puedes ajustar este valor según tus necesidades */
+}
 
 @keyframes blink-caret {
   from,
