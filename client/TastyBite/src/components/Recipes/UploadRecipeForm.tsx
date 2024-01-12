@@ -82,7 +82,11 @@ const postRecipe = async ({ steps, selectedIngredients, difficulty, images, cate
   }
 
   
-  const response = await axios.post(`https://teal-monkey-hem.cyclic.app/api/recipes`, recipe);
+  const response = await axios.post(`https://teal-monkey-hem.cyclic.app/api/recipes`, recipe, {
+    headers: {
+      'Authorization': `Bearer ${user.token}`
+    }
+  });
   if (response.status === 201) {
     console.log('Receta registrada correctamente');
     const actualRecipes = user.recipes;
