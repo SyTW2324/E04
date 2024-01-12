@@ -32,4 +32,4 @@ https://teal-monkey-hem.cyclic.app/
 
 Por último tenemos el frontend desplegado en Netlify, otro servicio de hosting en la nube que nos permite tener una aplicación web en la nube de forma gratuita, el enlace es el siguiente:
 
-https://coruscating-pithivier-0f8225.netlify.app/
+https://tasty-bite-sytw.netlify.app/
