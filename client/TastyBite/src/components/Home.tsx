@@ -80,6 +80,17 @@ export function Home () {
       </div>
     </div>
 
+    <div className="wave">
+      <img src="./wave-home.svg" alt="Wave" />
+    </div>
+
+
+
+
+
+
+
+
     <section className="categories__container">
       {categories && categories.map((category: any) => (
         <CategoryBubble key={category._id} category={category} image={`./${category.category}-icon.svg`} /> 

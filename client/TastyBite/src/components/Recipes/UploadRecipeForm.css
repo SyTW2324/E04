@@ -34,13 +34,14 @@
 .upload-recipe-form-container__left-container p {
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
 .upload-recipe-form-container__right-container p {
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
 }
 
 .input-error-group-upload-recipe {
@@ -71,7 +72,8 @@ button.active {
 
 
 .form-group-postrecipe button {
-  margin-top: 1rem;
+  margin-top: 7rem;
+  margin-bottom: 5rem;
   display: flex;
   width: auto;
   height: 3rem;
@@ -86,6 +88,7 @@ button.active {
   align-items: center;
   justify-content: center;
 }
+
 
 
 .form-group-postrecipe button:hover {
@@ -189,11 +192,42 @@ button.active {
   transition: ease-in-out 0.2s;
 }
 
-
 .input-category {
-  transform: scale(0.3);
+  transform: scale(0.4);
+}
+
+.buscador-ingrediente {
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  padding: 0 1rem;
 }
 
 .input-ingredient {
-  transform: scale(0.3);
+  margin-top: 1rem;
+}
+
+
+.upload-image {
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Oculta el input de archivo original */
+.upload-image {
+  display: none;
+}
+
+/* Estilo de la etiqueta label personalizada */
+.upload-image-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1rem;
+  padding: 1rem;
+  background-color: var(--secondary);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
 }

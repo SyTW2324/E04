@@ -15,6 +15,7 @@ import { Recipes } from './components/Recipes/Recipes';
 import { UploadRecipe } from './components/Recipes/UploadRecipe';
 import { Register } from './components/Sign/Register';
 import { AboutPage } from './components/About/About';
+import { PageNotFound } from './components/Errors/PageNotFound';
 import { ProfileEdit } from './components/Users/ProfileEdit';
 
 function App() {
@@ -65,7 +66,11 @@ function App() {
     },
     {
       path: "*",
-      element: <h1>404</h1>,
+      element: <PageNotFound/>,
+    },
+    {
+      path: "/*",
+      element: <PageNotFound/>,
     }
 
   ]);

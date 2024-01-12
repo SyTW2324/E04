@@ -2,9 +2,11 @@ import './UploadRecipeForm.css'
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import axios from 'axios';
 import { PreviewImage } from '../PreviewImage';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useFetcher, useNavigate } from 'react-router-dom';
 import { useUserStore } from '../../state/store';
 import { Loader } from '../Loader/Loader';
+import { IncorrectLogin } from '../Errors/IncorrectLogin';
+import { ErrorAlert } from '../Errors/ErrorAlert';
 
 
 const getCategoryList = async () => {
@@ -61,52 +63,57 @@ const postImage = async ({ image }) => {
 
 
 const postRecipe = async ({ steps, selectedIngredients, difficulty, images, category, navigate, user, setUser}) => {
-  const title = document.getElementById('recipe-title') as HTMLInputElement
-  const time = document.getElementById('recipe-time') as HTMLInputElement
-  const number_servings = document.getElementById('recipe-servings') as HTMLInputElement
+  try {
+    const title = document.getElementById('recipe-title') as HTMLInputElement
+    const time = document.getElementById('recipe-time') as HTMLInputElement
+    const number_servings = document.getElementById('recipe-servings') as HTMLInputElement
 
 
-  const imagePromises = images.map((image) => postImage({ image }));
-  const imageIds = await Promise.all(imagePromises);
+    const imagePromises = images.map((image) => postImage({ image }));
+    const imageIds = await Promise.all(imagePromises);
 
 
-  const recipe = {
-    title: title.value,
-    time: time.value,
-    number_servings: number_servings.value,
-    difficulty: difficulty,
-    instructions: Object.values(steps),
-    category: category,
-    images: imageIds,
-    ingredients: selectedIngredients
-  }
-
-  
-  const response = await axios.post(`https://teal-monkey-hem.cyclic.app/api/recipes`, recipe, {
-    headers: {
-      'Authorization': `Bearer ${user.token}`
-    }
-  });
-  if (response.status === 201) {
-    console.log('Receta registrada correctamente');
-    const actualRecipes = user.recipes;
-    const modifyUser = {
-      "recipes": actualRecipes.concat(response.data.recipe_id),
+    const recipe = {
+      title: title.value,
+      time: time.value,
+      number_servings: number_servings.value,
+      difficulty: difficulty,
+      instructions: Object.values(steps),
+      category: category,
+      images: imageIds,
+      ingredients: selectedIngredients
     }
 
-
-    setUser(user => ({ ...user, recipes: modifyUser.recipes }));
-    localStorage.setItem('user_storage', JSON.stringify(user));
-    // debemos pasarle el token del usuario
-    const responsePatch = axios.patch(`https://teal-monkey-hem.cyclic.app/api/users/${user.username}`, modifyUser, {
+    
+    const response = await axios.post(`https://teal-monkey-hem.cyclic.app/api/recipes`, recipe, {
       headers: {
         'Authorization': `Bearer ${user.token}`
       }
     });
+    if (response.status === 201) {
+      console.log('Receta registrada correctamente');
+      const actualRecipes = user.recipes;
+      const modifyUser = {
+        "recipes": actualRecipes.concat(response.data.recipe_id),
+      }
 
-    navigate(`/recipes/${response.data.recipe_id}`);
-  } else {
-    console.error('Error al registrar el usuario:', response.data.message);
+
+      setUser(user => ({ ...user, recipes: modifyUser.recipes }));
+      localStorage.setItem('user_storage', JSON.stringify(user));
+      // debemos pasarle el token del usuario
+      const responsePatch = axios.patch(`https://teal-monkey-hem.cyclic.app/api/users/${user.username}`, modifyUser, {
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        }
+      });
+
+      navigate(`/recipes/${response.data.recipe_id}`);
+    } else {
+      console.error('Error al registrar el usuario:', response.data.message);
+      <ErrorAlert />
+    }
+  } catch (error) {
+    <ErrorAlert />
   }
 }
 
@@ -205,15 +212,15 @@ export function UploadRecipeForm() {
     getCategoryList().then((data) => {
       setCategoriesList(data);
     });
-    }, []);
+  }, []);
 
-    const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-    const handleCategoryChange = (event, id) => {
-      setSelectedCategory({ category_id: id, value: event.target.value });
-    };
-    ////////////////////////
-    const [IngredientsList, setIngredientsList] = useState(null);
+  const handleCategoryChange = (event, id) => {
+    setSelectedCategory({ category_id: id, value: event.target.value });
+  };
+  ////////////////////////
+  const [IngredientsList, setIngredientsList] = useState(null);
 
   useEffect(() => {
     getIngredientList().then((data) => {
@@ -231,13 +238,27 @@ export function UploadRecipeForm() {
     }
   };
 
+  const [searchIngredients, setSearchIngredients] = useState('');
+
+  if (IngredientsList === null) {
+    return <Loader />
+  }
+  const filteredIngredients = IngredientsList.filter(ingredient =>
+    ingredient.ingredient.toLowerCase().includes(searchIngredients.toLowerCase())
+  );
+
     ////////////////////////
     
   if (IngredientsList === null) {
     return <Loader />
   }
   
+  if (CategoriesList === null) {
+    return <Loader />
+  }
 
+
+  
   return (
     <>
       <div className="breadcrumb">
@@ -246,140 +267,156 @@ export function UploadRecipeForm() {
       </div>
       <div className="principal-container">
         <h1>Sube una receta</h1>
-        <div className="upload-recipe-form-container">
-          <div className="upload-recipe-form-container__left-container">
-            <form className="form-upload-recipe-left">
-              <div className="upload-recipe-form__left-container">
-                <div className="form-group title">
-                  <p>Seleccione la dificultad de la receta:</p>
-                  <div className="input-error-group-upload-recipe">
-                    <input type="text" id="recipe-title" placeholder="Título de la receta" />
-                    {errors.title ? (
-                      <p className="error-message">{errors.title}</p>
-                    ) : (
-                      <p className="error-message"></p>
-                    )}
-                  </div>
-                </div>
-                <div className="form-group time">
+        {(user.token === undefined) ?
+          <IncorrectLogin />
+        :
+        <>
+          <div className="upload-recipe-form-container">
+            <div className="upload-recipe-form-container__left-container">
+              <form className="form-upload-recipe-left">
+                <div className="upload-recipe-form__left-container">
+                  <div className="form-group title">
+                    <p>Seleccione la dificultad de la receta:</p>
                     <div className="input-error-group-upload-recipe">
-                      <input type="text" id="recipe-time" placeholder="Tiempo estimado" />
-                      {errors.time ? (
-                        <p className="error-message">{errors.time}</p>
+                      <input type="text" id="recipe-title" placeholder="Título de la receta" />
+                      {errors.title ? (
+                        <p className="error-message">{errors.title}</p>
                       ) : (
                         <p className="error-message"></p>
                       )}
                     </div>
-                </div>
-                <div className="form-group servings">
-                  <div className="input-error-group-upload-recipe">
-                    <input type="text" id="recipe-servings" placeholder="Número de raciones" />
-                    {errors.servings ? (
-                      <p className="error-message">{errors.servings}</p>
-                    ) : (
-                      <p className="error-message"></p>
-                    )}
                   </div>
-                </div>
-                <p>Seleccione la dificultad de la receta:</p>
-                <div className="form-group-difficulty difficulty">
-                  <button
-                    type="button"
-                    onClick={() => handleDifficulty('easy')}
-                    className={difficulty === 'easy' ? 'active' : ''}
-                  >
-                    Fácil
-                  </button>
-  
-                  <button
-                    type="button"
-                    onClick={() => handleDifficulty('medium')}
-                    className={difficulty === 'medium' ? 'active' : ''}
-                  >
-                    Intermedio
-                  </button>
-  
-                  <button
-                    type="button"
-                    onClick={() => handleDifficulty('hard')}
-                    className={difficulty === 'hard' ? 'active' : ''}
-                  >
-                    Difícil
-                  </button>
-                </div>
-                <p>Defina los pasos para realizar la receta :</p>
-                {steps.map((step, index) => (
-                  <div key={index}>
-                    <input
-                      className="input-step"
-                      type="text"
-                      placeholder="Descripción del paso"
-                      value={step}
-                      onChange={(e) => {
-                        const newStep = [...steps];
-                        newStep[index] = e.target.value;
-                        setSteps(newStep);
-                      }}
-                    />
-                    <button className="delete-step" type="button" onClick={() => deleteStep(index)}>Eliminar</button>
+                  <div className="form-group time">
+                      <div className="input-error-group-upload-recipe">
+                        <input type="text" id="recipe-time" placeholder="Tiempo estimado" />
+                        {errors.time ? (
+                          <p className="error-message">{errors.time}</p>
+                        ) : (
+                          <p className="error-message"></p>
+                        )}
+                      </div>
                   </div>
-                ))}
-                <button className="add-step" type="button" onClick={(e) => addStep(e)}>Agregar</button>
-              </div>
-  
-            </form>
-          </div>
-          <div className="upload-recipe-form-container__right-container">
-            <form className="form-upload-recipe-right">
-              <div className="form-group category">
-                <p>Seleccione la categoría de la receta :</p>
-                {CategoriesList && CategoriesList.map((category) => (
-                  <div key={category.category_id}>
-                    <input className="input-category"
-                      type="radio"
-                      id={category.category}
-                      name="categoryGroup"
-                      value={category.category}
-                      checked={selectedCategory && selectedCategory.category_id === category.category_id}
-                      onChange={(event) => handleCategoryChange(event, category.category_id)}
-                    />
-                    <label htmlFor={category.category}>{category.category}</label>
+                  <div className="form-group servings">
+                    <div className="input-error-group-upload-recipe">
+                      <input type="text" id="recipe-servings" placeholder="Número de raciones" />
+                      {errors.servings ? (
+                        <p className="error-message">{errors.servings}</p>
+                      ) : (
+                        <p className="error-message"></p>
+                      )}
+                    </div>
                   </div>
-                ))}         
-              </div>
-              <div className="form-group ingredient">
-              <p>Seleccione los ingredientes de la receta</p>
-                {IngredientsList && IngredientsList.map((ingredient) => (
-                  <div key={ingredient.ingredient_id}>
-                  <label htmlFor={ingredient.ingredient}>{ingredient.ingredient}</label>
-                  <input className="input-ingredient"
-                    type="checkbox"
-                    id={ingredient.ingredient_id}
-                    name="ingredientGroup"
-                    value={ingredient.ingredient_id}
-                    checked={selectedIngredients.includes(ingredient.ingredient_id)}
-                    onChange={(event) => handleIngredientChange(event, ingredient.ingredient_id)}
-                  />
-                </div>
-                ))}
-              </div>
-              <p>Seleccione las imágenes de la receta:</p>
-              <div className="upload-recipe-form__right-container">
-                <input type="file" id="image" accept="image/*" onChange={handleImageChange} multiple />
-  
-                  {images.map((image, index) => (
-                    <div key={index} className="recipe-image">
-                      <img src={image} alt={`Imagen ${index + 1}`} />
-                      <button onClick={() => removeImage(index)}>Eliminar imagen</button>
+                  <p>Seleccione la dificultad de la receta:</p>
+                  <div className="form-group-difficulty difficulty">
+                    <button
+                      type="button"
+                      onClick={() => handleDifficulty('easy')}
+                      className={difficulty === 'easy' ? 'active' : ''}
+                    >
+                      Fácil
+                    </button>
+    
+                    <button
+                      type="button"
+                      onClick={() => handleDifficulty('medium')}
+                      className={difficulty === 'medium' ? 'active' : ''}
+                    >
+                      Intermedio
+                    </button>
+    
+                    <button
+                      type="button"
+                      onClick={() => handleDifficulty('hard')}
+                      className={difficulty === 'hard' ? 'active' : ''}
+                    >
+                      Difícil
+                    </button>
+                  </div>
+                  <p>Defina los pasos para realizar la receta :</p>
+                  {steps.map((step, index) => (
+                    <div key={index}>
+                      <input
+                        className="input-step"
+                        type="text"
+                        placeholder="Descripción del paso"
+                        value={step}
+                        onChange={(e) => {
+                          const newStep = [...steps];
+                          newStep[index] = e.target.value;
+                          setSteps(newStep);
+                        }}
+                      />
+                      <button className="delete-step" type="button" onClick={() => deleteStep(index)}>Eliminar</button>
                     </div>
                   ))}
-              </div>
-            </form>
-          </div>          
-        </div>
-        <div className="form-group-postrecipe button">
-          <button onClick={() => postRecipe({ steps, selectedIngredients, difficulty, images, category: selectedCategory.category_id, navigate, user, setUser })}>Subir receta</button>
-        </div>
+                  <button className="add-step" type="button" onClick={(e) => addStep(e)}>Agregar</button>
+                </div>
+    
+              </form>
+            </div>
+            <div className="upload-recipe-form-container__right-container">
+              <form className="form-upload-recipe-right">
+                <div className="form-group category">
+                  <p>Seleccione la categoría de la receta :</p>
+                  {CategoriesList && CategoriesList.map((category) => (
+                    <div key={category.category_id}>
+                      <input 
+                        className="input-category"
+                        type="radio"
+                        id={category.category}
+                        name="categoryGroup"
+                        value={category.category}
+                        checked={selectedCategory && selectedCategory.category_id === category.category_id}
+                        onChange={(event) => handleCategoryChange(event, category.category_id)}
+                        />
+                      <label htmlFor={category.category}>{category.category}</label>
+                    </div>
+                  ))}         
+                </div>
+                <p>Seleccione los ingredientes de la receta:</p>
+                <input
+                  className="buscador-ingrediente"
+                  type="text"
+                  placeholder="Buscar ingredientes..."
+                  value={searchIngredients}
+                  onChange={e => setSearchIngredients(e.target.value)}
+                />
+                {/* <div className="form-group ingredients"> */}
+                  {filteredIngredients.map((ingredient) => (
+                    <div key={ingredient.ingredient_id}>
+                      <input
+                        className="input-ingredient"
+                        type="checkbox"
+                        id={ingredient.ingredient_id}
+                        name="ingredientGroup"
+                        value={ingredient.ingredient_id}
+                        checked={selectedIngredients.includes(ingredient.ingredient_id)}
+                        onChange={(event) => handleIngredientChange(event, ingredient.ingredient_id)}
+                      />
+                      <label htmlFor={ingredient.ingredient}>{ingredient.ingredient}</label>
+                      </div>
+                  ))}
+                {/* </div> */}
+                <p>Seleccione las imágenes de la receta:</p>
+                <div className="upload-recipe-form__right-container">
+                  {/* <input className="upload-image" type="file" id="image" accept="image/*" onChange={handleImageChange} multiple /> */}
+                  <input className="upload-image" type="file" id="image" accept="image/*" onChange={handleImageChange} multiple />
+                  <label className="upload-image-label" htmlFor="image">Subir imagen</label>
+                    {images.map((image, index) => (
+                      <div key={index} className="recipe-image">
+                        <img src={image} alt={`Imagen ${index + 1}`} />
+                        <button onClick={() => removeImage(index)}>Eliminar imagen</button>
+                      </div>
+                    ))}
+                </div>
+              </form>
+            </div>          
+          </div>
+          <div className="form-group-postrecipe button">
+            <button onClick={() => postRecipe({ steps, selectedIngredients, difficulty, images, category: selectedCategory.category_id, navigate, user, setUser })}>Subir receta</button>
+          </div>
+        </>
+        }
       </div>
     </>
   )
