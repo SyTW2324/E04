@@ -71,8 +71,10 @@ export const ingredientEmojis = {
   'taza': '🍵',
   'taza_con_popote': '🥤',
   'taza_con_tapa': '☕',
-  'taza_de_te': '🍵'
-
+  'taza_de_te': '🍵',
+  'sal': '🧂',
+  'chile': '🌶️',
+  'aceite': '🫒'
 };
 
 

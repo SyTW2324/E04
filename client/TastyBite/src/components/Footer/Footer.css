@@ -1,0 +1,30 @@
+.footer-container {
+  background-image: url('./wave-footer.svg');
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-position: top;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+  flex-direction: column;
+}
+
+.footer-title {
+  flex-direction: row;
+  display: flex;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem;
+  
+}
+
+.footer-links :hover {
+  color: blue;
+}

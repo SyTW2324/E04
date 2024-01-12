@@ -7,6 +7,7 @@ import { useCategories } from "../hooks/useCategories";
 import { getCategories } from "../services/getCategories";
 import { useCategoryStore } from "../state/store";
 import { CategoryBubble } from "./Categories/CategoryBubble";
+import { Footer } from "./Footer/Footer";
 
 
 export function Home () {
@@ -69,7 +70,7 @@ export function Home () {
     <div className="home-container">
       <div className="home-text-container">
         <p>
-        ¡Bienvenido a Tasty Bite! Decidir qué comer puede ser un dolor de cabeza, ¿verdad? Ya sea por falta de tiempo o por querer algo rápido y delicioso. Aquí aparece nuestra plataforma, donde conectamos a amantes de la comida de todo el mundo.
+        ¡Bienvenido a <span style={{color: "#ed8e07", fontWeight: "bold"}}>Tasty Bite!</span> Decidir qué comer puede ser un dolor de cabeza, ¿verdad? Ya sea por falta de tiempo o por querer algo rápido y delicioso. Aquí aparece nuestra plataforma, donde conectamos a amantes de la comida de todo el mundo.
         Publica tus recetas o busca inspiración en las creaciones de otros. Queremos que disfrutes de la comida sin complicaciones, en un ambiente relajado y divertido. Únete a nosotros en Tasty Bite y haz que cada comida sea una experiencia única.
         </p>
         <Link className="home-button" to="/login">¡A comer se ha dicho!</Link>
@@ -80,8 +81,24 @@ export function Home () {
       </div>
     </div>
 
-    <div className="wave">
-      <img src="./wave-home.svg" alt="Wave" />
+
+    <div className="wave-up">
+      <img src="./wave-home1.svg" alt="Wave" />
+    </div>
+
+    <section className="home-section-upload">
+      <div className="home-section-upload__img">
+        <img src="./CocodriloFeliz.png" alt="Upload" />
+      </div>
+      <div className="home-section-upload__text">
+        <h2 className="home-section-upload__title">¿Tienes alguna receta que deseas compartir?</h2>
+        <p className="home-section-upload__paragrph">¡Únete a nuestra comunidad y comparte tus recetas con todo el mundo!</p>
+        <Link className="home-section-upload__button" to="/login">¡Sube tu receta!</Link>
+      </div>
+    </section>
+
+    <div className="wave-down">
+      <img src="./wave-home2.svg" alt="Wave" />
     </div>
 
 
@@ -97,7 +114,6 @@ export function Home () {
         
       ))}
     </section>
-    
     
     </>
   )
