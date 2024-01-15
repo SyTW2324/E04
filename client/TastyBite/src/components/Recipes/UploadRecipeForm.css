@@ -219,7 +219,6 @@ button.active {
   display: none;
 }
 
-/* Estilo de la etiqueta label personalizada */
 .upload-image-label {
   display: flex;
   justify-content: center;
@@ -230,4 +229,26 @@ button.active {
   color: white;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.container-ingredients {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  height: 400px;
+}
+
+.ingredients {
+  margin-top: 1rem;
+  max-height: 200px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.ingredients input {
+  transform: scale(0.3);
 }

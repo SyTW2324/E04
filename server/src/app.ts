@@ -17,9 +17,7 @@ import bodyParser from 'body-parser';
 export const app = express();
 
 // Configuración de CORS
-app.use(cors({
-  origin: '*'
-}));
+app.use(cors({origin: '*'}));
 
 app.use(bodyParser.json({ limit: '5mb' }));
 

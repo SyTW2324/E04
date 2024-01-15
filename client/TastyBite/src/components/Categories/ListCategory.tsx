@@ -3,6 +3,8 @@ import { useCategories } from "../../hooks/useCategories";
 import { Link } from "react-router-dom";
 import { Header } from "../Header";
 import { Loader } from "../Loader/Loader";
+import { Categories } from "./Categories";
+import { Footer } from "../Footer/Footer";
 
 export function ListCategory() {
   const { categories, isLoading } = useCategories();
@@ -22,16 +24,10 @@ export function ListCategory() {
       </div>
       <div className="profile-title-container">
         <h1 className="profile-title" >Categorías</h1>
+        <Categories />
       </div>
-      {categories && categories.map((category) => (
-        <div key={category._id} >
-        <h2>
-          <Link to={`/categories/${category._id}`}>{category.category}</Link>
-        </h2>
-        <p>{category.description}</p>
-      </div>
-      ))}
     </div>
+    <Footer/>
     </>
   )
 }
