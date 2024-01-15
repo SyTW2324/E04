@@ -27,3 +27,22 @@ body {
   box-sizing: border-box;
 }
 
+
+/* Estilos para todos los scrollbars en la página */
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: gray;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  background: var(--secondary);
+  
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
