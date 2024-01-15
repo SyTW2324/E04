@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Header } from "../Header";
 import { Loader } from "../Loader/Loader";
 import { Categories } from "./Categories";
+import { Footer } from "../Footer/Footer";
 
 export function ListCategory() {
   const { categories, isLoading } = useCategories();
@@ -26,6 +27,7 @@ export function ListCategory() {
         <Categories />
       </div>
     </div>
+    <Footer/>
     </>
   )
 }

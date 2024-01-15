@@ -374,30 +374,32 @@ export function UploadRecipeForm() {
                     </div>
                   ))}         
                 </div>
-                <p>Seleccione los ingredientes de la receta:</p>
-                <input
-                  className="buscador-ingrediente"
-                  type="text"
-                  placeholder="Buscar ingredientes..."
-                  value={searchIngredients}
-                  onChange={e => setSearchIngredients(e.target.value)}
-                />
-                {/* <div className="form-group ingredients"> */}
-                  {filteredIngredients.map((ingredient) => (
-                    <div key={ingredient.ingredient_id}>
-                      <input
-                        className="input-ingredient"
-                        type="checkbox"
-                        id={ingredient.ingredient_id}
-                        name="ingredientGroup"
-                        value={ingredient.ingredient_id}
-                        checked={selectedIngredients.includes(ingredient.ingredient_id)}
-                        onChange={(event) => handleIngredientChange(event, ingredient.ingredient_id)}
-                      />
-                      <label htmlFor={ingredient.ingredient}>{ingredient.ingredient}</label>
-                      </div>
-                  ))}
-                {/* </div> */}
+                <div className="container-ingredients">
+                  <p>Seleccione los ingredientes de la receta:</p>
+                  <input
+                    className="buscador-ingrediente"
+                    type="text"
+                    placeholder="Buscar ingredientes..."
+                    value={searchIngredients}
+                    onChange={e => setSearchIngredients(e.target.value)}
+                    />
+                  <div className="form-group ingredients">
+                      {filteredIngredients.map((ingredient) => (
+                        <div key={ingredient.ingredient_id}>
+                          <input
+                            className="input-ingredient"
+                            type="checkbox"
+                            id={ingredient.ingredient_id}
+                            name="ingredientGroup"
+                            value={ingredient.ingredient_id}
+                            checked={selectedIngredients.includes(ingredient.ingredient_id)}
+                            onChange={(event) => handleIngredientChange(event, ingredient.ingredient_id)}
+                            />
+                          <label htmlFor={ingredient.ingredient}>{ingredient.ingredient}</label>
+                          </div>
+                      ))}
+                  </div>
+                </div>
                 <p>Seleccione las imágenes de la receta:</p>
                 <div className="upload-recipe-form__right-container">
                   {/* <input className="upload-image" type="file" id="image" accept="image/*" onChange={handleImageChange} multiple /> */}
