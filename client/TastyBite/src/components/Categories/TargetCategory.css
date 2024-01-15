@@ -1,0 +1,41 @@
+
+.target-category__container {
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2rem 1rem;
+  background-color: white;
+  border: 0;
+  text-decoration: none;
+  color: var(--secondary);
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.target-category__container:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+  
+  .target-category__title {
+    color: var(--secondary);
+    transition: all 0.2s ease-in-out;
+  
+  }
+
+}
+
+.target-category__title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.target-category__paragraph {
+  display: flex;
+  font-size: 1rem;
+  width: 100%;
+}

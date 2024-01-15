@@ -108,13 +108,13 @@ export function Home () {
 
     <Categories />
 
-    <section className="categories__container">
+    {/* <section className="categories__container">
       {categories && categories.map((category: any) => (
         <CategoryBubble key={category._id} category={category} image={`./${category.category}-icon.svg`} /> 
         
       ))}
     </section>
-    
+     */}
     <Footer/>
     </>
   )
