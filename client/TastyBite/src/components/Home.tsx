@@ -3,11 +3,11 @@ import "./Home.css";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Header } from "./Header";
-import { useCategories } from "../hooks/useCategories";
 import { getCategories } from "../services/getCategories";
 import { useCategoryStore } from "../state/store";
 import { CategoryBubble } from "./Categories/CategoryBubble";
 import { Footer } from "./Footer/Footer";
+import { Categories } from "./Categories/Categories";
 
 
 export function Home () {
@@ -106,7 +106,7 @@ export function Home () {
 
 
 
-
+    <Categories />
 
     <section className="categories__container">
       {categories && categories.map((category: any) => (
