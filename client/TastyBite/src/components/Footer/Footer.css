@@ -1,0 +1,57 @@
+.footer-container {
+  margin-top: 4rem;
+  background-image: url('./wave-footer.svg');
+  background-color: var(--primary);
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-position: top;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 17rem;
+  flex-direction: column;
+  text-align: center;
+}
+
+.footer-title {
+  flex-direction: row;
+  display: flex;
+}
+
+.footer-button {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  height: 2rem;
+  width: 15rem;
+  border-radius: 0.5rem;
+  background-color: var(--secondary);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid var(--secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-button:hover {
+  background-color: white;
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+  transition: ease-in-out 0.3s;
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  background-color: transparent;
+  border: 1px solid var(--secondary);
+  cursor: pointer;
+  transition: ease-in-out 0.1s;
+}
+
+.footer-bottom:hover {
+  transform: scale(1.1);
+  transition: ease-in-out 0.1s;
+}

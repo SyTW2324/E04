@@ -3,6 +3,7 @@ import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { PreviewImage } from '../PreviewImage';
 import { Link, useNavigate } from 'react-router-dom';
 import { postUser } from '../../services/postUser';
+import { Footer } from '../Footer/Footer';
 
 
 export function RegisterForm() {
@@ -122,6 +123,8 @@ export function RegisterForm() {
         </div>
         
       </div>
+      <Footer/>
+
     </>
   )
 }  

@@ -7,6 +7,7 @@ import { useUserStore } from '../../state/store';
 import { Loader } from '../Loader/Loader';
 import { IncorrectLogin } from '../Errors/IncorrectLogin';
 import { ErrorAlert } from '../Errors/ErrorAlert';
+import { Footer } from '../Footer/Footer';
 
 
 const getCategoryList = async () => {
@@ -418,6 +419,7 @@ export function UploadRecipeForm() {
         </>
         }
       </div>
+      <Footer/>
     </>
   )
 }  

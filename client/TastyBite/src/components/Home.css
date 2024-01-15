@@ -103,8 +103,94 @@
     blink-caret step-end infinite 1s;
 }
 
-.wave {
-  height: 50px; /* Puedes ajustar este valor según tus necesidades */
+.wave-up {
+  width: 100%;
+  height: 100%;
+  margin-bottom: -1rem;
+}
+
+.wave-up img {
+  width: 100%;
+}
+
+.wave-down {
+  height: 100%;
+  width: 100%;
+}
+
+.wave-down img {
+  width: 100%;
+  height: 100%;
+}
+
+.home-section-upload {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 auto;
+  background-color: #ed8e07;
+  width: 100wh;
+  height: 60vh;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.home-section-upload__img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 100%;
+}
+
+.home-section-upload__text {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-section-upload__title {
+  display: flex;
+  width: 100%;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+
+
+.home-section-upload__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 3rem;
+  border-radius: 0.5rem;
+  background-color: var(--secondary);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid var(--secondary);
+}
+
+.home-section-upload__button:hover {
+  background-color: white;
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+  transition: ease-in-out 0.3s;
+}
+
+.home-section-upload__img img {
+
+  width: 100%;
+}
+
+.home-section-upload {
+  height: 400px;
 }
 
 @keyframes blink-caret {

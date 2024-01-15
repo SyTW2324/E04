@@ -3,6 +3,7 @@ import './LoginForm.css'
 import React, { useState, useEffect } from 'react';
 import { useUserStore } from '../../state/store';
 import { Link, useNavigate } from 'react-router-dom';
+import { Footer } from '../Footer/Footer';
 
 export function LoginForm({ setUser }) {
   const user = useUserStore((state: any) => state.user )
@@ -77,6 +78,7 @@ export function LoginForm({ setUser }) {
           <img src="../Cocodrilo.png" alt="Cocodrilo señalando login" />
         </div>
       </div>
+      <Footer/>
     </>
   )
 }
