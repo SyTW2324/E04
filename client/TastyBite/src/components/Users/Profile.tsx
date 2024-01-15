@@ -5,6 +5,7 @@ import { UserInfo } from './UserInfo';
 import { Header } from "../Header";
 import "./Profile.css";
 import { IncorrectLogin } from '../Errors/IncorrectLogin';
+import { Footer } from '../Footer/Footer';
 
 
 export function Profile() {
@@ -14,21 +15,22 @@ export function Profile() {
 
   return (
     <>
-    <Header />
-    <div>
-      <div className="breadcrumb">
-        <Link to="/">Tasty Bite</Link> &gt;
-        <span>Mi perfil</span>
+      <Header />
+      <div>
+        <div className="breadcrumb">
+          <Link to="/">Tasty Bite</Link> &gt;
+          <span>Mi perfil</span>
+        </div>
+        <div className="profile-title-container">
+          <h1 className="profile-title" >Mi perfil</h1>
+        </div>
+        {(user.token !== undefined) ?
+          <UserInfo user={user} />
+        :
+          <IncorrectLogin></IncorrectLogin>
+        }
       </div>
-      <div className="profile-title-container">
-        <h1 className="profile-title" >Mi perfil</h1>
-      </div>
-      {(user.token !== undefined) ?
-        <UserInfo user={user} />
-      :
-        <IncorrectLogin></IncorrectLogin>
-      }
-    </div>
+      <Footer/>
     </>
   )
 }

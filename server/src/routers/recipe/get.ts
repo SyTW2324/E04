@@ -20,7 +20,7 @@ export const getRecipeQuery =  async (req: any, res: any) => {
       filter = {category: req.query.category_id.toString()};
     }
 
-    const recipes = await Recipe.find(filter).populate('category').populate('ingredients').populate('images');
+    const recipes = await Recipe.find(filter).populate('category').populate('ingredients').populate('images').limit(10);
 
     if (recipes.length !== 0) {
       return res.status(200).send(recipes);
@@ -44,7 +44,7 @@ export const getRecipe =  async (req: any, res: any) => {
 
     const filter = req.params.recipe_id ? {recipe_id: new mongoose.Types.ObjectId(req.params.recipe_id)} : {};
 
-    const recipes = await Recipe.find(filter).populate('category').populate('ingredients').populate('images');
+    const recipes = await Recipe.find(filter).populate('category').populate('ingredients').populate('images').limit(10);
 
     if (recipes.length !== 0) {
       return res.status(200).send(recipes);

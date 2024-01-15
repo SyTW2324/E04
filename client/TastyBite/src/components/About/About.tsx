@@ -2,6 +2,7 @@ import React from "react";
 import './About.css'
 import { Header } from "../Header";
 import { Link } from "react-router-dom";
+import { Footer } from "../Footer/Footer";
 
 const redirectToGitHubFacu = () => {
   window.open('https://github.com/facu2002', '_blank');
@@ -85,7 +86,7 @@ export function AboutPage() {
           </div>
         </div>
       </div>
-
+      <Footer/>
     </>
   )
 }
