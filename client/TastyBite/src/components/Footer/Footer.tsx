@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const Footer = () => {
   return (
     <>
-      <div className="footer-container">
+      <footer className="footer-container">
         <h2>Contacto</h2>
         <div className="footer-title">
           <div className="footer-links">
@@ -29,7 +29,7 @@ export const Footer = () => {
             <img className='logo' src='./arrow.svg'/>
           </button>            
         </div>
-      </div>
+      </footer>
 
     </>
   );

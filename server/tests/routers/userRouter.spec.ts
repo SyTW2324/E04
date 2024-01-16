@@ -1,12 +1,19 @@
 import request from 'supertest';
 import { expect } from 'chai';
-import { describe, before } from 'mocha';
+import { describe, beforeAll } from 'mocha';
 import { app } from '../../src/app.js';
 import axios from 'axios';
 import { User } from '../../src/models/userModel.js';
 import { doesNotReject } from 'assert';
 import mongoose from 'mongoose';
 import { cpuUsage } from 'process';
+
+
+beforeAll(async () => {
+  // antes de ejecutar los tests borramos a messi y a ronaldo
+  await User.deleteMany({ username: { $in: ['messi', 'ronaldo'] } });
+});
+
 
 
 let tokenMessi = '';
