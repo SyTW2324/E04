@@ -1,0 +1,130 @@
+  import request from 'supertest';
+  import { expect } from 'chai';
+  import { describe, before } from 'mocha';
+  import { app } from '../../src/app.js';
+  import axios from 'axios';
+  import { User } from '../../src/models/userModel.js';
+  import { doesNotReject } from 'assert';
+  import mongoose from 'mongoose';
+  
+  let idRecipe = '';
+  let tokenRonaldo = '';
+ 
+
+  describe('POST /recipes', () => {
+  
+    it('Se crea una receta correctamente', async () => {
+      const urlUsuario = 'https://teal-monkey-hem.cyclic.app/api/users';
+      const userRonaldo = {
+        "username": "ronaldo",
+        "first_name": "Ronaldo",
+        "last_name": "Cristiano",
+        "email": "ronaldo@gmail.com",
+        "password": "ronaldo"
+      }
+      await axios.post(urlUsuario, userRonaldo);
+      const userLogin = {
+        "username": "ronaldo",
+        "password": "ronaldo"
+      }
+      const responseLogin = await axios.post('https://teal-monkey-hem.cyclic.app/api/users/login', userLogin);
+      const token = responseLogin.data.token;
+      tokenRonaldo = responseLogin.data.token;
+
+      const url = 'https://teal-monkey-hem.cyclic.app/api/recipes';
+      const recipe = {
+        "title": "Bocadillo",
+        "category": "65a5263edb5e13122515dd7f",
+        "ingredients": [],
+        "instructions": ["Paso de prueba"],
+        "images": [],
+        "time": "10",
+        "number_servings": "2",
+        "difficulty": "easy",
+        "interactions": []
+      }
+      
+      const response = await axios.post(url, recipe, { headers: { Authorization: `Bearer ${token}` } });
+      idRecipe = response.data.recipe_id;
+
+      expect(response.status).to.be.equal(201);
+      expect(response.data).to.be.an('object');
+      expect(response.data).to.have.property('title');
+      expect(response.data).to.have.property('category');
+      expect(response.data).to.have.property('ingredients');
+      expect(response.data).to.have.property('instructions');
+      expect(response.data).to.have.property('images');
+      expect(response.data).to.have.property('time');
+      expect(response.data).to.have.property('number_servings');
+      expect(response.data).to.have.property('difficulty');
+      expect(response.data).to.have.property('interactions');
+    });
+    
+  });
+
+
+  describe('GET /recipes', () => {
+    it('Se obtienen todas las recetas correctamente', async () => {
+      const url = 'https://teal-monkey-hem.cyclic.app/api/recipes';
+      const response = await axios.get(url);
+      expect(response.status).to.be.equal(200);
+      expect(response.data.length).to.be.greaterThan(0);
+    });
+  });
+
+
+  describe('GET /recipes/:recipe_id', () => {
+    it('Se obtiene la receta creada correctamente', async () => {
+      const url = 'https://teal-monkey-hem.cyclic.app/api/recipes/' + idRecipe;
+      const response = await axios.get(url);
+      expect(response.status).to.be.equal(200);
+      expect(response.data[0]).to.have.property('title');
+      expect(response.data[0]).to.have.property('category');
+      expect(response.data[0]).to.have.property('ingredients');
+      expect(response.data[0]).to.have.property('instructions');
+      expect(response.data[0]).to.have.property('images');
+      expect(response.data[0]).to.have.property('time');
+      expect(response.data[0]).to.have.property('number_servings');
+      expect(response.data[0]).to.have.property('difficulty');
+      expect(response.data[0]).to.have.property('interactions');
+    });
+  });
+
+
+  describe('PATCH /recipes/:recipe_id', () => {
+
+    it('Se modifica una receta correctamente', async () => {
+      const url = "https://teal-monkey-hem.cyclic.app/api/recipes/" + idRecipe;
+      const recipe = {
+        "title": "BocadilloModificado"
+      }
+      const response = await axios.patch(url, recipe, { headers: { Authorization: `Bearer ${tokenRonaldo}` } });
+      expect(response.status).to.be.equal(200);
+      expect(response.data).to.be.an('object');
+      expect(response.data).to.have.property('title');
+      expect(response.data.title).to.be.equal('BocadilloModificado');
+    });
+  });
+
+
+  describe('DELETE /recipes/:id', () => {
+    it('Se elimina una receta correctamente', async () => {
+
+      const url = "https://teal-monkey-hem.cyclic.app/api/recipes?recipe_id=" + idRecipe;
+      const response = await axios.delete(url, { headers: { Authorization: `Bearer ${tokenRonaldo}` } });
+      expect(response.status).to.be.equal(200);
+      expect(response.data).to.be.an('object');
+      expect(response.data).to.have.property('title');
+      expect(response.data).to.have.property('category');
+      expect(response.data).to.have.property('ingredients');
+      expect(response.data).to.have.property('instructions');
+      expect(response.data).to.have.property('images');
+      expect(response.data).to.have.property('time');
+      expect(response.data).to.have.property('number_servings');
+      expect(response.data).to.have.property('difficulty');
+      expect(response.data).to.have.property('interactions');
+      const urlRonaldo = "https://teal-monkey-hem.cyclic.app/api/users/ronaldo";
+      await axios.delete(urlRonaldo, { headers: { Authorization: `Bearer ${tokenRonaldo}` } });
+    }
+    );
+  });
