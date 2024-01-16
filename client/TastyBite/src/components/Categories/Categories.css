@@ -13,10 +13,11 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  width: 60%;
 }
 
 .categories-home__image-container {
-  width: 40%;
+  width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;

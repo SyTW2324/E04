@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Categories.css";
 import { useCategories } from "../../hooks/useCategories";
 import { Loader } from "../Loader/Loader";
 import { TargetCategory } from "./TargetCategory";
+import { useCategoryStore } from "../../state/store";
 
 export function Categories() {
   const { categories, isLoading } = useCategories();
+  const { setCategories } = useCategoryStore();
+
+  useEffect(() => {
+    setCategories(categories);
+  }, [categories, setCategories]);
   
   if (isLoading || !categories) {
     return <Loader />;

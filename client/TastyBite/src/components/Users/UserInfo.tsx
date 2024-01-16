@@ -50,7 +50,7 @@ export function UserInfo({ user }) {
       });
   }, [user]); // Include 'user' in the dependency array to re-run effect when user changes
 
-  if (userInfo.username === undefined) {
+  if ((userInfo as any).username === undefined) {
     return <Loader />
   }
 
@@ -126,14 +126,6 @@ export function UserInfo({ user }) {
             </div>
           </div>
         )}
-        {modify && (
-          <button className="save-button" onClick={() => setModify(!modify)}>
-            Guardar
-          </button>
-        )}
-        <button className="modify-button" onClick={() => setModify(!modify)}>
-          Modificar
-        </button>
       </div>
     </>
   );

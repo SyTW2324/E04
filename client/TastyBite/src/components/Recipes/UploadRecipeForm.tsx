@@ -256,6 +256,7 @@ export function UploadRecipeForm() {
     return <Loader />
   }
 
+  
 
   
   return (
@@ -275,8 +276,8 @@ export function UploadRecipeForm() {
               <form className="form-upload-recipe-left">
                 <div className="upload-recipe-form__left-container">
                   <div className="form-group title">
-                    <p>Seleccione la dificultad de la receta:</p>
                     <div className="input-error-group-upload-recipe">
+                      <label className="" htmlFor="recipe-title">Título de la receta:</label>
                       <input type="text" id="recipe-title" placeholder="Título de la receta" />
                       {errors.title ? (
                         <p className="error-message">{errors.title}</p>
@@ -287,6 +288,7 @@ export function UploadRecipeForm() {
                   </div>
                   <div className="form-group time">
                       <div className="input-error-group-upload-recipe">
+                        <label htmlFor="recipe-time">Tiempo estimado:</label>
                         <input type="text" id="recipe-time" placeholder="Tiempo estimado" />
                         {errors.time ? (
                           <p className="error-message">{errors.time}</p>
@@ -297,6 +299,7 @@ export function UploadRecipeForm() {
                   </div>
                   <div className="form-group servings">
                     <div className="input-error-group-upload-recipe">
+                      <label htmlFor="recipe-servings">Número de raciones:</label>
                       <input type="text" id="recipe-servings" placeholder="Número de raciones" />
                       {errors.servings ? (
                         <p className="error-message">{errors.servings}</p>
@@ -305,7 +308,7 @@ export function UploadRecipeForm() {
                       )}
                     </div>
                   </div>
-                  <p>Seleccione la dificultad de la receta:</p>
+                  <p>Seleccione la dificultad de la receta :</p>
                   <div className="form-group-difficulty difficulty">
                     <button
                       type="button"
@@ -357,9 +360,12 @@ export function UploadRecipeForm() {
               <form className="form-upload-recipe-right">
                 <div className="form-group category">
                   <p>Seleccione la categoría de la receta :</p>
+                  <div className='categories-selector__container'>
                   {CategoriesList && CategoriesList.map((category) => (
                     <div key={category.category_id}>
-                      <input 
+                      <>
+                      <input
+                        style={{display: 'none'}}
                         className="input-category"
                         type="radio"
                         id={category.category}
@@ -369,8 +375,10 @@ export function UploadRecipeForm() {
                         onChange={(event) => handleCategoryChange(event, category.category_id)}
                         />
                       <label htmlFor={category.category}>{category.category}</label>
+                      </>
                     </div>
-                  ))}         
+                  ))}  
+                  </div>       
                 </div>
                 <div className="container-ingredients">
                   <p>Seleccione los ingredientes de la receta:</p>
@@ -385,6 +393,7 @@ export function UploadRecipeForm() {
                       {filteredIngredients.map((ingredient) => (
                         <div key={ingredient.ingredient_id}>
                           <input
+                            style={{display: 'none'}}
                             className="input-ingredient"
                             type="checkbox"
                             id={ingredient.ingredient_id}
@@ -392,9 +401,9 @@ export function UploadRecipeForm() {
                             value={ingredient.ingredient_id}
                             checked={selectedIngredients.includes(ingredient.ingredient_id)}
                             onChange={(event) => handleIngredientChange(event, ingredient.ingredient_id)}
-                            />
-                          <label htmlFor={ingredient.ingredient}>{ingredient.ingredient}</label>
-                          </div>
+                          />
+                          <label htmlFor={ingredient.ingredient_id}>{ingredient.ingredient}</label>
+                        </div>
                       ))}
                   </div>
                 </div>

@@ -1,6 +1,11 @@
+.footer-container h1 {
+  font-size: 2.25rem;
+  font-weight: 600;
+}
+
+
 .footer-container {
   margin-top: 4rem;
-  background-image: url('./wave-footer.svg');
   background-color: var(--primary);
   background-repeat: no-repeat;
   object-fit: cover;
@@ -8,7 +13,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 17rem;
+  height: 12rem;
+  width: 100%;
   flex-direction: column;
   text-align: center;
 }
@@ -16,6 +22,10 @@
 .footer-title {
   flex-direction: row;
   display: flex;
+}
+
+.footer-links {
+  margin-top: 0.5rem;
 }
 
 .footer-button {
@@ -44,14 +54,17 @@
 }
 
 .footer-bottom {
-  margin-top: 2rem;
   background-color: transparent;
   border: 1px solid var(--secondary);
   cursor: pointer;
   transition: ease-in-out 0.1s;
+  transform: scale(0.6);
+  margin-left: auto;
+  margin-right: 1rem;
+  margin-bottom: 0.25rem;
 }
 
 .footer-bottom:hover {
-  transform: scale(1.1);
   transition: ease-in-out 0.1s;
+  transform: scale(0.7);
 }

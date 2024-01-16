@@ -2,6 +2,7 @@ import './PageNotFound.css'
 import React from 'react';
 import { Header } from '../Header'
 import { Link } from 'react-router-dom';
+import { Footer } from '../Footer/Footer';
 
 
 export const PageNotFound = () => {
@@ -21,6 +22,7 @@ export const PageNotFound = () => {
         </div>
         <img className="pagenotfound-image" src="./CocodriloMiedo.png" alt="imagen de perfil" />
       </div>
+      <Footer/>
     </>
   );
 }
