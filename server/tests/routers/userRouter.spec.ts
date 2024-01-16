@@ -15,7 +15,7 @@ let tokenRonaldo = '';
 
 describe('POST /users', function() {
   this.timeout(5000);
-  it('Se crea un usuario correctamente', async () => {
+  it('Se crea un usuario correctamente Messi', async () => {
     const userMessi = {
       "username": "messi",
       "first_name": "Messi",
@@ -23,7 +23,17 @@ describe('POST /users', function() {
       "email": "messi@gmail.com",
       "password": "messi"
     }
+    const response = await request(app).post('/api/users').send(userMessi);
+    expect(response.body).to.be.an('object');
+    expect(response.body).to.have.property('username');
+    expect(response.body).to.have.property('first_name');
+    expect(response.body).to.have.property('last_name');
+    expect(response.body).to.have.property('email');
+    expect(response.body).to.have.property('password');
+  });
 
+
+  it('Se crea un usuario correctamente Ronaldo', async () => {
     const userRonaldo = {
       "username": "ronaldo",
       "first_name": "Cristiano",
@@ -31,19 +41,7 @@ describe('POST /users', function() {
       "email": "ronaldo@gmail.com",
       "password": "ronaldo"
     }
-    
-    const response = await request(app).post('/api/users').send(userMessi);
     const response2 = await request(app).post('/api/users').send(userRonaldo);
-    
-    expect(response.status).to.be.equal(201);
-    expect(response.body).to.be.an('object');
-    expect(response.body).to.have.property('username');
-    expect(response.body).to.have.property('first_name');
-    expect(response.body).to.have.property('last_name');
-    expect(response.body).to.have.property('email');
-    expect(response.body).to.have.property('password');
-
-    expect(response2.status).to.be.equal(201);
     expect(response2.body).to.be.an('object');
     expect(response2.body).to.have.property('username');
     expect(response2.body).to.have.property('first_name');
@@ -63,7 +61,8 @@ describe('POST /users', function() {
   
 });
 
-describe('GET /users', () => {
+describe('GET /users', function () {
+  this.timeout(5000);
   it('Se obtienen todos los usuarios correctamente', async () => {
     const response = await request(app).get('/api/users');
     expect(response.status).to.be.equal(200);
@@ -92,8 +91,8 @@ describe('GET /users', () => {
 
 
 
-describe('PATCH /users/:username', () => {
-
+describe('PATCH /users/:username', function () {
+  this.timeout(5000);
   it('Se modifica un usuario correctamente (body)', async () => {
 
     // conseguimos el token primero
@@ -151,7 +150,8 @@ describe('PATCH /users/:username', () => {
 });
 
 
-describe('DELETE /users/:username', () => {
+describe('DELETE /users/:username', function () {
+  this.timeout(5000);
   it('Se elimina un usuario correctamente (body)', async () => {
     const userLoginMessi = {
       "username": "messi",

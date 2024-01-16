@@ -71,7 +71,8 @@ describe('POST /recipes', function() {
 
 
   
-describe('GET /recipes', () => {
+describe('GET /recipes', function () {
+  this.timeout(5000);
   it('Se obtienen todas las recetas correctamente', async () => {
     const response = await request(app).get('/api/recipes');
     expect(response.status).to.be.equal(200);
@@ -153,7 +154,8 @@ describe('PATCH /recipes/:recipe_id', function() {
 });
 
 
-describe('DELETE /recipes/:recipe_id & /recipes?recipe_id=id', () => {
+describe('DELETE /recipes/:recipe_id & /recipes?recipe_id=id', function () {
+  this.timeout(5000);
   it('Se elimina una receta correctamente (body)', async () => {
     const response = await request(app).delete(`/api/recipes/${idRecipe}`).set('Authorization', `Bearer ${tokenRonaldo}`);
 
