@@ -67,6 +67,7 @@ describe('GET /users', function () {
     const response = await request(app).get('/api/users');
     expect(response.status).to.be.equal(200);
     expect(response.body.length).to.be.greaterThan(1);
+    
   });
 
   it('Se obtiene un usuario correctamente con query', async () => {
