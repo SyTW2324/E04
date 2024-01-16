@@ -2,10 +2,7 @@ import request from 'supertest';
 import { expect } from 'chai';
 import { describe, before } from 'mocha';
 import { app } from '../../src/app.js';
-import axios from 'axios';
-import { User } from '../../src/models/userModel.js';
-import { doesNotReject } from 'assert';
-import mongoose from 'mongoose';
+
 
 let ingredientId: any;
 
@@ -18,63 +15,66 @@ describe('POST /ingredients', () => {
     
     // const response = await axios.post(url, ingredient);
     const response = await request(app).post('/api/ingredients').send(ingredient).expect(201);
-    // ingredientId = response.data._id;
-    // expect(response.status).to.be.equal(201);
-    // expect(response.data).to.be.an('object');
-    // expect(response.data).to.have.property('ingredient');
-    // expect(response.data).to.have.property('description');
-    // expect(response.data.ingredient).to.be.equal('IngredientePrueba');
-    // expect(response.data.description).to.be.equal('Descripción del ingrediente de prueba');
+    ingredientId = response.body._id;
+    expect(response.status).to.be.equal(201);
+    expect(response.body).to.be.an('object');
+    expect(response.body).to.have.property('ingredient');
+    expect(response.body).to.have.property('description');
+    expect(response.body.ingredient).to.be.equal('IngredientePrueba');
+    expect(response.body.description).to.be.equal('Descripción del ingrediente de prueba');
+    
   })
 });
 
-// describe('GET /ingredients', () => {
-//   it('Se obtienen todos los ingredientes correctamente', async () => {
-//     const url = 'https://teal-monkey-hem.cyclic.app/api/ingredients';
-//     const response = await axios.get(url);
-//     expect(response.status).to.be.equal(200);
-//     expect(response.data.length).to.be.greaterThan(1);
-//   });
+describe('GET /ingredients', () => {
+  it('Se obtienen todos los ingredientes correctamente', async () => {
+    const response = await request(app).get('/api/ingredients').expect(200);
+    expect(response.status).to.be.equal(200);
+    expect(response.body).to.be.an('array');
+    expect(response.body[0]).to.have.property('ingredient');
+    expect(response.body[0]).to.have.property('description');
+  });
 
-//   it('Se obtiene un ingrediente correctamente', async () => {
-//     const url = `https://teal-monkey-hem.cyclic.app/api/ingredients/${ingredientId}`;
-//     const response = await axios.get(url);
-//     expect(response.status).to.be.equal(200);
-//     expect(response.data[0]).to.be.an('object');
-//     expect(response.data[0]).to.have.property('ingredient');
-//     expect(response.data[0]).to.have.property('description');
-//     expect(response.data[0].ingredient).to.be.equal('IngredientePrueba');
-//     expect(response.data[0].description).to.be.equal('Descripción del ingrediente de prueba');
-//   });
-// });
+  it('Se obtiene un ingrediente concreto a partir de su id', async () => {
+    const response = await request(app).get(`/api/ingredients/${ingredientId}`).expect(200);
+    expect(response.status).to.be.equal(200);
+    expect(response.body).to.be.an('array');
+    expect(response.body[0]).to.be.an('object');
+    expect(response.body[0]).to.have.property('ingredient');
+    expect(response.body[0]).to.have.property('description');
+    expect(response.body[0].ingredient).to.be.equal('IngredientePrueba');
+    expect(response.body[0].description).to.be.equal('Descripción del ingrediente de prueba');
+  });
+  
+});
 
-// describe('PATCH /ingredients/:ingredient_id', () => {
-//   it('Se modifica un ingrediente correctamente', async () => {
-//     const url = `https://teal-monkey-hem.cyclic.app/api/ingredients/${ingredientId}`;
-//     const ingredient = {
-//       "ingredient": "IngredientePruebaModificado",
-//       "description": "Descripción del ingrediente de prueba modificado"
-//     }
-//     const response = await axios.patch(url, ingredient);
-//     expect(response.status).to.be.equal(200);
-//     expect(response.data).to.be.an('object');
-//     expect(response.data).to.have.property('ingredient');
-//     expect(response.data).to.have.property('description');
-//     expect(response.data.ingredient).to.be.equal('IngredientePruebaModificado');
-//     expect(response.data.description).to.be.equal('Descripción del ingrediente de prueba modificado');
-//   });
-// });
+describe('PATCH /ingredients/:ingredient_id', () => {
+  it('Se modifica un ingrediente correctamente', async () => {
+    const ingredient = {
+      "ingredient": "IngredientePruebaModificado",
+      "description": "Descripción del ingrediente de prueba modificado"
+    }
+    const response = await request(app).patch(`/api/ingredients/${ingredientId}`).send(ingredient).expect(200);
+    expect(response.status).to.be.equal(200);
+    expect(response.body).to.be.an('object');
+    expect(response.body).to.have.property('ingredient');
+    expect(response.body).to.have.property('description');
+    expect(response.body.ingredient).to.be.equal('IngredientePruebaModificado');
+    expect(response.body.description).to.be.equal('Descripción del ingrediente de prueba modificado');
+  });
+});
 
-// describe('DELETE /ingredients/:ingredient_id', () => {
-//   it('Se elimina un ingrediente correctamente', async () => {
-//     const url = `https://teal-monkey-hem.cyclic.app/api/ingredients/${ingredientId}`;
-//     const response = await axios.delete(url);
-//     expect(response.status).to.be.equal(200);
-//     expect(response.data).to.be.an('object');
-//     expect(response.data).to.have.property('ingredient');
-//     expect(response.data).to.have.property('description');
-//     expect(response.data.ingredient).to.be.equal('IngredientePruebaModificado');
-//     expect(response.data.description).to.be.equal('Descripción del ingrediente de prueba modificado');
-//   });
-// });
+
+describe('DELETE /ingredients/:ingredient_id', () => {
+  it('Se elimina un ingrediente correctamente', async () => {
+    const response = await request(app).delete(`/api/ingredients/${ingredientId}`).expect(200);
+    expect(response.status).to.be.equal(200);
+    expect(response.body).to.be.an('object');
+    expect(response.body).to.have.property('ingredient');
+    expect(response.body).to.have.property('description');
+    expect(response.body.ingredient).to.be.equal('IngredientePruebaModificado');
+    expect(response.body.description).to.be.equal('Descripción del ingrediente de prueba modificado');
+  });
+});
+
 
