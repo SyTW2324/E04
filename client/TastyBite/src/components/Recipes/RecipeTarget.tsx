@@ -20,7 +20,7 @@ export function RecipeTarget({ recipe }) {
           </div>
           <div className="logo-info">
             <img src="../../clock-logo.svg" alt="icono de reloj tiempo de preparacion" />
-            <span className="recipe-target-info-item"> {recipe.time}</span>
+            <span className="recipe-target-info-item"> {recipe.time} minutos</span>
           </div>
           <div className="logo-info">
             <img src={
@@ -28,7 +28,11 @@ export function RecipeTarget({ recipe }) {
               recipe.difficulty === 'medium' ? '../../difficulty-logo-medium.svg' :
               '../../difficulty-logo-hard.svg'
             } alt="icono de dificultad" />
-            <span className="recipe-target-info-item"> {recipe.difficulty}</span>
+            <span className="recipe-target-info-item">Dificultad {
+                recipe.difficulty === 'easy' ? 'Fácil' :
+                recipe.difficulty === 'medium' ? 'Media' :
+                'Difícil'
+              }</span>
           </div>
         </div>
       </div>

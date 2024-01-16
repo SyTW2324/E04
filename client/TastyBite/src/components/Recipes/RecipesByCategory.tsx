@@ -80,24 +80,26 @@ export function RecipesByCategory() {
                 value={searchRecipes}
                 onChange={e => setSearchRecipes(e.target.value)}
                 />
-              <input className="recipes-search__time"
-                type="range"
-                min="5"
-                max="100"
-                step="5"
-                value={maxTime}
-                onChange={e => setMaxTime(parseInt(e.target.value))}
-              />
-              <span>{maxTime} minutos</span>
               <div className="recipes-search__difficulty">
                 <input type="checkbox" value="easy" onChange={handleDifficultyChange} /> Easy
                 <input type="checkbox" value="medium" onChange={handleDifficultyChange} /> Medium
                 <input type="checkbox" value="hard" onChange={handleDifficultyChange} /> Hard
               </div>
+            </div>
+            <div className="recipes-search__container-ranges">
+              <input className="recipes-search__time"
+                type="range"
+                min="0"
+                max="99"
+                step="3"
+                value={maxTime}
+                onChange={e => setMaxTime(parseInt(e.target.value))}
+              />
+              <span>{maxTime} minutos</span>
               <input className="recipes-search__servings"
                 type="range"
                 min="1"
-                max="10"
+                max="9"
                 step="1"
                 value={numServings}
                 onChange={e => setNumServings(parseInt(e.target.value))}
