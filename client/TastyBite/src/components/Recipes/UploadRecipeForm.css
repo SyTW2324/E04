@@ -3,13 +3,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
 .upload-recipe-form-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
+  width: 80%;
+  height: 55rem;
+  gap: 5rem;
 }
 
 .form-upload-recipe-left {
@@ -17,8 +20,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-width: 50%;
-  max-width: 50%;
 }
 
 .form-upload-recipe-right {
@@ -26,22 +27,23 @@
   justify-content: left;
   align-items: left;
   flex-direction: column;
-  min-width: 100%;
-  max-width: 100%;
-  margin-left: 4rem;
+
 }
+
+
 
 .upload-recipe-form-container__left-container p {
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
 }
 
 .upload-recipe-form-container__right-container p {
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 3rem;
-  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
 }
 
 .input-error-group-upload-recipe {
@@ -50,6 +52,19 @@
   justify-content: center;
   align-items: center;
   min-width: 300px;
+  gap: 1rem;
+}
+
+.input-error-group-upload-recipe label {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.input-error-group-upload-recipe .title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.1rem;
 }
 
 button.active {
@@ -122,6 +137,7 @@ button.active {
   cursor: pointer;
   align-items: center;
   justify-content: center;
+  transition: ease-in-out 0.3s;
 }
 
 
@@ -192,9 +208,7 @@ button.active {
   transition: ease-in-out 0.2s;
 }
 
-.input-category {
-  transform: scale(0.4);
-}
+
 
 .buscador-ingrediente {
   height: 2rem;
@@ -202,6 +216,7 @@ button.active {
   border: 1px solid #ccc;
   font-size: 1rem;
   padding: 0 1rem;
+
 }
 
 .input-ingredient {
@@ -235,13 +250,21 @@ button.active {
   margin-top: 1rem;
   margin-bottom: 1rem;
   height: 400px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
 }
+
+.container-ingredients .buscador-ingrediente{
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
 
 .ingredients {
   margin-top: 1rem;
   max-height: 200px;
   overflow-y: scroll;
-  border: 1px solid #ccc;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -251,4 +274,83 @@ button.active {
 
 .ingredients input {
   transform: scale(0.3);
+}
+
+.input-category {
+  display: none;
+}
+
+.input-category + label {
+  padding: 10px;
+  border: 1px solid var(--secondary);
+  background-color: var(--secondary);
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: ease-in-out 0.3s;
+}
+
+.input-category + label:hover {
+  background-color: var(--primary);
+  color: var(--secondary);
+  border: 1px solid transparent;
+  transition: ease-in-out 0.3s;
+}
+
+
+.input-category:checked + label {
+  background-color: var(--primary);
+  color: #000000;
+  border: 1px solid transparent;
+}
+
+.categories-selector__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.input-ingredient {
+  display: none; /* Oculta el checkbox */
+}
+
+
+.form-group.ingredients {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.input-ingredient + label {
+  padding: 10px;
+  border: 1px solid var(--secondary);
+  background-color: var(--secondary);
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: ease-in-out 0.3s;
+}
+
+.input-ingredient + label:hover {
+  background-color: var(--primary);
+  color: var(--secondary);
+  border: 1px solid transparent;
+  transition: ease-in-out 0.3s;
+}
+
+
+.input-ingredient:checked + label {
+  background-color: var(--primary);
+  color: #000000;
+  border: 1px solid transparent;
 }

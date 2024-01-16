@@ -1,19 +1,10 @@
 import React from "react";
-import { useCategories } from "../../hooks/useCategories";
 import { Link } from "react-router-dom";
 import { Header } from "../Header";
-import { Loader } from "../Loader/Loader";
 import { Categories } from "./Categories";
 import { Footer } from "../Footer/Footer";
 
 export function ListCategory() {
-  const { categories, isLoading } = useCategories();
-  
-
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
     <>
     <Header/>

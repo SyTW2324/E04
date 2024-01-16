@@ -1,0 +1,82 @@
+.title-recipes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 7rem;
+  margin-bottom: 0;
+}
+
+.teaser-recipes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  
+}
+
+.recipes-search__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 3rem;
+}
+
+.recipes-search__container input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 0;
+  border-radius: 0.5rem;
+  border: 2px solid #ccc;
+  padding: 0.5rem;
+}
+
+
+.recipes-search__difficulty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.recipes-search__difficulty input {
+  margin: 1rem;
+}
+
+.recipes-container {
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  margin: 0 auto;
+}
+
+.title-recipes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recipes-search__container-ranges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 3rem;
+}
+
+.recipes-search__container-ranges span {
+  font-size: 1rem;
+}
+
+.recipes-search__container-ranges input {
+  display: flex; 
+}
+
+.recipes-search__time {
+  background-color: var(--secondary);
+}
