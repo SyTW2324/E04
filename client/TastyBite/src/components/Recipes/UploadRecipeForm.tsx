@@ -45,14 +45,12 @@ const postImage = async ({ image }) => {
   formData.append('title', `nueva`);
   formData.append('file', image);
   try {
-    // Cambia la URL a la que corresponda en tu aplicación
     const result = await axios.post('https://teal-monkey-hem.cyclic.app/api/images', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
 
-    // Lógica adicional después de la carga exitosa
     console.log(result.data);
     return result.data;
   } catch (error) {
