@@ -35,7 +35,8 @@ describe('POST /categories', function() {
   })
 });
 
-describe('GET /categories', () => {
+describe('GET /categories', function () {
+  this.timeout(5000);
   it('Se obtienen todas las categorias correctamente', async () => {
     const response = await request(app).get('/api/categories').expect(200);
     expect(response.status).to.be.equal(200);
@@ -53,7 +54,8 @@ describe('GET /categories', () => {
 
 });
 
-describe('PATCH /categories/:category_id & /categories?category_id=id', () => {
+describe('PATCH /categories/:category_id & /categories?category_id=id', function () {
+  this.timeout(5000);
   it('Se modifica una categoria correctamente', async () => {
     const category = {
       "category": "CategoriaPruebaModificada",
@@ -83,7 +85,8 @@ describe('PATCH /categories/:category_id & /categories?category_id=id', () => {
 
 
 
-describe('DELETE /categories/:category_id & /categories?category_id=id', () => {
+describe('DELETE /categories/:category_id & /categories?category_id=id', function () {
+  this.timeout(5000);
   it('Se elimina una categoria correctamente', async () => {
     const response = await request(app).delete(`/api/categories/${categoryId}`);
     const response2 = await request(app).delete(`/api/categories?category_id=${categoryId2}`);

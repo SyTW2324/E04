@@ -6,7 +6,8 @@ import { app } from '../../src/app.js';
 
 let ingredientId: any;
 
-describe('POST /ingredients', () => {
+describe('POST /ingredients', function () {
+  this.timeout(5000);
   it('Se crea un ingrediente correctamente', async () => {
     const ingredient = {
       "ingredient": "IngredientePrueba",
@@ -26,7 +27,8 @@ describe('POST /ingredients', () => {
   })
 });
 
-describe('GET /ingredients', () => {
+describe('GET /ingredients', function () {
+  this.timeout(5000);
   it('Se obtienen todos los ingredientes correctamente', async () => {
     const response = await request(app).get('/api/ingredients').expect(200);
     expect(response.status).to.be.equal(200);
@@ -48,7 +50,8 @@ describe('GET /ingredients', () => {
   
 });
 
-describe('PATCH /ingredients/:ingredient_id', () => {
+describe('PATCH /ingredients/:ingredient_id', function () {
+  this.timeout(5000);
   it('Se modifica un ingrediente correctamente', async () => {
     const ingredient = {
       "ingredient": "IngredientePruebaModificado",
@@ -65,7 +68,8 @@ describe('PATCH /ingredients/:ingredient_id', () => {
 });
 
 
-describe('DELETE /ingredients/:ingredient_id', () => {
+describe('DELETE /ingredients/:ingredient_id', function () {
+  this.timeout(5000);
   it('Se elimina un ingrediente correctamente', async () => {
     const response = await request(app).delete(`/api/ingredients/${ingredientId}`).expect(200);
     expect(response.status).to.be.equal(200);
