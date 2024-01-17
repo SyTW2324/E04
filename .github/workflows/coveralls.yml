@@ -30,4 +30,5 @@ jobs:
       run: npm i
     
     - name: Generate coverage info
-      run: npm run coverage 
+      run: npm run coverage
+      run: npx coveralls < ./coverage/lcov.info
