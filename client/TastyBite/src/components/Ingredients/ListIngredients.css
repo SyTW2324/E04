@@ -4,6 +4,38 @@
   align-items: center;
 }
 
+.ingredients-gold-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.ingredients-gold-container button {
+  margin-top: 1rem;
+  flex-direction: row;
+  height: 3rem;
+  padding: 1rem;
+  margin: 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: var(--secondary);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: ease-in-out 0.3s;
+}
+
+.ingredients-gold-container button:hover {
+  background-color: var(--primary);
+  color: var(--secondary);
+  border: rgba(255, 0, 0, 0);
+  transition: ease-in-out 0.3s;
+}
+
 .ingredients-text-container {
   display: flex;
   flex-direction: column;

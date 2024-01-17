@@ -4,6 +4,7 @@ import { useCategories } from "../../hooks/useCategories";
 import { Loader } from "../Loader/Loader";
 import { TargetCategory } from "./TargetCategory";
 import { useCategoryStore } from "../../state/store";
+import { Link } from "react-router-dom";
 
 export function Categories() {
   const { categories, isLoading } = useCategories();
@@ -32,6 +33,10 @@ export function Categories() {
         </div>
         <div className="categories-home__image-container">
           <img  src="./CocodriloInformatico.png" alt="imagen de cocodrilo en categorias" />
+          <Link to="/recipes" className="categories-recipes-general__button">
+            <h2 className="target-category__title">General</h2>
+            <p className="target-category__paragraph">Accede a todas las recetas de nuestra comunidad</p>
+          </Link>
         </div>
         <div className="categories-home__columns-categories">
           {secondHalf.map((category) => (
