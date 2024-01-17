@@ -1,6 +1,8 @@
 # Tasty Bite
 ## Por Daniel Felipe Gómez Aristizabal y Facundo José García Gallo
 
+[![Coverage Status](https://coveralls.io/repos/github/SyTW2324/E04/badge.svg?branch=release/v0.1)](https://coveralls.io/github/SyTW2324/E04?branch=release/v0.1)
+
 ### Introducción
 
 Muchas veces una tarea que hacemos diariamente como puede ser elegir qué comer se hace muy difícil, a veces no encontramos algo que se pueda hacer en poco tiempo, otras veces la cartera nos pone un límite del que queremos prescindir o quizás simplemente tenemos pereza y queremos comer lo antes posible.
