@@ -29,5 +29,5 @@ jobs:
     - name: Install Cypress
       run: npm install cypress
 
-    - run: npm run test_frontend
     - run: npm run test_backend
+    - run: npm run test_frontend
