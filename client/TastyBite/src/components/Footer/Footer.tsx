@@ -26,7 +26,7 @@ export const Footer = () => {
         </div>
         <div className="footer-bottom">
           <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <img className='logo' src='./arrow.svg'/>
+            <img className='logo' src='./../arrow.svg'/>
           </button>            
         </div>
       </footer>

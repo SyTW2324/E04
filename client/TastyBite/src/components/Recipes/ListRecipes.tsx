@@ -88,9 +88,9 @@ export function ListRecipes() {
                 onChange={e => setSearchRecipes(e.target.value)}
                 />
               <div className="recipes-search__difficulty">
-                <input type="checkbox" value="easy" onChange={handleDifficultyChange} /> Easy
-                <input type="checkbox" value="medium" onChange={handleDifficultyChange} /> Medium
-                <input type="checkbox" value="hard" onChange={handleDifficultyChange} /> Hard
+                <input type="checkbox" value="easy" onChange={handleDifficultyChange} /> Fácil
+                <input type="checkbox" value="medium" onChange={handleDifficultyChange} /> Media
+                <input type="checkbox" value="hard" onChange={handleDifficultyChange} /> Difícil
               </div>
             </div>
             <div className="recipes-search__container-ranges">
