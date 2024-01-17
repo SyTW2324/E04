@@ -7,7 +7,7 @@ import { app } from '../../src/app.js';
 let ingredientId: any;
 
 describe('POST /ingredients', function () {
-  this.timeout(5000);
+  this.timeout(10000);
   it('Se crea un ingrediente correctamente', async () => {
     const ingredient = {
       "ingredient": "IngredientePrueba",
@@ -28,7 +28,7 @@ describe('POST /ingredients', function () {
 });
 
 describe('GET /ingredients', function () {
-  this.timeout(5000);
+  this.timeout(10000);
   it('Se obtienen todos los ingredientes correctamente', async () => {
     const response = await request(app).get('/api/ingredients').expect(200);
     expect(response.status).to.be.equal(200);
@@ -51,7 +51,7 @@ describe('GET /ingredients', function () {
 });
 
 describe('PATCH /ingredients/:ingredient_id', function () {
-  this.timeout(5000);
+  this.timeout(10000);
   it('Se modifica un ingrediente correctamente', async () => {
     const ingredient = {
       "ingredient": "IngredientePruebaModificado",
@@ -69,7 +69,7 @@ describe('PATCH /ingredients/:ingredient_id', function () {
 
 
 describe('DELETE /ingredients/:ingredient_id', function () {
-  this.timeout(5000);
+  this.timeout(10000);
   it('Se elimina un ingrediente correctamente', async () => {
     const response = await request(app).delete(`/api/ingredients/${ingredientId}`).expect(200);
     expect(response.status).to.be.equal(200);

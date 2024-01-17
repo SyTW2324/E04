@@ -2,7 +2,8 @@
   "scripts": {
     "install-all": "cd server && npm i && cd ../client/TastyBite && npm i && cd ../..",
     "test_frontend": "cd client/TastyBite && npm i && cd .. && npx cypress run && cd ..",
-    "test_backend": "cd server && npm i && npm run test && cd .."
+    "test_backend": "cd server && npm i && npm run test && cd ..",
+    "coverage": "cd server && npm i && npm run coverage && cd .."
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",

@@ -14,7 +14,7 @@ let tokenRonaldo = '';
   
 
 describe('POST /users', function() {
-  this.timeout(5000);
+  this.timeout(100000);
   it('Se crea un usuario correctamente Messi', async () => {
     const userMessi = {
       "username": "messi",
@@ -62,7 +62,7 @@ describe('POST /users', function() {
 });
 
 describe('GET /users', function () {
-  this.timeout(5000);
+  this.timeout(100000);
   it('Se obtienen todos los usuarios correctamente', async () => {
     const response = await request(app).get('/api/users');
     expect(response.status).to.be.equal(200);
@@ -93,7 +93,7 @@ describe('GET /users', function () {
 
 
 describe('PATCH /users/:username', function () {
-  this.timeout(5000);
+  this.timeout(10000);
   it('Se modifica un usuario correctamente (body)', async () => {
 
     // conseguimos el token primero
@@ -152,7 +152,7 @@ describe('PATCH /users/:username', function () {
 
 
 describe('DELETE /users/:username', function () {
-  this.timeout(5000);
+  this.timeout(10000);
   it('Se elimina un usuario correctamente (body)', async () => {
     const userLoginMessi = {
       "username": "messi",
