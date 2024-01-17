@@ -33,3 +33,8 @@ https://teal-monkey-hem.cyclic.app/
 Por último tenemos el frontend desplegado en Netlify, otro servicio de hosting en la nube que nos permite tener una aplicación web en la nube de forma gratuita, el enlace es el siguiente:
 
 https://tasty-bite-sytw.netlify.app/
+
+
+### Instalación
+
+Si deseamos instalar la aplicación web en local debemos tener en cuenta algunas cosas. La raíz del proyecto tiene un fichero `package.json` con un script en el que se instalan las dependencias de la aplicación web, para ejecutarlo simplemente realizar `npm run install-all`. A continuación tenemos todas las librerías necesarias para la ejecución de la aplicación web. 
